@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zhihao Chen">
+  <meta name="keywords" content="">
+  <title>SQL笔记(一) - 陈之的鸟窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>鸟窝</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              主页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              目录</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/bg/background2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-10 21:17">
+                    May 10, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    592 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    7
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="SQL数据定义"><a href="#SQL数据定义" class="headerlink" title="SQL数据定义"></a>SQL数据定义</h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471474608-067e87fc-6ba0-4618-b9a7-d54db5ec496f.png#align=left&display=inline&height=310&margin=%5Bobject%20Object%5D&name=image.png&originHeight=310&originWidth=701&size=156573&status=done&style=none&width=701" srcset="/img/loading.gif" alt="image.png"><br>如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格</p>
+<blockquote>
+<p>用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统<br>两个char则会自动添加空格使长度一致</p>
+</blockquote>
+<h2 id="基本模式定义"><a href="#基本模式定义" class="headerlink" title="基本模式定义"></a>基本模式定义</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471823562-c50e815f-174b-4c88-9515-db9ba11125e3.png#align=left&display=inline&height=147&margin=%5Bobject%20Object%5D&name=image.png&originHeight=147&originWidth=621&size=35478&status=done&style=none&width=621" srcset="/img/loading.gif" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471845214-00aad91d-5bb7-4d92-97fd-1da608479dc7.png#align=left&display=inline&height=145&margin=%5Bobject%20Object%5D&name=image.png&originHeight=159&originWidth=303&size=31333&status=done&style=none&width=276" srcset="/img/loading.gif" alt="image.png"><br><strong>完整性约束</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471869996-67c7603c-030d-405c-b6f9-58a32ac94bf2.png#align=left&display=inline&height=442&margin=%5Bobject%20Object%5D&name=image.png&originHeight=442&originWidth=382&size=135596&status=done&style=none&width=382" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="查询的基本结构"><a href="#查询的基本结构" class="headerlink" title="查询的基本结构"></a>查询的基本结构</h1><pre><code class="hljs sql">单关系查询
+<span class="hljs-keyword">select</span> dept_name <span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'jack'</span>
+
+多关系查询
+<span class="hljs-keyword">select</span> A1, A2 <span class="hljs-keyword">from</span> r1, r2 <span class="hljs-keyword">where</span> P;
+
+自然连接
+course(cid,title,deptname,credits); insturctor+teacher(id name deptname salary cid sid)
+<span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span>，course_id
+<span class="hljs-keyword">from</span> insturctor <span class="hljs-keyword">natural</span> <span class="hljs-keyword">join</span> teaches;
+
+from(instructor natural join teaches) join course using（course_id）//指定哪些相等列作为拼接
+(如果不指定，可能有跨系授课的元组被删除,因为join的时候有两个相同属性列，都作为join的依据)</code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587472713568-fd339c6a-fe79-4025-8d95-dce39bdeaf54.png#align=left&display=inline&height=111&margin=%5Bobject%20Object%5D&name=image.png&originHeight=111&originWidth=438&size=38692&status=done&style=none&width=438" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>实际过程中，查询会尽可能只产生满足where子句谓词的笛卡尔积元素来优化执行</p>
+</blockquote>
+<h2 id="附加的基本运算"><a href="#附加的基本运算" class="headerlink" title="附加的基本运算"></a>附加的基本运算</h2><h2 id="更名运算"><a href="#更名运算" class="headerlink" title="更名运算"></a>更名运算</h2><pre><code class="hljs sql">
+<span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">as</span> instructor_name ,course_id 
+<span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">as</span> T, teaches
+<span class="hljs-keyword">where</span> instructor.ID = teaches.ID</code></pre>
+<h2 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587542539899-d01905d7-d035-4889-8151-8fe6a5f4dac2.png#align=left&display=inline&height=137&margin=%5Bobject%20Object%5D&name=image.png&originHeight=192&originWidth=612&size=68300&status=done&style=none&width=438" srcset="/img/loading.gif" alt="image.png"><br>eg: where building like ‘%Watson%’  /全文包含W-word就可以筛选出来</p>
+<p>转义字符 escape‘’<br>eg:<img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587542641211-20af9314-18fc-49b0-8f24-6d305464f1fd.png#align=left&display=inline&height=15&margin=%5Bobject%20Object%5D&name=image.png&originHeight=29&originWidth=412&size=9736&status=done&style=none&width=206" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="select子句的属性说明"><a href="#select子句的属性说明" class="headerlink" title="select子句的属性说明"></a>select子句的属性说明</h2><p>select xx.*                  所有的属性</p>
+<h2 id="排列元组的显示次序"><a href="#排列元组的显示次序" class="headerlink" title="排列元组的显示次序"></a>排列元组的显示次序</h2><p>order by、desc降序、asc升序<br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587542716555-12bbb3ae-2606-4c3a-ae41-36572f9a2018.png#align=left&display=inline&height=103&margin=%5Bobject%20Object%5D&name=image.png&originHeight=205&originWidth=610&size=63892&status=done&style=none&width=305" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="where子句谓词"><a href="#where子句谓词" class="headerlink" title="where子句谓词"></a>where子句谓词</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587542765188-2eb07883-d3fa-4048-9468-05d3f1634587.png#align=left&display=inline&height=24&margin=%5Bobject%20Object%5D&name=image.png&originHeight=22&originWidth=384&size=9252&status=done&style=none&width=419" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h1><h1 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h1><h1 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h1><h1 id="数据库修改"><a href="#数据库修改" class="headerlink" title="数据库修改"></a>数据库修改</h1><h1 id="sqlzoo总结"><a href="#sqlzoo总结" class="headerlink" title="sqlzoo总结"></a>sqlzoo总结</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588145834975-4835ade7-c2a3-43ab-85c8-68e52f15baa5.png#align=left&display=inline&height=291&margin=%5Bobject%20Object%5D&name=image.png&originHeight=291&originWidth=368&size=19121&status=done&style=none&width=368" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="CASE"><a href="#CASE" class="headerlink" title="CASE"></a>CASE</h2><p>替换某个值为某个值<br>简单case：<br>CASE WHEN X THEN Y<br>else ‘其他’end,<br>把x换为Y，其他的不管<br>eg：select u.id,u.name,<br>  <strong>2</strong>    (case u.sex<br>  <strong>3</strong>      when <strong>1</strong> then ‘男’<br>  <strong>4</strong>      when <strong>2</strong> then ‘女’<br>  <strong>5</strong>      else ‘空的’<br>  <strong>6</strong>      end<br>  <strong>7</strong>     )性别<br>  <strong>8</strong>  from users u;</p>
+<p>将case命名为 性别</p>
+<p>其他用法<br>将sum和case结合，分段统计<br>eg：<img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146255044-f76945b8-27fb-41c9-843f-6b23552b7e78.png#align=left&display=inline&height=162&margin=%5Bobject%20Object%5D&name=image.png&originHeight=162&originWidth=515&size=10947&status=done&style=none&width=515" srcset="/img/loading.gif" alt="image.png"><br>在这里case when是作为搜索函数使用。</p>
+<h2 id="Group-by"><a href="#Group-by" class="headerlink" title="Group by"></a>Group by</h2><p>GROUP BY 语句用于结合合计函数，根据一个或多个<strong>列对结果集进行分组</strong>。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146492983-f7293223-8a60-489b-9b43-397bc8891893.png#align=left&display=inline&height=173&margin=%5Bobject%20Object%5D&name=image.png&originHeight=173&originWidth=453&size=9226&status=done&style=none&width=453" srcset="/img/loading.gif" alt="image.png"></p>
+<p>eg:<br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146567763-56f2f008-0aad-4aaf-bed7-c93ab7efd0c8.png#align=left&display=inline&height=348&margin=%5Bobject%20Object%5D&name=image.png&originHeight=348&originWidth=788&size=22686&status=done&style=none&width=788" srcset="/img/loading.gif" alt="image.png"></p>
+<p>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146586849-0a2946c9-73be-4901-af0a-972581de73b8.png#align=left&display=inline&height=154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=154&originWidth=508&size=5994&status=done&style=none&width=508" srcset="/img/loading.gif" alt="image.png"></p>
+<p>SELECT Customer,SUM(OrderPrice) FROM Orders<br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146598817-ad50c03c-aa3c-4506-97a3-35df0bfad3e1.png#align=left&display=inline&height=166&margin=%5Bobject%20Object%5D&name=image.png&originHeight=166&originWidth=497&size=6050&status=done&style=none&width=497" srcset="/img/loading.gif" alt="image.png"></p>
+<p>解释：groupby通过customer给price先分组，再处理sum聚集函数。</p>
+<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h3><p>在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。(<strong>需要有一个能操作聚集函数的语句</strong>)<br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146706299-1e084ac6-53a8-4e36-b38f-aaecd5009f41.png#align=left&display=inline&height=189&margin=%5Bobject%20Object%5D&name=image.png&originHeight=189&originWidth=504&size=12081&status=done&style=none&width=504" srcset="/img/loading.gif" alt="image.png"><br>eg：<br>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer<br>HAVING SUM(OrderPrice)&lt;2000</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588146745631-56f87ecb-68bf-44d0-b085-e3ee6efd5d5a.png#align=left&display=inline&height=102&margin=%5Bobject%20Object%5D&name=image.png&originHeight=102&originWidth=469&size=3704&status=done&style=none&width=469" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="between-and"><a href="#between-and" class="headerlink" title="between and"></a>between and</h2><p>包括首尾的区间<br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1588147556775-3f151e64-62db-418f-99b2-25d6b6d61388.png#align=left&display=inline&height=73&margin=%5Bobject%20Object%5D&name=image.png&originHeight=73&originWidth=666&size=8596&status=done&style=none&width=666" srcset="/img/loading.gif" alt="image.png"></p>
+<p>order by 有个顺序，补全笔记的时候写上。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/10/%E3%80%8A%E6%BF%80%E8%8D%A1%E4%B8%89%E5%8D%81%E5%B9%B4%EF%BC%9A%E4%B8%AD%E5%9B%BD%E4%BC%81%E4%B8%9A%201978%E2%80%942008%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%91%98%E8%A6%81/">
+                        <span class="hidden-mobile">《激荡三十年：中国企业 1978—2008》读书摘要</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SQL笔记(一)&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
