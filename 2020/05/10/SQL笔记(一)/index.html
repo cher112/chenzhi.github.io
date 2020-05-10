@@ -187,7 +187,7 @@
 <p>用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统<br>两个char则会自动添加空格使长度一致</p>
 </blockquote>
 <h2 id="基本模式定义"><a href="#基本模式定义" class="headerlink" title="基本模式定义"></a>基本模式定义</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471823562-c50e815f-174b-4c88-9515-db9ba11125e3.png#align=left&display=inline&height=147&margin=%5Bobject%20Object%5D&name=image.png&originHeight=147&originWidth=621&size=35478&status=done&style=none&width=621" srcset="/img/loading.gif" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471845214-00aad91d-5bb7-4d92-97fd-1da608479dc7.png#align=left&display=inline&height=145&margin=%5Bobject%20Object%5D&name=image.png&originHeight=159&originWidth=303&size=31333&status=done&style=none&width=276" srcset="/img/loading.gif" alt="image.png"><br><strong>完整性约束</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/png/756532/1587471869996-67c7603c-030d-405c-b6f9-58a32ac94bf2.png#align=left&display=inline&height=442&margin=%5Bobject%20Object%5D&name=image.png&originHeight=442&originWidth=382&size=135596&status=done&style=none&width=382" srcset="/img/loading.gif" alt="image.png"></p>
-<h1 id="查询的基本结构"><a href="#查询的基本结构" class="headerlink" title="查询的基本结构"></a>查询的基本结构</h1><pre><code class="hljs sql">单关系查询
+<h1 id="查询的基本结构"><a href="#查询的基本结构" class="headerlink" title="查询的基本结构"></a>查询的基本结构</h1><pre><code class="hljs sql">单关系查询 
 <span class="hljs-keyword">select</span> dept_name <span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'jack'</span>
 
 多关系查询
@@ -258,7 +258,7 @@ from(instructor natural join teaches) join course using（course_id）//指定�
                     
                     
                       <a href="/2020/05/10/%E3%80%8A%E6%BF%80%E8%8D%A1%E4%B8%89%E5%8D%81%E5%B9%B4%EF%BC%9A%E4%B8%AD%E5%9B%BD%E4%BC%81%E4%B8%9A%201978%E2%80%942008%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%91%98%E8%A6%81/">
-                        <span class="hidden-mobile">《激荡三十年：中国企业 1978—2008 上》读书摘要</span>
+                        <span class="hidden-mobile">《激荡三十年：中国企业 1978—2008》(上) 读书摘要</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -461,56 +461,6 @@ from(instructor natural join teaches) join course using（course_id）//指定�
 
 
 
-
-  
-  
-    <script type="text/javascript">
-      //定义获取词语下标
-      var a_idx = 0;
-      jQuery(document).ready(function ($) {
-        //点击body时触发事件
-        $("body").click(function (e) {
-          //需要显示的词语
-          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
-          //设置词语给span标签
-          var $i = $("<span/>").text(a[a_idx]);
-          //下标等于原来下标+1  余 词语总数
-          a_idx = (a_idx + 1) % a.length;
-          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
-          //获取x和y的指针坐标
-          var x = e.pageX, y = e.pageY;
-          //在鼠标的指针的位置给$i定义的span标签添加css样式
-          $i.css({
-            "z-index": 999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": rand_color()
-          });
-          // 随机颜色
-          function rand_color() {
-            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          }
-          //在body添加这个标签
-          $("body").append($i);
-          //animate() 方法执行 CSS 属性集的自定义动画。
-          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
-          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
-          $i.animate({
-            //将原来的位置向上移动180
-            "top": y - 180,
-            "opacity": 0
-            //1500动画的速度
-          }, 1500, function () {
-            //时间到了自动删除
-            $i.remove();
-          });
-        });
-      })
-      ;
-    </script>
-  
 
 
 
