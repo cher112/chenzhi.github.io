@@ -14,6 +14,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="baidu-site-verification" content="btSjTELAxF" />
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
@@ -209,6 +211,29 @@
   </div>
 </div>
   
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"/songs/dream.flac","cover":"/img/cover.jpg"},{"name":"愛の悲しみ","url":"/songs/sadlove.mp3","cover":"/img/cover2.jpg"}]
+    });
+  }
+</script>
 
   
 
