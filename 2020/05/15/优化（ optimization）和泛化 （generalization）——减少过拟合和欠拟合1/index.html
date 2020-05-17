@@ -131,6 +131,25 @@
             <span class="h2" id="subtitle">
               
             </span>
+            <!-- 一言API -->
+            <!-- 现代写法，推荐 -->
+            <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+            <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+            <!--End-->
+            <script>
+             fetch('https://v1.hitokoto.cn/?c=i')
+               .then(function (res){
+                 return res.json();
+               })
+               .then(function (data) {
+                 var hitokoto = document.getElementById('hitokoto');
+                 hitokoto.innerText = data.hitokoto + '——【' + data.from + '】';
+               })
+               .catch(function (err) {
+                 console.error(err);
+               })
+            </script>
 
             
               
@@ -382,6 +401,7 @@ model.add(layers.Dense(<span class="hljs-number">1</span>, activation=<span clas
   
   <div class="text-center py-3">
     <div>
+      <p id="hitokoto">正在加载一言...</p>
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
@@ -516,7 +536,7 @@ model.add(layers.Dense(<span class="hljs-number">1</span>, activation=<span clas
         '  ',
         "优化（ optimization）和泛化 （generalization）——减少过拟合和欠拟合&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: "🐟",
       typeSpeed: 70,
       loop: false,
     });
