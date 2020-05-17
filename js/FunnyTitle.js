@@ -4,7 +4,7 @@
  document.addEventListener('visibilitychange', function () {
      if (document.hidden) {
          $('[rel="icon"]').attr('href', "/img/trhx2.png");
-         document.title = '😒哼赶紧走！';
+         document.title = '😒哼赶紧走,不要回来了！';
          clearTimeout(titleTime);
      }
      else {
