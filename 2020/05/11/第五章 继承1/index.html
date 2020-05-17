@@ -1,7 +1,200 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png#%20%E7%BD%91%E7%AB%99%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%20icon"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="baidu-site-verification" content="btSjTELAxF"><meta name="google-site-verification" content="vsAhxehAe-tcQtlb7QpdHFQ-YDTEAjWKFnL0RQIgB28"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="theme-color" content="#2f4154"><meta name="description" content=""><meta name="author" content="Zhihao Chen"><meta name="keywords" content=""><title>JAVA笔记 第五章 继承 - A nest for me</title><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css"><link rel="stylesheet" href="/css/main.css"><meta name="generator" content="Hexo 4.2.0"></head><body><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>Bird's Nest</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 归档</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 目录</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2" id="background" parallax="true" style="background:url(https://gitee.com/cher112/image/raw/master/img/意大利风情.jpg) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><div class="mt-3 post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2020-05-11 20:44">May 11, 2020 pm</time></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 2.1k 字 </span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 25 分钟</span></div></div></div></div></div></header><main><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="container nopadding-md" id="board-ctn"><div class="py-5" id="board"><div class="post-content mx-auto" id="post"><article class="markdown-body"><h1 id="第五章-继承"><a href="#第五章-继承" class="headerlink" title="第五章 继承"></a>第五章 继承</h1><h1 id="类-超类-子类"><a href="#类-超类-子类" class="headerlink" title="类 超类 子类"></a>类 超类 子类</h1><blockquote><p>对于第四章的 Employee类，经理的办公，工资形式不同，可以创建个新类 Manager，但可以重用Employee中的部分代码，将所有域保留下来。</p></blockquote><h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><p>由继承 E类来定义Manager 类的格式，关键字 extends 表<strong>继承，</strong>构造的新类派生于一个已存在的类。</p><h3 id="定义子类"><a href="#定义子类" class="headerlink" title="定义子类"></a>定义子类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span>
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png#%20%E7%BD%91%E7%AB%99%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%20icon">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="baidu-site-verification" content="btSjTELAxF" />
+  <meta name="google-site-verification" content="vsAhxehAe-tcQtlb7QpdHFQ-YDTEAjWKFnL0RQIgB28" />  
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zhihao Chen">
+  <meta name="keywords" content="">
+  <title>JAVA笔记 第五章 继承 - A nest for me</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Bird's Nest</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              主页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              目录</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/cher112/image/raw/master/img/意大利风情.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-11 20:44">
+                    May 11, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2.1k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    25
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="第五章-继承"><a href="#第五章-继承" class="headerlink" title="第五章 继承"></a>第五章 继承</h1><h1 id="类-超类-子类"><a href="#类-超类-子类" class="headerlink" title="类 超类 子类"></a>类 超类 子类</h1><blockquote>
+<p>对于第四章的 Employee类，经理的办公，工资形式不同，可以创建个新类 Manager，但可以重用Employee中的部分代码，将所有域保留下来。</p>
+</blockquote>
+<h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><p>由继承 E类来定义Manager 类的格式，关键字 extends 表<strong>继承，</strong>构造的新类派生于一个已存在的类。</p>
+<h3 id="定义子类"><a href="#定义子类" class="headerlink" title="定义子类"></a>定义子类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span>
 <span class="hljs-class"></span>&#123;
 	方法
-&#125;</code></pre><p>其中：<br>已存在的类称为<strong>超类 ( superclass)、 基类（base class) 或父类（parent class)</strong>; 新类称为<strong>子类（subclass)</strong>、 <strong>派生类 (derivedclass) 或孩子类（child class)。 父子类并没有优劣性。</strong><br>**</p><pre><code class="hljs java">/构造一个新方法 setBonus，只给经理加奖金
+&#125;</code></pre>
+<p>其中：<br>已存在的类称为<strong>超类 ( superclass)、 基类（base class) 或父类（parent class)</strong>; 新类称为<strong>子类（subclass)</strong>、 <strong>派生类 (derivedclass) 或孩子类（child class)。 父子类并没有优劣性。</strong><br>**</p>
+<pre><code class="hljs java">/构造一个新方法 setBonus，只给经理加奖金
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> bonus;
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBonus</span><span class="hljs-params">(<span class="hljs-keyword">double</span> bonus)</span></span>
 <span class="hljs-function"></span>&#123;
@@ -10,35 +203,56 @@
 
 boss.setBonus(<span class="hljs-number">500</span>);
 
-效果：只能给Manager加奖金，给Employee加会报错。</code></pre><p>tip：Manager类就包括了 Employee的所有实例域和新实例域bonus。<br><strong>（但是调用超类的私有域，要依照超类的方法或者基于此新建子类方法）——见覆盖方法</strong></p><p>一般思路，将通用功能放到超类，特殊用途放到子类。</p><h3 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h3><p>修改/覆盖(override) 超类原有的方法</p><pre><code class="hljs java">思路一：直接调用E类实例域 <span class="hljs-comment">//错误</span>
+效果：只能给Manager加奖金，给Employee加会报错。</code></pre>
+<p>tip：Manager类就包括了 Employee的所有实例域和新实例域bonus。<br><strong>（但是调用超类的私有域，要依照超类的方法或者基于此新建子类方法）——见覆盖方法</strong></p>
+<p>一般思路，将通用功能放到超类，特殊用途放到子类。</p>
+<h3 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h3><p>修改/覆盖(override) 超类原有的方法</p>
+<pre><code class="hljs java">思路一：直接调用E类实例域 <span class="hljs-comment">//错误</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">return</span> salary + bonus; <span class="hljs-comment">// won't work </span>
-&#125;</code></pre><p>原因：<strong>对于超类的私有域，只有超类的方法可以访问，</strong>子类的<strong>方法</strong>无法访问<br>但子类可以通过借助共有接口(超类方法) 来间接访问</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
+&#125;</code></pre>
+<p>原因：<strong>对于超类的私有域，只有超类的方法可以访问，</strong>子类的<strong>方法</strong>无法访问<br>但子类可以通过借助共有接口(超类方法) 来间接访问</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">double</span> baseSalary = getSalaryO；<span class="hljs-comment">// still won't work</span>
     <span class="hljs-keyword">return</span> baseSalary + bonus;
-&#125;</code></pre><p>原因：程序认为你调用的是 M类的getSalary 而不是 超类的，就会无限调用自己。</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
+&#125;</code></pre>
+<p>原因：程序认为你调用的是 M类的getSalary 而不是 超类的，就会无限调用自己。</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
     <span class="hljs-keyword">double</span> baseSalary = <span class="hljs-keyword">super</span>.getSalary();<span class="hljs-comment">//work</span>
     <span class="hljs-keyword">return</span> baseSalary + bonus; 
 &#125; 
-添加超类方法的标识 关键字 <span class="hljs-keyword">super</span></code></pre><h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name, <span class="hljs-keyword">double</span> salary, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>
+添加超类方法的标识 关键字 <span class="hljs-keyword">super</span></code></pre>
+<h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name, <span class="hljs-keyword">double</span> salary, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>
 <span class="hljs-function"></span>&#123; 
     <span class="hljs-keyword">super</span>(name, salary, year, month, day); 
     bonus = <span class="hljs-number">0</span>;
-&#125;</code></pre><p>super关键词：*<em>调用超类 含有name—day 参数的构造器 *</em>的简写形式<br>如果没有显式调用，会默认用超类的。</p><p>类似this关键字～</p><h3 id="继承层次"><a href="#继承层次" class="headerlink" title="继承层次"></a>继承层次</h3><p>继承并不仅限于一个层次。 例如， 可以由 Manager 类派生 Executive 类。由一个公共超类派生出来的所有类的集合被称为<strong>继承层次（inheritance hierarchy)</strong>, 如图 5-1 所示。在继承 层次中， 从某个特定的类到其祖先的路径被称为该类的继承链 (inheritance chain)0<br><img src="https://gitee.com/cher112/image/raw/master/img/1585035342026-f1aa6bbd-6743-44e0-8e1d-fba7d9ab0f6e.png" srcset="/img/loading.gif" alt="image.png"></p><h3 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h3><p>有时候，可能希望阻止人们利用某个类定义子类。不允许扩展的类被称为 final 类。</p><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String getNameQ</code></pre><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
+&#125;</code></pre>
+<p>super关键词：*<em>调用超类 含有name—day 参数的构造器 *</em>的简写形式<br>                    如果没有显式调用，会默认用超类的。</p>
+<p>类似this关键字～</p>
+<h3 id="继承层次"><a href="#继承层次" class="headerlink" title="继承层次"></a>继承层次</h3><p>继承并不仅限于一个层次。 例如， 可以由 Manager 类派生 Executive 类。由一个公共超类派生出来的所有类的集合被称为<strong>继承层次（inheritance hierarchy)</strong>, 如图 5-1 所示。在继承 层次中， 从某个特定的类到其祖先的路径被称为该类的继承链 (inheritance chain)0<br><img src="https://gitee.com/cher112/image/raw/master/img/1585035342026-f1aa6bbd-6743-44e0-8e1d-fba7d9ab0f6e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h3><p>有时候，可能希望阻止人们利用某个类定义子类。不允许扩展的类被称为 final 类。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String getNameQ</code></pre>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
 <span class="hljs-class"></span>&#123;
 	<span class="hljs-keyword">private</span> String name;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(St ring name)</span></span>
 <span class="hljs-function">	</span>&#123;
 	<span class="hljs-keyword">this</span>.name = name;
 	&#125;
-&#125;</code></pre><p>表述为一个抽象的大类<br><img src="https://gitee.com/cher112/image/raw/master/img/1585056601086-c45f45f2-252e-4356-a78e-ff9eb22eb006.png" srcset="/img/loading.gif" alt="image.png"><br>Employee和student在逻辑上都是通过抽象类拓展出来的。</p><p>还是不太理解抽象方法(好像在接口中会阐述)</p><h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p>object是所有java类的始祖，每个类都是由他扩展出来的</p><pre><code class="hljs java">Object obj =  <span class="hljs-keyword">new</span> Employee(xxx);
+&#125;</code></pre>
+<p>表述为一个抽象的大类<br><img src="https://gitee.com/cher112/image/raw/master/img/1585056601086-c45f45f2-252e-4356-a78e-ff9eb22eb006.png" srcset="/img/loading.gif" alt="image.png"><br>Employee和student在逻辑上都是通过抽象类拓展出来的。</p>
+<p>还是不太理解抽象方法(好像在接口中会阐述)</p>
+<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p>object是所有java类的始祖，每个类都是由他扩展出来的</p>
+<pre><code class="hljs java">Object obj =  <span class="hljs-keyword">new</span> Employee(xxx);
 #object只是作为各种值的 通用持有者。 要进行操作还需要类型转换
 <span class="hljs-comment">//这个是向上转型（自动类型转换）:小——&gt;大</span>
 Employee = (Employee) obj
-<span class="hljs-comment">//向下转型，以便进行更改器等具体操作</span></code></pre><h2 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h2><p>Object 类中的 equals 方法用于检测一个对象是否等于另外一个对象。在 Object 类中，这<br>个方法将判断两个对象是否具有相同的引用。引用相同，它们是相同</p><pre><code class="hljs java"><span class="hljs-keyword">return</span> Objects.equals(name, other.name)
+<span class="hljs-comment">//向下转型，以便进行更改器等具体操作</span></code></pre>
+<h2 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h2><p>Object 类中的 equals 方法用于检测一个对象是否等于另外一个对象。在 Object 类中，这<br>个方法将判断两个对象是否具有相同的引用。引用相同，它们是相同</p>
+<pre><code class="hljs java"><span class="hljs-keyword">return</span> Objects.equals(name, other.name)
     
     
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span>
@@ -50,7 +264,8 @@ Manager other = (Manager) otherObject;
 <span class="hljs-keyword">return</span> bonus == other.bonus;
 &#125;
 &#125;
-<span class="hljs-comment">//如果超类都不相同，就不需要比较子类，反之则需要再比较子类的实例域(manager比员工多了个bonus实例域)</span></code></pre><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>
+<span class="hljs-comment">//如果超类都不相同，就不需要比较子类，反之则需要再比较子类的实例域(manager比员工多了个bonus实例域)</span></code></pre>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>
 <span class="hljs-class"></span>&#123;
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Employee other)</span></span>
 <span class="hljs-function"></span>&#123;
@@ -64,7 +279,8 @@ Manager other = (Manager) otherObject;
 该方法错误
 原因：想覆盖一个新的equals方法(基于objects的)，但是并没有覆盖(格式不对)。
 应该改为
-<span class="hljs-function">Override <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object other)</span>；</span></code></pre><pre><code class="hljs java">规范式写覆盖equals！！！
+<span class="hljs-function">Override <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object other)</span>；</span></code></pre>
+<pre><code class="hljs java">规范式写覆盖equals！！！
 <span class="hljs-meta">@Override</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object otherObject)</span></span>
 <span class="hljs-function">   </span>&#123;
@@ -83,7 +299,343 @@ Manager other = (Manager) otherObject;
       <span class="hljs-comment">// test whether the fields have identical values</span>
       <span class="hljs-keyword">return</span> Objects.equals(name, other.name) 
          &amp;&amp; 基本变量 == other.基本变量 &amp;&amp; Objects.equals(对象, 对象).....;
-   &#125;</code></pre><ul><li>== 对于引用类型，比较的是两个对象 引用地址的值；对于基本类型，比较的是值</li><li>equals(Object x) 比较的是引用的地址值</li><li>getClass()返回一个对象所属的类 不判断继承关系</li><li>instanceof比较一个对象是否是该类的实例</li></ul><h2 id="hashcode方法"><a href="#hashcode方法" class="headerlink" title="hashcode方法"></a>hashcode方法</h2><p>散列码（ hash code ) 是由对象导出的一个整型值。 散列码是没有规律的。如果 x 和 y 是<br>两个不同的对象， x.hashCode( ) 与 y.hashCode( ) 基本上不会相同。</p><p>由于 hashCode 方法定义在 Object 类中， 因此每个对象都有一个默认的散列码，其<strong>值为对象的存储地址</strong>。</p><p>Equals 与 hashCode 的定义必须一致：如果 x.equals(y) 返回 true, 那么 x.hashCode( ) 就必须与 y.hashCode( ) 具有相同的值。 例如， 如果用定义的 Employee.equals 比较雇员的 ID， 那<br>么 hashCode 方法就需要散列 ID，而不是雇员的姓名或存储地址。</p><h2 id="tostring方法"><a href="#tostring方法" class="headerlink" title="tostring方法"></a>tostring方法</h2><p>在 Object 中还有一个重要的方法， 就是 toString 方法， 它用于返回表示对象值的字符<br>串。<br>绝大多数（但不是全部）的 toString方法都遵循这样的格式：类的名字，随后是一对方括<br>号括起来的域值。<br>eg:boss.toString(): equals.Manager[name=Carl Cracker,salary=80000.0,hireDay=1987-12-15][bonus=5000.0]</p><h1 id="泛型数组列表"><a href="#泛型数组列表" class="headerlink" title="泛型数组列表"></a>泛型数组列表</h1><p>一般java的数组是静态的，一旦确定大小就很难更改。在 Java 中， 解决这个问题最简单的方法是使用 Java 中另外一个被称为** ArrayList 的类<strong>。它使用起来有点像数组，但在添加或删除元素时， 具有</strong>自动调节数组容量**的<br>功能，而不需要为此编写任何代码。</p><p>下面声明和构造一个保存 *<em>Employee *</em>对象的数组列表：</p><p>ArrayList<employee>staff = new ArrayList<eniployee>0;</eniployee></employee></p><p>或 ArrayList<employee>staff = new ArrayListoQ&lt;&gt;()；</employee></p><p>菱形语法类似 var，自动检查这个变量是什么泛型类型填在&lt;&gt;中。<strong>(尖括号的类型参数不能是基本类型)</strong><br>常见方法<br><img src="https://gitee.com/cher112/image/raw/master/img/1588765552792-08f2e2d2-9a7c-494f-8be0-eda49fdab077.png" srcset="/img/loading.gif" alt="image.png"></p><h1 id="对象包装器与自动装箱"><a href="#对象包装器与自动装箱" class="headerlink" title="对象包装器与自动装箱"></a>对象包装器与自动装箱</h1><p>有时， 需要将 int 这样的基本类型转换为对象。 <strong>所有的基本类型都冇一个与之对应的类。</strong><br>这些类称为包装器 （ <strong>wrapper **)<br>这些对象包装器类<br>拥有很明显的名字：</strong>Integer<strong>、</strong>Long<strong>、</strong>Float<strong>、</strong>Double<strong>、</strong>Short<strong>、</strong>Byte<strong>、</strong>Character <strong>、</strong>Void <strong>和 **Boolean。 且为final类，无法定义子类</strong><br>**</p><h3 id="自动装箱-autoboxing-和自动拆箱-autowrapping"><a href="#自动装箱-autoboxing-和自动拆箱-autowrapping" class="headerlink" title="自动装箱(autoboxing)和自动拆箱(autowrapping)"></a>自动装箱(autoboxing)和自动拆箱(autowrapping)</h3><blockquote><p>细节内容在第八章泛型会讲到，现在先忽视罢</p></blockquote><p>如果想搭一个int的泛型数组，因为&lt;&gt;的限制，可以用Integer类来做<br>ArrayList<integer>list = new ArrayList&lt;&gt;()；</integer></p><p>且Integer支持自动装箱和拆包<br>装箱： list.add(3)；编译器自动认识为 list.add (Integer.value0f(3));</p><p>拆包：int n = list.get(i); → int n = list.get(i).intValue();</p><p>也支持在算术表达中进行这两种操作：<br>IInteger n = 3; n++;</p><p>补充：如果在一个条件表达式中混合使用 Integer 和 Double 类型，** Integer 值就会拆箱，<br>提升为 double基本类型**, 再装箱为 Double:</p><p>Integer n = 1;</p><p>Double<br>x = 2.0;</p><p>System.out.println(true ? n : x); // Prints 1.0</p><h1 id="参数数量可变的方法"><a href="#参数数量可变的方法" class="headerlink" title="参数数量可变的方法"></a>参数数量可变的方法</h1><p>public static double max (double… values)<br>{</p><p>double largest = Double.NECATIVEJNFINITY;</p><p>for (double v : values) if (v &gt; largest) largest = v;</p><p>return largest;<br>}</p><p>可以像下面这样调用这个方法：</p><p>double m = max(3.1, 40.4, -5);</p><p>编译器将 new double[ ] {3.1, 40.4,-5} 传递给 max 方法。</p><h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>能够分析类能力的程序称为反射（reflective )。反射机制的功能极其强大，在下面可以看</p><p>到， 反射机制可以用来：<br>•在运行时分析类的能力。<br>•在运行时查看对象， 例如， 编写一个 toString 方法供所有类使用。<br>•实现通用的数组操作代码。<br>•利用 Method 对象， 这个对象很像中的函数指针</p></article><hr><div><div class="post-metas mb-3"><div class="post-meta"><i class="iconfont icon-tags"></i> <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> <a class="hover-with-bg" href="/tags/JAVA/">JAVA</a></div></div><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="post-prevnext row"><div class="post-prev col-6"><a href="/2020/05/15/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%20relu%20%E6%BF%80%E6%B4%BBDense%20%E5%B1%82%E5%A0%86%E5%8F%A01/"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">神经网络——基于 relu 激活Dense 层堆叠</span> <span class="visible-mobile">上一篇</span></a></div><div class="post-next col-6"><a href="/2020/05/11/%E3%80%8A%E6%BF%80%E8%8D%A1%E4%B8%89%E5%8D%81%E5%B9%B4%EF%BC%9A%E4%B8%AD%E5%9B%BD%E4%BC%81%E4%B8%9A%201978%E2%80%942008%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%91%98%E8%A6%8111/"><span class="hidden-mobile">《激荡的三十年：中国企业 1978—2008》(上) 读书摘要</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></div></div></div><div class="comments" id="comments"><script defer src="https://utteranc.es/client.js" repo="cher112/commit-utterances" issue-term="pathname" label="utterances" theme="github-light" crossorigin="anonymous"></script></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p><div id="tocbot"></div></div></div></div></div></main><a id="scroll-top-button" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">Search</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">keyword</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><script type="text/javascript" src="\js\FunnyTitle.js"></script><div id="aplayer"></div><script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css"><script type="text/javascript">var oldLoadAp=window.onload;window.onload=function(){oldLoadAp&&oldLoadAp(),new APlayer({container:document.getElementById("aplayer"),fixed:!0,autoplay:!1,loop:"all",order:"random",theme:"#e6d0b2",preload:"none",audio:[{name:"Four Divertimentos: Nº 1, Andantino Grazioso",artist:"Trinidad Huerta",url:"http://music.163.com/song/media/outer/url?id=552983173.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover.jpg"},{name:"愛の悲しみ",url:"http://music.163.com/song/media/outer/url?id=29744803.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover2.jpg"},{name:"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1",artisi:"Arthur Rubinstein",url:"http://music.163.com/song/media/outer/url?id=25961289.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover3.jpg"},{name:"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ",artist:"secret crates",url:"http://music.163.com/song/media/outer/url?id=448741213.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover4.jpg"},{name:"The Way We Were",artist:"David Davidson",url:"http://music.163.com/song/media/outer/url?id=22538946.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover5.jpg"},{name:"Valse di Fantastica",artist:"下村陽子",url:"http://music.163.com/song/media/outer/url?id=448722043.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{name:"Somnus (Instrumental Version)",artist:"下村陽子",url:"http://music.163.com/song/media/outer/url?id=443292557.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{name:"The Lark",artist:"Evgeny Kissin",url:"http://music.163.com/song/media/outer/url?id=1340025.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover7.jpg"},{name:"心分け",artist:"上北健",url:"http://music.163.com/song/media/outer/url?id=474932684.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover8.jpg"},{name:"なごり雪",artist:"中西保志",url:"http://music.163.com/song/media/outer/url?id=480751.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover9.jpg"},{name:"花・太阳・雨'",artist:"PYG",url:"http://music.163.com/song/media/outer/url?id=26127075.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover10.jpg"}]})}</script><footer class="mt-5"><div class="text-center py-3"><div><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div><div><span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span><script>var now=new Date;function createtime(){var n=new Date("05/09/2020 00:00:00");now.setTime(now.getTime()+250),days=(now-n)/1e3/60/60/24,dnum=Math.floor(days),hours=(now-n)/1e3/60/60-24*dnum,hnum=Math.floor(hours),1==String(hnum).length&&(hnum="0"+hnum),minutes=(now-n)/1e3/60-1440*dnum-60*hnum,mnum=Math.floor(minutes),1==String(mnum).length&&(mnum="0"+mnum),seconds=(now-n)/1e3-86400*dnum-3600*hnum-60*mnum,snum=Math.round(seconds),1==String(snum).length&&(snum="0"+snum),document.getElementById("timeDate").innerHTML="本站安全运行&nbsp"+dnum+"&nbsp天",document.getElementById("times").innerHTML=hnum+"&nbsp小时&nbsp"+mnum+"&nbsp分&nbsp"+snum+"&nbsp秒"}setInterval("createtime()",250)</script></div></div></footer><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js"></script><script>$(document).ready(function(){var t=$("#board-ctn").offset().top;tocbot.init({tocSelector:"#tocbot",contentSelector:".post-content",headingSelector:"h1,h2,h3,h4,h5,h6",linkClass:"tocbot-link",activeLinkClass:"tocbot-active-link",listClass:"tocbot-list",isCollapsedClass:"tocbot-is-collapsed",collapsibleClass:"tocbot-is-collapsible",collapseDepth:0,scrollSmooth:!0,headingsOffset:-t}),0<$(".toc-list-item").length&&$("#toc").css("visibility","visible")})</script><script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script><script src="/js/clipboard-use.js"></script><script defer>!function(e,a,t,n,g,c,o){e.GoogleAnalyticsObject="ga",e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script"),ga("create","UA-166912137-1","auto"),ga("send","pageview")</script><script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","JAVA笔记 第五章 继承&nbsp;"],cursorChar:"🐟",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js"></script><script>anchors.options = {
+   &#125;</code></pre>
+
+<ul>
+<li>== 对于引用类型，比较的是两个对象 引用地址的值；对于基本类型，比较的是值</li>
+<li>equals(Object x) 比较的是引用的地址值</li>
+<li>getClass()返回一个对象所属的类 不判断继承关系</li>
+<li>instanceof比较一个对象是否是该类的实例</li>
+</ul>
+<h2 id="hashcode方法"><a href="#hashcode方法" class="headerlink" title="hashcode方法"></a>hashcode方法</h2><p>散列码（ hash code ) 是由对象导出的一个整型值。 散列码是没有规律的。如果 x 和 y 是<br>两个不同的对象， x.hashCode( ) 与 y.hashCode( ) 基本上不会相同。 </p>
+<p>由于 hashCode 方法定义在 Object 类中， 因此每个对象都有一个默认的散列码，其<strong>值为对象的存储地址</strong>。</p>
+<p>Equals 与 hashCode 的定义必须一致：如果 x.equals(y) 返回 true, 那么 x.hashCode( ) 就必须与 y.hashCode( ) 具有相同的值。 例如， 如果用定义的 Employee.equals 比较雇员的 ID， 那<br>么 hashCode 方法就需要散列 ID，而不是雇员的姓名或存储地址。</p>
+<h2 id="tostring方法"><a href="#tostring方法" class="headerlink" title="tostring方法"></a>tostring方法</h2><p>在 Object 中还有一个重要的方法， 就是 toString 方法， 它用于返回表示对象值的字符<br>串。<br>绝大多数（但不是全部）的 toString方法都遵循这样的格式：类的名字，随后是一对方括<br>号括起来的域值。<br>eg:boss.toString(): equals.Manager[name=Carl Cracker,salary=80000.0,hireDay=1987-12-15][bonus=5000.0]</p>
+<h1 id="泛型数组列表"><a href="#泛型数组列表" class="headerlink" title="泛型数组列表"></a>泛型数组列表</h1><p>一般java的数组是静态的，一旦确定大小就很难更改。在 Java 中， 解决这个问题最简单的方法是使用 Java 中另外一个被称为** ArrayList 的类<strong>。它使用起来有点像数组，但在添加或删除元素时， 具有</strong>自动调节数组容量**的<br>功能，而不需要为此编写任何代码。</p>
+<p>下面声明和构造一个保存 *<em>Employee *</em>对象的数组列表：</p>
+<p>ArrayList<Employee> staff = new ArrayList<Eniployee>0;</p>
+<p>或 ArrayList<Employee> staff = new ArrayListoQ&lt;&gt;()；</p>
+<p>菱形语法类似 var，自动检查这个变量是什么泛型类型填在&lt;&gt;中。<strong>(尖括号的类型参数不能是基本类型)</strong><br>常见方法<br><img src="https://gitee.com/cher112/image/raw/master/img/1588765552792-08f2e2d2-9a7c-494f-8be0-eda49fdab077.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="对象包装器与自动装箱"><a href="#对象包装器与自动装箱" class="headerlink" title="对象包装器与自动装箱"></a>对象包装器与自动装箱</h1><p>有时， 需要将 int 这样的基本类型转换为对象。 <strong>所有的基本类型都冇一个与之对应的类。</strong><br>这些类称为包装器 （ <strong>wrapper **)<br>这些对象包装器类<br>拥有很明显的名字：</strong>Integer<strong>、</strong>Long<strong>、</strong>Float<strong>、</strong>Double<strong>、</strong>Short<strong>、</strong>Byte<strong>、</strong>Character <strong>、</strong>Void <strong>和 **Boolean。 且为final类，无法定义子类</strong><br>**</p>
+<h3 id="自动装箱-autoboxing-和自动拆箱-autowrapping"><a href="#自动装箱-autoboxing-和自动拆箱-autowrapping" class="headerlink" title="自动装箱(autoboxing)和自动拆箱(autowrapping)"></a>自动装箱(autoboxing)和自动拆箱(autowrapping)</h3><blockquote>
+<p>细节内容在第八章泛型会讲到，现在先忽视罢</p>
+</blockquote>
+<p>如果想搭一个int的泛型数组，因为&lt;&gt;的限制，可以用Integer类来做<br>ArrayList<Integer> list = new ArrayList&lt;&gt;()；</p>
+<p>且Integer支持自动装箱和拆包<br>装箱： list.add(3)；编译器自动认识为 list.add (Integer.value0f(3));</p>
+<p>拆包：int n = list.get(i); → int n = list.get(i).intValue();</p>
+<p>也支持在算术表达中进行这两种操作：<br>IInteger n = 3; n++;</p>
+<p>补充：如果在一个条件表达式中混合使用 Integer 和 Double 类型，** Integer 值就会拆箱，<br>提升为 double基本类型**, 再装箱为 Double:</p>
+<p>Integer n = 1;</p>
+<p>Double<br>x = 2.0;</p>
+<p>System.out.println(true ? n : x); // Prints 1.0</p>
+<h1 id="参数数量可变的方法"><a href="#参数数量可变的方法" class="headerlink" title="参数数量可变的方法"></a>参数数量可变的方法</h1><p>public static double max (double… values)<br>{</p>
+<p>double largest = Double.NECATIVEJNFINITY;</p>
+<p>for (double v : values) if (v &gt; largest) largest = v;</p>
+<p>return largest;<br>}</p>
+<p>可以像下面这样调用这个方法：</p>
+<p>double m = max(3.1, 40.4, -5);</p>
+<p>编译器将 new double[ ] {3.1, 40.4,-5} 传递给 max 方法。</p>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>能够分析类能力的程序称为反射（reflective )。反射机制的功能极其强大，在下面可以看</p>
+<p>到， 反射机制可以用来：<br>•在运行时分析类的能力。<br>•在运行时查看对象， 例如， 编写一个 toString 方法供所有类使用。<br>•实现通用的数组操作代码。<br>•利用 Method 对象， 这个对象很像中的函数指针</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JAVA/">JAVA</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/15/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8E%20relu%20%E6%BF%80%E6%B4%BBDense%20%E5%B1%82%E5%A0%86%E5%8F%A01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">神经网络——基于 relu 激活Dense 层堆叠</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/11/%E3%80%8A%E6%BF%80%E8%8D%A1%E4%B8%89%E5%8D%81%E5%B9%B4%EF%BC%9A%E4%B8%AD%E5%9B%BD%E4%BC%81%E4%B8%9A%201978%E2%80%942008%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%91%98%E8%A6%8111/">
+                        <span class="hidden-mobile">《激荡的三十年：中国企业 1978—2008》(上) 读书摘要</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script defer src="https://utteranc.es/client.js"
+          repo="cher112/commit-utterances"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+  >
+  </script>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#e6d0b2',
+      preload: 'none',
+      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"http://music.163.com/song/media/outer/url?id=552983173.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover.jpg"},{"name":"愛の悲しみ","url":"http://music.163.com/song/media/outer/url?id=29744803.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover2.jpg"},{"name":"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1","artisi":"Arthur Rubinstein","url":"http://music.163.com/song/media/outer/url?id=25961289.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover3.jpg"},{"name":"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ","artist":"secret crates","url":"http://music.163.com/song/media/outer/url?id=448741213.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover4.jpg"},{"name":"The Way We Were","artist":"David Davidson","url":"http://music.163.com/song/media/outer/url?id=22538946.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover5.jpg"},{"name":"Valse di Fantastica","artist":"下村陽子","url":"http://music.163.com/song/media/outer/url?id=448722043.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{"name":"Somnus (Instrumental Version)","artist":"下村陽子","url":"http://music.163.com/song/media/outer/url?id=443292557.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{"name":"The Lark","artist":"Evgeny Kissin","url":"http://music.163.com/song/media/outer/url?id=1340025.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover7.jpg"},{"name":"心分け","artist":"上北健","url":"http://music.163.com/song/media/outer/url?id=474932684.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover8.jpg"},{"name":"なごり雪","artist":"中西保志","url":"http://music.163.com/song/media/outer/url?id=480751.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover9.jpg"},{"name":"花・太阳・雨'","artist":"PYG","url":"http://music.163.com/song/media/outer/url?id=26127075.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover10.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("05/09/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-166912137-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JAVA笔记 第五章 继承&nbsp;",
+      ],
+      cursorChar: "🐟",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
       placement: "right",
       visible: "hover",
       
@@ -93,4 +645,54 @@ Manager other = (Manager) otherObject;
     for (item of el) {
       res.push(".markdown-body > " + item)
     }
-    anchors.add(res.join(", "))</script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){searchFunc(path,"local-search-input","local-search-result"),this.onclick=null}</script><script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"><script>$("#post img:not(.no-zoom img, img[no-zoom]), img[zoom]").each(function(){var t=document.createElement("a");$(t).attr("data-fancybox","images"),$(t).attr("href",$(this).attr("src")),$(this).wrap(t)})</script><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":250,"height":400},"react":{"opacity":0.7},"log":false});</script></body></html>
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":250,"height":400},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>

@@ -1,4 +1,566 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png"><link rel="icon" type="image/png" href="/img/favicon.png#%20%E7%BD%91%E7%AB%99%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%20icon"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="baidu-site-verification" content="btSjTELAxF"><meta name="google-site-verification" content="vsAhxehAe-tcQtlb7QpdHFQ-YDTEAjWKFnL0RQIgB28"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="theme-color" content="#2f4154"><meta name="description" content=""><meta name="author" content="Zhihao Chen"><meta name="keywords" content=""><title>数据库设计和E-R模型 - A nest for me</title><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css"><link rel="stylesheet" href="/css/main.css"><meta name="generator" content="Hexo 4.2.0"></head><body><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"><a class="navbar-brand" href="/">&nbsp;<strong>Bird's Nest</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 归档</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 目录</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"><a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i class="iconfont icon-search"></i>&nbsp;&nbsp;</a></li></ul></div></div></nav><div class="view intro-2" id="background" parallax="true" style="background:url(https://gitee.com/cher112/image/raw/master/img/意大利风情.jpg) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="container text-center white-text fadeInUp"><span class="h2" id="subtitle"></span><div class="mt-3 post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2020-05-16 13:49">May 16, 2020 pm</time></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 1.9k 字 </span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 19 分钟</span></div></div></div></div></div></header><main><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="container nopadding-md" id="board-ctn"><div class="py-5" id="board"><div class="post-content mx-auto" id="post"><article class="markdown-body"><h1 id="数据库设计和E-R模型"><a href="#数据库设计和E-R模型" class="headerlink" title="数据库设计和E-R模型"></a>数据库设计和E-R模型</h1><h1 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h1><ul><li>设计数据库模式</li><li>设计访问和更新数据的程序</li><li>设计控制数据访问的安全模式</li></ul><h1 id="实体-联系模型-E-R-model"><a href="#实体-联系模型-E-R-model" class="headerlink" title="实体 联系模型 E-R model"></a>实体 联系模型 E-R model</h1><p>三个基本概念</p><ul><li>实体集</li><li>联系集</li><li>属性</li></ul><h2 id="实体集"><a href="#实体集" class="headerlink" title="实体集"></a>实体集</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1586855087990-0a42b7e0-9cd0-4900-a240-9425a3734f4e.png" srcset="/img/loading.gif" alt="image.png"><br>每个实体有一组性质，其中的一些可以唯一标识一个实体。比如身份证号<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855134970-85d3fd4d-8db6-4bc4-96b5-ed34de84b501.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855183334-5399834a-0821-419e-8139-de6ddb1f3ec0.png" srcset="/img/loading.gif" alt="image.png">值</p><h2 id="联系集"><a href="#联系集" class="headerlink" title="联系集"></a>联系集</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1586855290187-0ea95158-f6d4-4a01-a664-5c44552a7395.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855272904-0bd95a25-cc77-426a-b25d-186577148f86.png" srcset="/img/loading.gif" alt="image.png"><br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1586855317543-ff761c09-f03c-49b5-a2b0-6b8fc8732f63.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855357453-20a56257-a791-428e-b448-125a585a8f8f.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855383426-300ed27a-a51b-40c1-b536-38930c166b44.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855396249-5b63ab68-c0cb-4006-afd9-aa8d2eb613dd.png" srcset="/img/loading.gif" alt="image.png"></p><p>二元联系集：涉及两个实体集的联系集。<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855499994-b771277d-449b-4c60-9edb-ade4b6a6a935.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>实体集的属性是 将实体集映射到域的函数。每个实体可以用一组(属性，数据值)的key对来表示。<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855947864-1fb7a25a-cb52-4818-b98c-79b34a2a3a8e.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="属性划分"><a href="#属性划分" class="headerlink" title="属性划分"></a>属性划分</h2><ul><li>简单 复合（composite）属性：简单指的是 该部分不能划分为更小的部分；复合则相反(举例：名字的属性可以化为姓和名) <strong>复合属性可以有层次</strong></li><li>单值-多值 属性。 单值：每个人有一个独特的身份证号；多值：从小到大的外号，</li><li>派生(derived) 属性： 数据集里有人的出生年月日，可以推断出他的年龄，那 age 属性就是 派生属性；dateofbirth为 <strong>基属性</strong></li></ul><p>**</p><h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><h2 id="映射基数-mapping-cardinality"><a href="#映射基数-mapping-cardinality" class="headerlink" title="映射基数 mapping cardinality"></a>映射基数 mapping cardinality</h2><p>一个实体通过联系集能关联到的实体个数</p><p>对于实体集 A和B 二元联系集来说，映射基数必然是以下情况<br><img src="https://gitee.com/cher112/image/raw/master/img/1587367182595-35b7c033-dfe8-49b4-8e79-4120ee6321be.png" srcset="/img/loading.gif" alt="image.png"></p><p><img src="https://gitee.com/cher112/image/raw/master/img/1587367194175-72589160-4b0b-4010-8b00-832c626fb88d.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="参与约束"><a href="#参与约束" class="headerlink" title="参与约束"></a>参与约束</h2><p>如果实体集的每个实体都参与到联系集R的至少一个联系中，则E的参与为 <strong>全部(Total)的， **反之则为</strong>部分的**(partial). 比如 a中B就是全部的，a是部分的，b的两个实体集都是全部的。</p><h2 id="码"><a href="#码" class="headerlink" title="码"></a>码</h2><p>区分实体集中的实体的方法。</p><blockquote><p>一个实体集中不允许两个实体对于所有属性都有一样的值</p></blockquote><p>关系模式的码概念适用于实体集 和 唯一<strong>标识联系，</strong>将联系互相区分。</p><h3 id="联系的码"><a href="#联系的码" class="headerlink" title="联系的码"></a>联系的码</h3><p><img src="https://gitee.com/cher112/image/raw/master/img/1587367827981-4e53535c-25a6-47d5-aab6-929379611b91.png" srcset="/img/loading.gif" alt="image.png"></p><h1 id="从实体集中删除冗余属性"><a href="#从实体集中删除冗余属性" class="headerlink" title="从实体集中删除冗余属性"></a>从实体集中删除冗余属性</h1><p>一旦选择好实体和相应属性，实体间的联系集就建立起来了，这些联系有可能会导致不同实体集中的属性冗余，需要将其从原始实体集中删除。</p><p><img src="https://gitee.com/cher112/image/raw/master/img/1587368244947-c6c72e22-9d51-4262-b35e-15e0f4c3c376.png" srcset="/img/loading.gif" alt="image.png"><br>暂时理解：因为有联系，且部门名称是部门集的主码，数据库<strong>可以直接以联系来获值，而不需要额外建立一个属性。</strong><br>**</p><h1 id="实体-联系图"><a href="#实体-联系图" class="headerlink" title="实体-联系图"></a>实体-联系图</h1><p>E-R diagram</p><h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587368403037-942729de-7f63-4e14-b9d9-192afe083ef3.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587368444760-00daa0a4-4e17-492a-9166-6788dc8f6525.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="映射基数"><a href="#映射基数" class="headerlink" title="映射基数"></a>映射基数</h2><p>就是上面的二元映射基数概念的图像表示<br><img src="https://gitee.com/cher112/image/raw/master/img/1587368681546-a0a670b8-c22d-4d7a-96fe-f15df7584105.png" srcset="/img/loading.gif" alt="image.png"></p><p>l..h形式 关联的最大和最小的映射基数<br>l为最小的映射基数，最小值为1表示这个实体集在联系集中全部参与<br>h为最大的映射基数，最大值为1为这个实体集(每一个元组)参与至多一个联系，为*则表示没有限制</p><p><img src="https://gitee.com/cher112/image/raw/master/img/1587369108506-bda64b01-99d4-4bad-bacf-9b4aadac4608.png" srcset="/img/loading.gif" alt="image.png"></p><blockquote><p>1..1代表一个学生只能且必须有一个导师，0…*代表一个导师可以有0-多个学生。</p></blockquote><p>如果两边最大值都为1，则是1对1</p><h2 id="复杂属性"><a href="#复杂属性" class="headerlink" title="复杂属性"></a>复杂属性</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587370534717-fd5d0051-c566-4d5e-af45-9fb743d88e2f.png" srcset="/img/loading.gif" alt="image.png"><br>first/middle/last为name的<strong>子属性</strong>，而name为<strong>复合属性</strong>(同address)<br>{phone_number}为<strong>多值属性</strong><br>age() 表示<strong>派生属性</strong><br>**</p><h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587370674609-86b153bb-0a01-4268-868f-3322236ed029.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="非二元的联系集"><a href="#非二元的联系集" class="headerlink" title="非二元的联系集"></a>非二元的联系集</h2><blockquote><p>只允许在一个联系集外有一个箭头，如果有两个箭头指向A/B，可能有两种解释：第一个是A和BC是一对X，联系的主键是{B,C}的候选码； 第二个是A和B/C中的一个1对x。此时联系R的主键是A∪B/C</p></blockquote><p>因为有两种解释，所以规定在ER模型中，<strong>一个联系集外只有一个箭头</strong><br>**</p><h2 id="弱-强-实体集-weak-strong-entity-set"><a href="#弱-强-实体集-weak-strong-entity-set" class="headerlink" title="弱(强)实体集 weak(strong) entity set"></a>弱(强)实体集 weak(strong) entity set</h2><p>没有足够属性以形成<strong>主码</strong>的实体集，有主码的实体集称为强实体集。<br>举例：<br><img src="https://gitee.com/cher112/image/raw/master/img/1587469385485-2fa66ee2-a273-495e-86ae-34e3be2d0318.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587469409481-61ec8e5b-cf75-4bb3-a902-baff57e18299.png" srcset="/img/loading.gif" alt="image.png"></p><p>弱实体集通过和强实体集建立 <strong>联系</strong>，联系给弱实体集提供<strong>额外信息</strong>(唯一标识)作为新主码。<br>主要目的：以联系为方法来 <strong>消除冗余</strong></p><p>和弱实体层关联的集称作 *<em>标识(identifying) *</em>或 *<em>属主实体集(owner entity set) *</em>才有意义<br>即 弱实体集存在依赖(existence dependent)<br>标识实体 own 它所标识的弱实体集。</p><p><strong>分辨符(discriminator)</strong>: 无主码时区分依赖特定强实体集的弱实体集中实体的方法——属性集合</p><p><strong><img src="https://gitee.com/cher112/image/raw/master/img/1587469991157-193cd1bd-0085-4b96-b3f3-15028b4a7e7f.png" srcset="/img/loading.gif" alt="image.png"></strong><br>**</p><h1 id="转换为关系模式"><a href="#转换为关系模式" class="headerlink" title="转换为关系模式"></a>转换为关系模式</h1><p>简单属性直接转；<br>复杂属性中， 复合属性拆开写(name: first+last); 派生属性在后文讨论； 多值属性把每个值都作为主码<br><img src="https://gitee.com/cher112/image/raw/master/img/1587470124161-1368408f-ebad-498b-80f2-95d17fb331ae.png" srcset="/img/loading.gif" alt="image.png"></p><h2 id="弱实体集的标识"><a href="#弱实体集的标识" class="headerlink" title="弱实体集的标识"></a>弱实体集的标识</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587470188135-46065fab-85f1-4956-aea1-bdf426beab7c.png" srcset="/img/loading.gif" alt="image.png"><br>分开标识广义的主码，并进行外码约束。</p><h1 id="实体联系设计问题"><a href="#实体联系设计问题" class="headerlink" title="实体联系设计问题"></a>实体联系设计问题</h1><blockquote><p>给教师信息构建数据库，”电话”作为属性还是实体集</p></blockquote><p><img src="https://gitee.com/cher112/image/raw/master/img/1587470285500-5ec53f95-d525-415a-9eef-65a852d4d67e.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587470293984-99ef01de-bf75-4669-9e68-70696399a719.png" srcset="/img/loading.gif" alt="image.png"><br>具体问题具体分析…</p><h2 id="二元还是n元联系"><a href="#二元还是n元联系" class="headerlink" title="二元还是n元联系"></a>二元还是n元联系</h2><p>通常都是二元的，但非2元的也可以用2元来表示(每两个实体集建立一个联系)<br><img src="https://gitee.com/cher112/image/raw/master/img/1587470410184-2e8494a6-0e4c-4464-b5dd-5fe467d123e3.png" srcset="/img/loading.gif" alt="image.png"><br>但是这样会增加很多联系集标识属性，增加设计难度和储存要求</p><h1 id="EER-扩展E-R模型"><a href="#EER-扩展E-R模型" class="headerlink" title="EER 扩展E-R模型"></a>EER 扩展E-R模型</h1><h2 id="特化"><a href="#特化" class="headerlink" title="特化"></a>特化</h2><p>实体集中可能包含一些子集，其实体某些方面区别于实体集中的其他实体(不具备一般实体共享的属性)<br>eg: person实体集：employee &amp; student<br>都有一般人的属性表示，但employees可以用 salary来标识；而students可以用 tot_cre标识( 特化过程 )</p><p>在<strong>实体集内部分组</strong>的过程称为 <strong>特化 (specialization)</strong><br>employee和student是person的两个特化。</p><p><strong>重叠(overlapping)特化</strong>: 一个实体集可以属于多个特化实体集<br>eg: employee可以特化为instructor、secretary，也可以特化为temporary_employee、permanent_employee，这样一个employee可能是一个instructor的同时也是一个permanent_employee</p><p><strong>不相交(disjoint)特化</strong>：实体集至多属于一个特化实体集</p><p><img src="https://gitee.com/cher112/image/raw/master/img/1587480909470-49feb040-21c2-44ab-ab1a-ae42a88fd3c5.png" srcset="/img/loading.gif" alt="image.png"></p><blockquote><p>E-R图中，表示方法为 从特化实体指向另一方实体的空心箭头标识( is-a 关系)<br>重叠特化：分开使用两个箭头；不相交特化：使用一个箭头</p></blockquote><h2 id="概化-generalization"><a href="#概化-generalization" class="headerlink" title="概化 generalization"></a>概化 generalization</h2><p><strong>特化的逆过程</strong>； <strong>自底而上</strong>，将实体集的共性基础上(强调相似并隐藏差异——改属性)，综合为一个高层实体集(超集)</p><h2 id="属性继承-attribute-inheritance"><a href="#属性继承-attribute-inheritance" class="headerlink" title="属性继承 attribute inheritance"></a>属性继承 attribute inheritance</h2><p>高层实体集的属性被低层实体集继承 (student继承了person的属性： ID name address etc.)—单继承<br>同时低层实体集可能继承*<em>高层实体参与的联系集 *</em><br>(person+department， student的ID和per_dept分别从两个地方继承) —— 多(mutiple)继承</p><h2 id="概化上的约束"><a href="#概化上的约束" class="headerlink" title="概化上的约束"></a>概化上的约束</h2><h2 id="聚集-aggregation"><a href="#聚集-aggregation" class="headerlink" title="聚集 aggregation"></a>聚集 aggregation</h2><p>E-R模型的局限性在于无法表达 <strong>联系之间的联系</strong><br>**<br>聚集：通过抽象过程，将联系视为高层实体<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1587481640569-6e35f6e5-b38b-4d28-aa36-39ba2ce5b57c.png" srcset="/img/loading.gif" alt="image.png"><br>新建立了一个联系：项目评估——学校会抽查评估项目<br>proj_guige和eval_for实际上不能合并(虽然有类似的主码)，因为可能有些项目<strong>未被评估</strong><br>但是proj_guide和eval_for在关联实体集上有<strong>高度重合</strong>的部分！<br>故可以将含信息量多的 <strong>聚集</strong> 起来作为高层实体供eval_for来<strong>继承</strong></p><h2 id="转化为关系模式"><a href="#转化为关系模式" class="headerlink" title="转化为关系模式"></a>转化为关系模式</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587482088573-08356de2-6f73-46de-a20d-01a2d587b9e8.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587482225960-c6e2d177-6abc-4a52-a9df-b84526c3dcb0.png" srcset="/img/loading.gif" alt="image.png"></p><blockquote><p>但是会出现无法定义的外码约束，所以还是需要创一个person关系</p></blockquote><p><strong>如果是重叠概化，很多值会被不必要的储存多次！</strong></p><p><img src="https://gitee.com/cher112/image/raw/master/img/1587482328753-df5c56de-9364-4d78-8817-b8722443883a.png" srcset="/img/loading.gif" alt="image.png"></p><p>只要不是全部概化特化，就会出现冗余储存….</p><h1 id="E-R图表示法总结"><a href="#E-R图表示法总结" class="headerlink" title="E-R图表示法总结"></a>E-R图表示法总结</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1587482387862-06c34f47-4771-47cb-b6a3-7afeeb10e1ea.png" srcset="/img/loading.gif" alt="image.png"></p></article><hr><div><div class="post-metas mb-3"><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div></div><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p><div class="post-prevnext row"><div class="post-prev col-6"><a href="/2020/05/16/softmax%E4%BB%A5%E5%8F%8A%E4%BA%A4%E5%8F%89%E7%86%B5loss%20%E7%AC%94%E8%AE%B01/"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">softmax以及交叉熵loss 笔记</span> <span class="visible-mobile">上一篇</span></a></div><div class="post-next col-6"><a href="/2020/05/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%20--%20%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%80%BC%E7%9A%84%E4%BC%98%E5%8C%961/"><span class="hidden-mobile">深度学习入门 -- 权重初始值的优化</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></div></div></div><div class="comments" id="comments"><script defer src="https://utteranc.es/client.js" repo="cher112/commit-utterances" issue-term="pathname" label="utterances" theme="github-light" crossorigin="anonymous"></script></div></div></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p><div id="tocbot"></div></div></div></div></div></main><a id="scroll-top-button" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">Search</h4><button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"><input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">keyword</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div><script type="text/javascript" src="\js\FunnyTitle.js"></script><div id="aplayer"></div><script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css"><script type="text/javascript">var oldLoadAp=window.onload;window.onload=function(){oldLoadAp&&oldLoadAp(),new APlayer({container:document.getElementById("aplayer"),fixed:!0,autoplay:!1,loop:"all",order:"random",theme:"#e6d0b2",preload:"none",audio:[{name:"Four Divertimentos: Nº 1, Andantino Grazioso",artist:"Trinidad Huerta",url:"http://music.163.com/song/media/outer/url?id=552983173.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover.jpg"},{name:"愛の悲しみ",url:"http://music.163.com/song/media/outer/url?id=29744803.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover2.jpg"},{name:"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1",artisi:"Arthur Rubinstein",url:"http://music.163.com/song/media/outer/url?id=25961289.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover3.jpg"},{name:"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ",artist:"secret crates",url:"http://music.163.com/song/media/outer/url?id=448741213.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover4.jpg"},{name:"The Way We Were",artist:"David Davidson",url:"http://music.163.com/song/media/outer/url?id=22538946.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover5.jpg"},{name:"Valse di Fantastica",artist:"下村陽子",url:"http://music.163.com/song/media/outer/url?id=448722043.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{name:"Somnus (Instrumental Version)",artist:"下村陽子",url:"http://music.163.com/song/media/outer/url?id=443292557.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{name:"The Lark",artist:"Evgeny Kissin",url:"http://music.163.com/song/media/outer/url?id=1340025.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover7.jpg"},{name:"心分け",artist:"上北健",url:"http://music.163.com/song/media/outer/url?id=474932684.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover8.jpg"},{name:"なごり雪",artist:"中西保志",url:"http://music.163.com/song/media/outer/url?id=480751.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover9.jpg"},{name:"花・太阳・雨'",artist:"PYG",url:"http://music.163.com/song/media/outer/url?id=26127075.mp3",cover:"https://gitee.com/cher112/image/raw/master/img/cover10.jpg"}]})}</script><footer class="mt-5"><div class="text-center py-3"><div><a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div><div><span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span><script>var now=new Date;function createtime(){var n=new Date("05/09/2020 00:00:00");now.setTime(now.getTime()+250),days=(now-n)/1e3/60/60/24,dnum=Math.floor(days),hours=(now-n)/1e3/60/60-24*dnum,hnum=Math.floor(hours),1==String(hnum).length&&(hnum="0"+hnum),minutes=(now-n)/1e3/60-1440*dnum-60*hnum,mnum=Math.floor(minutes),1==String(mnum).length&&(mnum="0"+mnum),seconds=(now-n)/1e3-86400*dnum-3600*hnum-60*mnum,snum=Math.round(seconds),1==String(snum).length&&(snum="0"+snum),document.getElementById("timeDate").innerHTML="本站安全运行&nbsp"+dnum+"&nbsp天",document.getElementById("times").innerHTML=hnum+"&nbsp小时&nbsp"+mnum+"&nbsp分&nbsp"+snum+"&nbsp秒"}setInterval("createtime()",250)</script></div></div></footer><script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script><script src="/js/main.js"></script><script src="/js/lazyload.js"></script><script src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js"></script><script>$(document).ready(function(){var t=$("#board-ctn").offset().top;tocbot.init({tocSelector:"#tocbot",contentSelector:".post-content",headingSelector:"h1,h2,h3,h4,h5,h6",linkClass:"tocbot-link",activeLinkClass:"tocbot-active-link",listClass:"tocbot-list",isCollapsedClass:"tocbot-is-collapsed",collapsibleClass:"tocbot-is-collapsible",collapseDepth:0,scrollSmooth:!0,headingsOffset:-t}),0<$(".toc-list-item").length&&$("#toc").css("visibility","visible")})</script><script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script><script src="/js/clipboard-use.js"></script><script defer>!function(e,a,t,n,g,c,o){e.GoogleAnalyticsObject="ga",e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script"),ga("create","UA-166912137-1","auto"),ga("send","pageview")</script><script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js"></script><script>var typed=new Typed("#subtitle",{strings:["  ","数据库设计和E-R模型&nbsp;"],cursorChar:"🐟",typeSpeed:70,loop:!1});typed.stop(),$(document).ready(function(){$(".typed-cursor").addClass("h2"),typed.start()})</script><script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js"></script><script>anchors.options = {
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png#%20%E7%BD%91%E7%AB%99%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%20icon">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="baidu-site-verification" content="btSjTELAxF" />
+  <meta name="google-site-verification" content="vsAhxehAe-tcQtlb7QpdHFQ-YDTEAjWKFnL0RQIgB28" />  
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zhihao Chen">
+  <meta name="keywords" content="">
+  <title>数据库设计和E-R模型 - A nest for me</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Bird's Nest</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              主页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              目录</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://gitee.com/cher112/image/raw/master/img/意大利风情.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-16 13:49">
+                    May 16, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.9k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    19
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="数据库设计和E-R模型"><a href="#数据库设计和E-R模型" class="headerlink" title="数据库设计和E-R模型"></a>数据库设计和E-R模型</h1><h1 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h1><ul>
+<li>设计数据库模式</li>
+<li>设计访问和更新数据的程序</li>
+<li>设计控制数据访问的安全模式</li>
+</ul>
+<h1 id="实体-联系模型-E-R-model"><a href="#实体-联系模型-E-R-model" class="headerlink" title="实体 联系模型 E-R model"></a>实体 联系模型 E-R model</h1><p>三个基本概念</p>
+<ul>
+<li>实体集</li>
+<li>联系集</li>
+<li>属性</li>
+</ul>
+<h2 id="实体集"><a href="#实体集" class="headerlink" title="实体集"></a>实体集</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1586855087990-0a42b7e0-9cd0-4900-a240-9425a3734f4e.png" srcset="/img/loading.gif" alt="image.png"><br>每个实体有一组性质，其中的一些可以唯一标识一个实体。比如身份证号<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855134970-85d3fd4d-8db6-4bc4-96b5-ed34de84b501.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855183334-5399834a-0821-419e-8139-de6ddb1f3ec0.png" srcset="/img/loading.gif" alt="image.png">值</p>
+<h2 id="联系集"><a href="#联系集" class="headerlink" title="联系集"></a>联系集</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1586855290187-0ea95158-f6d4-4a01-a664-5c44552a7395.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855272904-0bd95a25-cc77-426a-b25d-186577148f86.png" srcset="/img/loading.gif" alt="image.png"><br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1586855317543-ff761c09-f03c-49b5-a2b0-6b8fc8732f63.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855357453-20a56257-a791-428e-b448-125a585a8f8f.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855383426-300ed27a-a51b-40c1-b536-38930c166b44.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1586855396249-5b63ab68-c0cb-4006-afd9-aa8d2eb613dd.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>二元联系集：涉及两个实体集的联系集。<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855499994-b771277d-449b-4c60-9edb-ade4b6a6a935.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>实体集的属性是 将实体集映射到域的函数。每个实体可以用一组(属性，数据值)的key对来表示。<br><img src="https://gitee.com/cher112/image/raw/master/img/1586855947864-1fb7a25a-cb52-4818-b98c-79b34a2a3a8e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="属性划分"><a href="#属性划分" class="headerlink" title="属性划分"></a>属性划分</h2><ul>
+<li>简单 复合（composite）属性：简单指的是 该部分不能划分为更小的部分；复合则相反(举例：名字的属性可以化为姓和名) <strong>复合属性可以有层次</strong></li>
+<li>单值-多值 属性。 单值：每个人有一个独特的身份证号；多值：从小到大的外号，</li>
+<li>派生(derived) 属性： 数据集里有人的出生年月日，可以推断出他的年龄，那 age 属性就是 派生属性；dateofbirth为 <strong>基属性</strong></li>
+</ul>
+<p>**</p>
+<h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><h2 id="映射基数-mapping-cardinality"><a href="#映射基数-mapping-cardinality" class="headerlink" title="映射基数 mapping cardinality"></a>映射基数 mapping cardinality</h2><p>一个实体通过联系集能关联到的实体个数</p>
+<p>对于实体集 A和B 二元联系集来说，映射基数必然是以下情况<br><img src="https://gitee.com/cher112/image/raw/master/img/1587367182595-35b7c033-dfe8-49b4-8e79-4120ee6321be.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587367194175-72589160-4b0b-4010-8b00-832c626fb88d.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="参与约束"><a href="#参与约束" class="headerlink" title="参与约束"></a>参与约束</h2><p>如果实体集的每个实体都参与到联系集R的至少一个联系中，则E的参与为 <strong>全部(Total)的， **反之则为</strong>部分的**(partial). 比如 a中B就是全部的，a是部分的，b的两个实体集都是全部的。</p>
+<h2 id="码"><a href="#码" class="headerlink" title="码"></a>码</h2><p>区分实体集中的实体的方法。</p>
+<blockquote>
+<p>一个实体集中不允许两个实体对于所有属性都有一样的值</p>
+</blockquote>
+<p>关系模式的码概念适用于实体集 和 唯一<strong>标识联系，</strong>将联系互相区分。</p>
+<h3 id="联系的码"><a href="#联系的码" class="headerlink" title="联系的码"></a>联系的码</h3><p><img src="https://gitee.com/cher112/image/raw/master/img/1587367827981-4e53535c-25a6-47d5-aab6-929379611b91.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="从实体集中删除冗余属性"><a href="#从实体集中删除冗余属性" class="headerlink" title="从实体集中删除冗余属性"></a>从实体集中删除冗余属性</h1><p>一旦选择好实体和相应属性，实体间的联系集就建立起来了，这些联系有可能会导致不同实体集中的属性冗余，需要将其从原始实体集中删除。</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587368244947-c6c72e22-9d51-4262-b35e-15e0f4c3c376.png" srcset="/img/loading.gif" alt="image.png"><br>暂时理解：因为有联系，且部门名称是部门集的主码，数据库<strong>可以直接以联系来获值，而不需要额外建立一个属性。</strong><br>**</p>
+<h1 id="实体-联系图"><a href="#实体-联系图" class="headerlink" title="实体-联系图"></a>实体-联系图</h1><p>E-R diagram</p>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587368403037-942729de-7f63-4e14-b9d9-192afe083ef3.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587368444760-00daa0a4-4e17-492a-9166-6788dc8f6525.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="映射基数"><a href="#映射基数" class="headerlink" title="映射基数"></a>映射基数</h2><p>就是上面的二元映射基数概念的图像表示<br><img src="https://gitee.com/cher112/image/raw/master/img/1587368681546-a0a670b8-c22d-4d7a-96fe-f15df7584105.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>l..h形式  关联的最大和最小的映射基数<br>l为最小的映射基数，最小值为1表示这个实体集在联系集中全部参与<br>h为最大的映射基数，最大值为1为这个实体集(每一个元组)参与至多一个联系，为*则表示没有限制</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587369108506-bda64b01-99d4-4bad-bacf-9b4aadac4608.png" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>1..1代表一个学生只能且必须有一个导师，0…*代表一个导师可以有0-多个学生。</p>
+</blockquote>
+<p>如果两边最大值都为1，则是1对1</p>
+<h2 id="复杂属性"><a href="#复杂属性" class="headerlink" title="复杂属性"></a>复杂属性</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587370534717-fd5d0051-c566-4d5e-af45-9fb743d88e2f.png" srcset="/img/loading.gif" alt="image.png"><br>first/middle/last为name的<strong>子属性</strong>，而name为<strong>复合属性</strong>(同address)<br>{phone_number}为<strong>多值属性</strong><br>age() 表示<strong>派生属性</strong><br>**</p>
+<h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587370674609-86b153bb-0a01-4268-868f-3322236ed029.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="非二元的联系集"><a href="#非二元的联系集" class="headerlink" title="非二元的联系集"></a>非二元的联系集</h2><blockquote>
+<p>只允许在一个联系集外有一个箭头，如果有两个箭头指向A/B，可能有两种解释：第一个是A和BC是一对X，联系的主键是{B,C}的候选码； 第二个是A和B/C中的一个1对x。此时联系R的主键是A∪B/C</p>
+</blockquote>
+<p>因为有两种解释，所以规定在ER模型中，<strong>一个联系集外只有一个箭头</strong><br>**</p>
+<h2 id="弱-强-实体集-weak-strong-entity-set"><a href="#弱-强-实体集-weak-strong-entity-set" class="headerlink" title="弱(强)实体集 weak(strong) entity set"></a>弱(强)实体集 weak(strong) entity set</h2><p>没有足够属性以形成<strong>主码</strong>的实体集，有主码的实体集称为强实体集。<br>举例：<br><img src="https://gitee.com/cher112/image/raw/master/img/1587469385485-2fa66ee2-a273-495e-86ae-34e3be2d0318.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587469409481-61ec8e5b-cf75-4bb3-a902-baff57e18299.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>弱实体集通过和强实体集建立 <strong>联系</strong>，联系给弱实体集提供<strong>额外信息</strong>(唯一标识)作为新主码。<br>主要目的：以联系为方法来 <strong>消除冗余</strong></p>
+<p>和弱实体层关联的集称作  *<em>标识(identifying) *</em>或 *<em>属主实体集(owner entity set) *</em>才有意义<br>即 弱实体集存在依赖(existence dependent)<br>标识实体 own 它所标识的弱实体集。</p>
+<p><strong>分辨符(discriminator)</strong>: 无主码时区分依赖特定强实体集的弱实体集中实体的方法——属性集合</p>
+<p><strong><img src="https://gitee.com/cher112/image/raw/master/img/1587469991157-193cd1bd-0085-4b96-b3f3-15028b4a7e7f.png" srcset="/img/loading.gif" alt="image.png"></strong><br>**</p>
+<h1 id="转换为关系模式"><a href="#转换为关系模式" class="headerlink" title="转换为关系模式"></a>转换为关系模式</h1><p>简单属性直接转；<br>复杂属性中， 复合属性拆开写(name: first+last); 派生属性在后文讨论； 多值属性把每个值都作为主码<br><img src="https://gitee.com/cher112/image/raw/master/img/1587470124161-1368408f-ebad-498b-80f2-95d17fb331ae.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="弱实体集的标识"><a href="#弱实体集的标识" class="headerlink" title="弱实体集的标识"></a>弱实体集的标识</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587470188135-46065fab-85f1-4956-aea1-bdf426beab7c.png" srcset="/img/loading.gif" alt="image.png"><br>分开标识广义的主码，并进行外码约束。</p>
+<h1 id="实体联系设计问题"><a href="#实体联系设计问题" class="headerlink" title="实体联系设计问题"></a>实体联系设计问题</h1><blockquote>
+<p>给教师信息构建数据库，”电话”作为属性还是实体集</p>
+</blockquote>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587470285500-5ec53f95-d525-415a-9eef-65a852d4d67e.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587470293984-99ef01de-bf75-4669-9e68-70696399a719.png" srcset="/img/loading.gif" alt="image.png"><br>具体问题具体分析…</p>
+<h2 id="二元还是n元联系"><a href="#二元还是n元联系" class="headerlink" title="二元还是n元联系"></a>二元还是n元联系</h2><p>通常都是二元的，但非2元的也可以用2元来表示(每两个实体集建立一个联系)<br><img src="https://gitee.com/cher112/image/raw/master/img/1587470410184-2e8494a6-0e4c-4464-b5dd-5fe467d123e3.png" srcset="/img/loading.gif" alt="image.png"><br>但是这样会增加很多联系集标识属性，增加设计难度和储存要求</p>
+<h1 id="EER-扩展E-R模型"><a href="#EER-扩展E-R模型" class="headerlink" title="EER 扩展E-R模型"></a>EER 扩展E-R模型</h1><h2 id="特化"><a href="#特化" class="headerlink" title="特化"></a>特化</h2><p>实体集中可能包含一些子集，其实体某些方面区别于实体集中的其他实体(不具备一般实体共享的属性)<br>eg: person实体集：employee &amp; student<br>都有一般人的属性表示，但employees可以用 salary来标识；而students可以用 tot_cre标识( 特化过程 )</p>
+<p>在<strong>实体集内部分组</strong>的过程称为 <strong>特化 (specialization)</strong><br>employee和student是person的两个特化。</p>
+<p><strong>重叠(overlapping)特化</strong>: 一个实体集可以属于多个特化实体集<br>eg:  employee可以特化为instructor、secretary，也可以特化为temporary_employee、permanent_employee，这样一个employee可能是一个instructor的同时也是一个permanent_employee</p>
+<p><strong>不相交(disjoint)特化</strong>：实体集至多属于一个特化实体集</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587480909470-49feb040-21c2-44ab-ab1a-ae42a88fd3c5.png" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>E-R图中，表示方法为 从特化实体指向另一方实体的空心箭头标识( is-a 关系)<br>重叠特化：分开使用两个箭头；不相交特化：使用一个箭头</p>
+</blockquote>
+<h2 id="概化-generalization"><a href="#概化-generalization" class="headerlink" title="概化 generalization"></a>概化 generalization</h2><p><strong>特化的逆过程</strong>； <strong>自底而上</strong>，将实体集的共性基础上(强调相似并隐藏差异——改属性)，综合为一个高层实体集(超集)</p>
+<h2 id="属性继承-attribute-inheritance"><a href="#属性继承-attribute-inheritance" class="headerlink" title="属性继承 attribute inheritance"></a>属性继承 attribute inheritance</h2><p>高层实体集的属性被低层实体集继承 (student继承了person的属性： ID name address etc.)—单继承<br>同时低层实体集可能继承*<em>高层实体参与的联系集 *</em><br>(person+department， student的ID和per_dept分别从两个地方继承)   —— 多(mutiple)继承</p>
+<h2 id="概化上的约束"><a href="#概化上的约束" class="headerlink" title="概化上的约束"></a>概化上的约束</h2><h2 id="聚集-aggregation"><a href="#聚集-aggregation" class="headerlink" title="聚集 aggregation"></a>聚集 aggregation</h2><p>E-R模型的局限性在于无法表达 <strong>联系之间的联系</strong><br>**<br>聚集：通过抽象过程，将联系视为高层实体<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1587481640569-6e35f6e5-b38b-4d28-aa36-39ba2ce5b57c.png" srcset="/img/loading.gif" alt="image.png"><br>新建立了一个联系：项目评估——学校会抽查评估项目<br>proj_guige和eval_for实际上不能合并(虽然有类似的主码)，因为可能有些项目<strong>未被评估</strong><br>但是proj_guide和eval_for在关联实体集上有<strong>高度重合</strong>的部分！<br>故可以将含信息量多的 <strong>聚集</strong> 起来作为高层实体供eval_for来<strong>继承</strong></p>
+<h2 id="转化为关系模式"><a href="#转化为关系模式" class="headerlink" title="转化为关系模式"></a>转化为关系模式</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587482088573-08356de2-6f73-46de-a20d-01a2d587b9e8.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587482225960-c6e2d177-6abc-4a52-a9df-b84526c3dcb0.png" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>但是会出现无法定义的外码约束，所以还是需要创一个person关系</p>
+</blockquote>
+<p><strong>如果是重叠概化，很多值会被不必要的储存多次！</strong></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587482328753-df5c56de-9364-4d78-8817-b8722443883a.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>只要不是全部概化特化，就会出现冗余储存….</p>
+<h1 id="E-R图表示法总结"><a href="#E-R图表示法总结" class="headerlink" title="E-R图表示法总结"></a>E-R图表示法总结</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1587482387862-06c34f47-4771-47cb-b6a3-7afeeb10e1ea.png" srcset="/img/loading.gif" alt="image.png"></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/16/softmax%E4%BB%A5%E5%8F%8A%E4%BA%A4%E5%8F%89%E7%86%B5loss%20%E7%AC%94%E8%AE%B01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">softmax以及交叉熵loss 笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/15/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%20--%20%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%80%BC%E7%9A%84%E4%BC%98%E5%8C%961/">
+                        <span class="hidden-mobile">深度学习入门 -- 权重初始值的优化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script defer src="https://utteranc.es/client.js"
+          repo="cher112/commit-utterances"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+  >
+  </script>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#e6d0b2',
+      preload: 'none',
+      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"http://music.163.com/song/media/outer/url?id=552983173.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover.jpg"},{"name":"愛の悲しみ","url":"http://music.163.com/song/media/outer/url?id=29744803.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover2.jpg"},{"name":"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1","artisi":"Arthur Rubinstein","url":"http://music.163.com/song/media/outer/url?id=25961289.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover3.jpg"},{"name":"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ","artist":"secret crates","url":"http://music.163.com/song/media/outer/url?id=448741213.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover4.jpg"},{"name":"The Way We Were","artist":"David Davidson","url":"http://music.163.com/song/media/outer/url?id=22538946.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover5.jpg"},{"name":"Valse di Fantastica","artist":"下村陽子","url":"http://music.163.com/song/media/outer/url?id=448722043.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{"name":"Somnus (Instrumental Version)","artist":"下村陽子","url":"http://music.163.com/song/media/outer/url?id=443292557.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover6.jpg"},{"name":"The Lark","artist":"Evgeny Kissin","url":"http://music.163.com/song/media/outer/url?id=1340025.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover7.jpg"},{"name":"心分け","artist":"上北健","url":"http://music.163.com/song/media/outer/url?id=474932684.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover8.jpg"},{"name":"なごり雪","artist":"中西保志","url":"http://music.163.com/song/media/outer/url?id=480751.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover9.jpg"},{"name":"花・太阳・雨'","artist":"PYG","url":"http://music.163.com/song/media/outer/url?id=26127075.mp3","cover":"https://gitee.com/cher112/image/raw/master/img/cover10.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("05/09/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-166912137-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "数据库设计和E-R模型&nbsp;",
+      ],
+      cursorChar: "🐟",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
       placement: "right",
       visible: "hover",
       
@@ -8,4 +570,54 @@
     for (item of el) {
       res.push(".markdown-body > " + item)
     }
-    anchors.add(res.join(", "))</script><script src="/js/local-search.js"></script><script>var path="/local-search.xml",inputArea=document.querySelector("#local-search-input");inputArea.onclick=function(){searchFunc(path,"local-search-input","local-search-result"),this.onclick=null}</script><script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"><script>$("#post img:not(.no-zoom img, img[no-zoom]), img[zoom]").each(function(){var t=document.createElement("a");$(t).attr("data-fancybox","images"),$(t).attr("href",$(this).attr("src")),$(this).wrap(t)})</script><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":250,"height":400},"react":{"opacity":0.7},"log":false});</script></body></html>
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":250,"height":400},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
