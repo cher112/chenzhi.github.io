@@ -111,6 +111,15 @@
               关于</a>
           </li>
         
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/links/">
+              <i class="iconfont icon-link-fill"></i>
+              友链</a>
+          </li>
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -155,6 +164,39 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/05/19/HEXO%E4%B9%8B%E7%A6%85/">HEXO之禅</a>
+
+      <a href="/2020/05/19/HEXO%E4%B9%8B%E7%A6%85/" class="index-excerpt">
+        
+        
+          
+        
+        <div>《HEXO之禅》
+折腾主题是使用HEXO的最大原罪。专注于创作，而不是令人眼花缭乱的效果。名家之博，不假于主题之花哨，而得知于内容。
+样式千万种，花哨莫去求。主题若彩虹，遇上方知有。
+有问题记得首先查看官方文档，善用搜索引擎。没有人有义务的无条件帮你。
+善于分享，赠人玫瑰手有余香。写作是检索你对知识理解程度的手段，而分享是激励你继续创作的动力。
+不忘初心，方得始终。
+
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-19
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -550,46 +592,19 @@
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/05/11/SQL%20(1)1/">SQL基础(一)</a>
-
-      <a href="/2020/05/11/SQL%20(1)1/" class="index-excerpt">
-        
-        
-          
-        
-        <div>SQLSQL数据定义基本类型如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格
-
-用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统两个char则会自动添加空格使长度一致
-
-基本模式定义完整性约束
-查询的基本结构单关系查询
-select dept_name from instructor where name = </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-05-11
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-      </div>
-    </div>
-  </div>
 
 
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

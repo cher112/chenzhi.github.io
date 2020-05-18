@@ -21,7 +21,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>Tags - JAVA - 陈之の鱼塘</title>
+  <title>陈之の鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -50,7 +50,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -132,7 +132,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://gitee.com/cher112/image/raw/master/img/意大利风情.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/cher112/image/raw/master/img/background.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -144,6 +144,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -153,27 +157,66 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-<!--  <p class="h4">1 posts in total.</p>-->
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/05/11/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%BB%A7%E6%89%BF1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JAVA笔记 第五章 继承</span>
-      <span style="float: right;">05-11</span>
-    </a>
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/05/11/SQL%20(1)1/">SQL基础(一)</a>
+
+      <a href="/2020/05/11/SQL%20(1)1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>SQLSQL数据定义基本类型如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格
+
+用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统两个char则会自动添加空格使长度一致
+
+基本模式定义完整性约束
+查询的基本结构单关系查询
+select dept_name from instructor where name = </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-11
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -355,7 +398,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag - JAVA&nbsp;",
+        "今日摸鱼（1|1）&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
