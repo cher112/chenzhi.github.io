@@ -171,6 +171,13 @@
                 
 
                 
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="iconfont icon-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
               </div>
             
           </div>
@@ -282,28 +289,11 @@ from(instructor natural join teaches) join course using（course_id）//指定�
               <!-- Comments -->
               <div class="comments" id="comments">
                 
-                <!--
- * @Descripttion: 
- * @version: 
- * @Author: sueRimn
- * @Date: 2020-05-10 20:30:33
- * @LastEditors: sueRimn
- * @LastEditTime: 2020-05-21 15:13:58
---> 
-
+                
   <div id="vcomments"></div>
   <script defer src="https://cdn.staticfile.org/valine/1.4.14/Valine.min.js" ></script>
 <!-- 评论框美化 -->
-<style>
-  .v .vwrap{padding: 0 0 44px;}
-  .v .veditor{min-height: 10rem;
-      background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: right;
-      background-color: rgba(255,255,255,0);
-      resize: none;}
-</style>
+
   <script type="text/javascript">
     var oldLoadVa = window.onload;
     window.onload = function () {
@@ -322,30 +312,9 @@ from(instructor natural join teaches) join course using（course_id）//指定�
         highlight: false,
         recordIP: false,
         serverURLs: "",
-        emojiCDN: 'https://valinecdn.bili33.top/',
-        emojiMaps: {
-        "HONKAI3-Stan1": "HONKAI3-Stan/15214d9eece7e739f8cc764233c26dd981678f34.gif",
-        "HONKAI3-Stan2": "HONKAI3-Stan/166eacc0ea878b41902238fef44835bcca320999.gif",
-        "HONKAI3-Stan3": "HONKAI3-Stan/4f921b8ad8c16f3d2c73e3c04c5735ca9b41187b.gif",
-        "HONKAI3-Stan4": "HONKAI3-Stan/70677f9c51bd601e60881da47d77a4e6189ad895.gif",
-        "HONKAI3-Stan5": "HONKAI3-Stan/7ba34abc0fb1273591b75037e26972c2fb97de7d.gif",
-        "HONKAI3-Stan6": "HONKAI3-Stan/7f6655ee3e70f338dd4ccb1cc1d984a9b92628ea.gif",
-        "HONKAI3-Stan7": "HONKAI3-Stan/a0a41607578a6286f8d245338addd0d41bbd609b.gif",
-        "HONKAI3-Stan8": "HONKAI3-Stan/b7768611702b6c74b959f285a4b780cdf5606e38.gif",
-        "HONKAI3-Stan9": "HONKAI3-Stan/f044641b50e2de64469972528aab39a35fbc85b7.gif",
-        "bilibili22332": "bilibili2233/[2233娘_卖萌].png",
-        "bilibili22333": "bilibili2233/[2233娘_吃惊].png",
-        "bilibili22334": "bilibili2233/[2233娘_吐魂].png",
-        "bilibili22335": "bilibili2233/[2233娘_喝水].png",
-        "bilibili22338": "bilibili2233/[2233娘_大笑].png",
-        "bilibili223310": "bilibili2233/[2233娘_怒].png",
-        "bilibili223312": "bilibili2233/[2233娘_汗].png",
-        "bilibili223313": "bilibili2233/[2233娘_疑问].png",
-        "bilibili223314": "bilibili2233/[2233娘_第一].png",
-        "bilibili223315": "bilibili2233/[2233娘_耶].png",
-        "bilibili223316": "bilibili2233/[2233娘_郁闷].png",
-        // ... 更多表情
-    } 
+        emoticon_url: "https://xiamuyourenzhang.cn/alu", 
+        emoticon_list: ["ic_emoji_baiyan.png","ic_emoji_bishi.png","ic_emoji_bizui.png","ic_emoji_chan.png","ic_emoji_daku.png","ic_emoji_dalao.png","ic_emoji_dalian.png","ic_emoji_dianzan.png","ic_emoji_doge.png","ic_emoji_facai.png","ic_emoji_fadai.png","ic_emoji_fanu.png","ic_emoji_ganga.png","ic_emoji_guilian.png","ic_emoji_guzhang.png","ic_emoji_haixiu.png","ic_emoji_heirenwenhao.png","ic_emoji_huaixiao.png","ic_emoji_jingxia.png","ic_emoji_keai.png","ic_emoji_koubi.png","ic_emoji_kun.png","ic_emoji_lengmo.png","ic_emoji_liubixue.png","ic_emoji_liuhan.png","ic_emoji_liulei.png","ic_emoji_miantian.png","ic_emoji_mudengkoudai.png","ic_emoji_nanguo.png","ic_emoji_outu.png","ic_emoji_qinqin.png","ic_emoji_se.png","ic_emoji_shengbing.png","ic_emoji_shengqi.png","ic_emoji_shuizhao.png","ic_emoji_sikao.png","ic_emoji_test.png","ic_emoji_tiaokan.png","ic_emoji_tiaopi.png","ic_emoji_touxiao.png","ic_emoji_tuxue.png","ic_emoji_weiqu.png","ic_emoji_weixiao.png","ic_emoji_wunai.png","ic_emoji_xiaoku.png","ic_emoji_xieyanxiao.png","ic_emoji_yiwen.png","ic_emoji_yun.png","ic_emoji_zaijian.png","ic_emoji_zhoumei.png","ic_emoji_zhuakuang.png","ic_emoji.png","吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],  
+ 
       });
     };
   </script>
@@ -480,6 +449,23 @@ from(instructor natural join teaches) join course using（course_id）//指定�
       </script>
     </div>
     
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
 
     
 
@@ -531,6 +517,8 @@ from(instructor natural join teaches) join course using（course_id）//指定�
   <script  src="/js/clipboard-use.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
