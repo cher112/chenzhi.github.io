@@ -282,10 +282,28 @@ from(instructor natural join teaches) join course using（course_id）//指定�
               <!-- Comments -->
               <div class="comments" id="comments">
                 
-                
+                <!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-10 20:30:33
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-21 15:13:58
+--> 
+
   <div id="vcomments"></div>
   <script defer src="https://cdn.staticfile.org/valine/1.4.14/Valine.min.js" ></script>
-
+<!-- 评论框美化 -->
+<style>
+  .v .vwrap{padding: 0 0 44px;}
+  .v .veditor{min-height: 10rem;
+      background-image: url(https://cdn.jsdelivr.net/gh/cungudafa/img/images/girls2.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right;
+      background-color: rgba(255,255,255,0);
+      resize: none;}
+</style>
   <script type="text/javascript">
     var oldLoadVa = window.onload;
     window.onload = function () {
@@ -295,15 +313,39 @@ from(instructor natural join teaches) join course using（course_id）//指定�
         el: "#vcomments",
         app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
         app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
-        placeholder: "说点什么",
+        placeholder: "来说点什么吧～",
         path: window.location.pathname,
-        avatar: "wavatar",
+        avatar: "monsterid",
         meta: ["nick","mail"],
         pageSize: "10",
         lang: "zh-CN",
         highlight: false,
         recordIP: false,
         serverURLs: "",
+        emojiCDN: 'https://valinecdn.bili33.top/',
+        emojiMaps: {
+        "HONKAI3-Stan1": "HONKAI3-Stan/15214d9eece7e739f8cc764233c26dd981678f34.gif",
+        "HONKAI3-Stan2": "HONKAI3-Stan/166eacc0ea878b41902238fef44835bcca320999.gif",
+        "HONKAI3-Stan3": "HONKAI3-Stan/4f921b8ad8c16f3d2c73e3c04c5735ca9b41187b.gif",
+        "HONKAI3-Stan4": "HONKAI3-Stan/70677f9c51bd601e60881da47d77a4e6189ad895.gif",
+        "HONKAI3-Stan5": "HONKAI3-Stan/7ba34abc0fb1273591b75037e26972c2fb97de7d.gif",
+        "HONKAI3-Stan6": "HONKAI3-Stan/7f6655ee3e70f338dd4ccb1cc1d984a9b92628ea.gif",
+        "HONKAI3-Stan7": "HONKAI3-Stan/a0a41607578a6286f8d245338addd0d41bbd609b.gif",
+        "HONKAI3-Stan8": "HONKAI3-Stan/b7768611702b6c74b959f285a4b780cdf5606e38.gif",
+        "HONKAI3-Stan9": "HONKAI3-Stan/f044641b50e2de64469972528aab39a35fbc85b7.gif",
+        "bilibili22332": "bilibili2233/[2233娘_卖萌].png",
+        "bilibili22333": "bilibili2233/[2233娘_吃惊].png",
+        "bilibili22334": "bilibili2233/[2233娘_吐魂].png",
+        "bilibili22335": "bilibili2233/[2233娘_喝水].png",
+        "bilibili22338": "bilibili2233/[2233娘_大笑].png",
+        "bilibili223310": "bilibili2233/[2233娘_怒].png",
+        "bilibili223312": "bilibili2233/[2233娘_汗].png",
+        "bilibili223313": "bilibili2233/[2233娘_疑问].png",
+        "bilibili223314": "bilibili2233/[2233娘_第一].png",
+        "bilibili223315": "bilibili2233/[2233娘_耶].png",
+        "bilibili223316": "bilibili2233/[2233娘_郁闷].png",
+        // ... 更多表情
+    } 
       });
     };
   </script>
