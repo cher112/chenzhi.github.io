@@ -289,7 +289,15 @@ from(instructor natural join teaches) join course using（course_id）//指定�
               <!-- Comments -->
               <div class="comments" id="comments">
                 
-                
+                <!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-05-10 20:30:33
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-05-21 16:43:01
+--> 
+
   <div id="vcomments"></div>
   <script defer src="https://cdn.staticfile.org/valine/1.4.14/Valine.min.js" ></script>
 <!-- 评论框美化 -->
@@ -312,9 +320,99 @@ from(instructor natural join teaches) join course using（course_id）//指定�
         highlight: false,
         recordIP: false,
         serverURLs: "",
-        emoticon_url: "https://xiamuyourenzhang.cn/alu", 
-        emoticon_list: ["ic_emoji_baiyan.png","ic_emoji_bishi.png","ic_emoji_bizui.png","ic_emoji_chan.png","ic_emoji_daku.png","ic_emoji_dalao.png","ic_emoji_dalian.png","ic_emoji_dianzan.png","ic_emoji_doge.png","ic_emoji_facai.png","ic_emoji_fadai.png","ic_emoji_fanu.png","ic_emoji_ganga.png","ic_emoji_guilian.png","ic_emoji_guzhang.png","ic_emoji_haixiu.png","ic_emoji_heirenwenhao.png","ic_emoji_huaixiao.png","ic_emoji_jingxia.png","ic_emoji_keai.png","ic_emoji_koubi.png","ic_emoji_kun.png","ic_emoji_lengmo.png","ic_emoji_liubixue.png","ic_emoji_liuhan.png","ic_emoji_liulei.png","ic_emoji_miantian.png","ic_emoji_mudengkoudai.png","ic_emoji_nanguo.png","ic_emoji_outu.png","ic_emoji_qinqin.png","ic_emoji_se.png","ic_emoji_shengbing.png","ic_emoji_shengqi.png","ic_emoji_shuizhao.png","ic_emoji_sikao.png","ic_emoji_test.png","ic_emoji_tiaokan.png","ic_emoji_tiaopi.png","ic_emoji_touxiao.png","ic_emoji_tuxue.png","ic_emoji_weiqu.png","ic_emoji_weixiao.png","ic_emoji_wunai.png","ic_emoji_xiaoku.png","ic_emoji_xieyanxiao.png","ic_emoji_yiwen.png","ic_emoji_yun.png","ic_emoji_zaijian.png","ic_emoji_zhoumei.png","ic_emoji_zhuakuang.png","ic_emoji.png","吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],  
- 
+        emojiCDN: '//i0.hdslb.com/bfs/emote/',
+        emojiMaps: {
+          "bilibili_2233娘_疑问" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_疑问.png",
+          "bilibili_2233娘_无言" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_无言.png",
+          "bilibili_2233娘_委屈" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_委屈.png",
+          "bilibili_2233娘_怒" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_怒.png",
+          "bilibili_2233娘_汗" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_汗.png",
+          "bilibili_2233娘_第一" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_第一.png",
+          "bilibili_2233娘_大笑" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_大笑.png",
+          "bilibili_2233娘_大哭" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/bilibili/2233娘_大哭.png",
+          "aru_277" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/277.png",
+          "aru_276" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/276.png",
+          "aru_275" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/275.png",
+          "aru_274" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/274.png",
+          "aru_273" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/273.png",
+          "aru_272" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/272.png",
+          "aru_271" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/271.png",
+          "aru_270" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/270.png",
+          "aru_268" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/268.png",
+          "aru_267" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/267.png",
+          "aru_266" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/266.png",
+          "aru_265" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/265.png",
+          "aru_264" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/264.png",
+          "aru_259" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/259.png",
+          "aru_258" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/258.png",
+          "aru_257" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/257.png",
+          "aru_113" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/113.png",
+          "aru_112" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/112.png",
+          "aru_111" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/111.png",
+          "aru_110" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/110.png",
+          "aru_89" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/89.png",
+          "aru_88" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/88.png",
+          "aru_87" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/87.png",
+          "aru_86" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/86.png",
+          "aru_85" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/85.png",
+          "aru_84" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/84.png",
+          "aru_83" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/83.png",
+          "aru_82" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/82.png",
+          "aru_74" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/74.png",
+          "aru_73" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/73.png",
+          "aru_72" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/72.png",
+          "aru_71" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/71.png",
+          "aru_70" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/70.png",
+          "aru_69" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/69.png",
+          "aru_68" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/68.png",
+          "aru_67" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/67.png",
+          "aru_66" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/66.png",
+          "aru_65" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/65.png",
+          "aru_64" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/64.png",
+          "aru_63" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/63.png",
+          "aru_62" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/62.png",
+          "aru_61" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/61.png",
+          "aru_60" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/60.png",
+          "aru_59" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/59.png",
+          "aru_58" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/58.png",
+          "aru_57" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/57.png",
+          "aru_56" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/56.png",
+          "aru_55" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/55.png",
+          "aru_54" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/54.png",
+          "aru_53" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/53.png",
+          "aru_52" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/52.png",
+          "aru_51" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/51.png",
+          "aru_29" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/29.png",
+          "aru_28" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/28.png",
+          "aru_27" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/27.png",
+          "aru_26" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/26.png",
+          "aru_25" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/25.png",
+          "aru_24" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/24.png",
+          "aru_23" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/23.png",
+          "aru_22" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/22.png",
+          "aru_21" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/21.png",
+          "aru_20" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/20.png",
+          "aru_19" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/19.png",
+          "aru_18" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/18.png",
+          "aru_17" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/17.png",
+          "aru_16" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/16.png",
+          "aru_15" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/15.png",
+          "aru_14" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/14.png",
+          "aru_13" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/13.png",
+          "aru_12" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/12.png",
+          "aru_11" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/11.png",
+          "aru_10" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/10.png",
+          "aru_9" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/9.png",
+          "aru_8" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/8.png",
+          "aru_7" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/7.png",
+          "aru_6" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/6.png",
+          "aru_5" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/5.png",
+          "aru_4" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/4.png",
+          "aru_3" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/3.png",
+          "aru_2" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/2.png",
+          "aru_1" : "https://cdn.jsdelivr.net/gh/blogimg/emotion/aru/1.png"
+        }
+        
       });
     };
   </script>
