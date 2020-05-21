@@ -21,7 +21,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>龙与鹰的帝国 读书摘抄(一) - 陈之の鱼塘</title>
+  <title>神经网络——基于 relu 激活Dense 层堆叠 - 陈之の鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -153,8 +153,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-17 16:05">
-                    May 17, 2020 pm
+                  <time datetime="2020-05-15 19:26">
+                    May 15, 2020 pm
                   </time>
                 </div>
               
@@ -164,7 +164,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    3.4k 字
+                    812 字
                   </span>
                 
 
@@ -174,7 +174,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    34
+                    8
                      分钟
                   </span>
                 
@@ -210,100 +210,33 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>没有一个很好的办法将kindle的笔记转为markdown(只能暂时性的插入&lt; br &gt;,颜色标注替换为<font color=Orange>橙色</font>或<font color=Blue>蓝色</font>)，如有完美导出md的方法欢迎私信！</p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><p>Citation (APA): 欧阳莹之著. (2016). 龙与鹰的帝国（精） (中华书局出品) [Kindle Android version]. Retrieved from Amazon.com<br>知识的盛宴——《龙与鹰的帝国》介绍</p>
-<p class="note note-warning"> - 位置 153 </p>
-作者在行文之际，毋宁常常接触到：何以这两大帝国有如此的发展？后来又如何走了不同的方向？我想，她会关心：为什么后来的中国，一直是“中国”？而罗马，却变成欧洲的列国？此处，我以为“中国”长期保持为“中国”，虽然经历了南北朝的外族入侵，和后来辽、金、元、清，不同时代的外族统治，但“中国”并没有分裂，而“中国”的本部，接受许多外来影响，还是以“中国”的本色，长期存在。
+              <h1 id="神经网络——基于-relu-激活Dense-层堆叠"><a href="#神经网络——基于-relu-激活Dense-层堆叠" class="headerlink" title="神经网络——基于 relu 激活Dense 层堆叠"></a>神经网络——基于 relu 激活Dense 层堆叠</h1><pre><code>参数 num_words=10000 的意思是仅保留训练数据中前 10 000 个最常出现的单词。低频单</code></pre><p>词将被舍弃。这样得到的向量数据不会太大，便于处理。</p>
+<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><h2 id="解码："><a href="#解码：" class="headerlink" title="解码："></a>解码：</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585139525161-faf25c63-3e19-4eb4-89a4-19d2203ff3bb.png" srcset="/img/loading.gif" alt="image.png"><br>/？是什么意思….</p>
+<h2 id="将列表转换为张量"><a href="#将列表转换为张量" class="headerlink" title="将列表转换为张量"></a>将列表转换为张量</h2><p>转化为2进制矩阵，(<strong>one-hot 编码)</strong><br>举个例子，序列 [3, 5] 将会<br>被转换为 10 000 维向量，只有索引为 3 和 5 的元素是 1，其余元素都是 0。然后网络第<br>一层可以用 Dense 层，它能够处理浮点数向量数据。</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139618830-26919f62-6822-4e7d-95f2-877b543a9efc.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="构建网络"><a href="#构建网络" class="headerlink" title="构建网络"></a>构建网络</h1><p>输入数据是向量，而标签是标量（ 1 和 0），这是你会遇到的最简单的情况。有一类网络在这种问题上表现很好，就是<strong>带有 relu 激活的全连接层（ Dense）的简单堆叠，比如Dense(16, activation=’relu’)。</strong></p>
+<p>其中：6 个隐藏单元对应的权重矩阵 W 的形状为 (input_dimension, 16)<br>w.x相当于投影到 16维的向量(表示空间)  再加上b 应用RELU；</p>
+<p>对于这种 Dense 层的堆叠，你需要确定以下两个关键架构：</p>
+<ul>
+<li>网络有多少层；</li>
+<li>每层有多少个隐藏单元。</li>
+</ul>
+<p>现在暂时规定 unit = 16， layer3 为输出标量(D = 1)</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139826721-7d6e7f83-d50d-4a3a-a2ad-e5d03fc8830d.png" srcset="/img/loading.gif" alt="image.png"><br>其中，第三层因为输出 概率，可以把RELU换为sigmoid激活</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139872928-2611e385-e7a3-4bab-b82e-defb446e2170.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="损失函数和优化器选择"><a href="#损失函数和优化器选择" class="headerlink" title="损失函数和优化器选择"></a>损失函数和优化器选择</h2><p>由于你面对的是一个二分类问题，网络输出是一个概率值（网络最后一层使用 sigmoid 激活函数，仅包含一个单元），那么最好使用 <strong>binary_crossentropy（二元交叉熵）损失</strong>。这并不是唯一可行的选择，比如你还可以使用 mean_squared_error（均方误差）。但对于<strong>输出概率值的模型， 交叉熵（ crossentropy）往往是最好<br>的选择。</strong>交叉熵是来自于信息论领域的概念，用于衡量概率分布之间的距离，在这个例子中就<br>是真实分布与预测值之间的距离。<br>下面的步骤是用 rmsprop 优化器和 binary_crossentropy 损失函数来配置模型。注意，<br>我们还在训练过程中监控精度。<br>Q：监控精度？ metrics参数学习</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139995385-61696da1-00c6-4fbc-8bf8-7b1d362fbd6e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1585140017671-3ad3cee0-cc4c-48eb-a816-91f5f3df2eeb.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1585140058098-eea8a4cb-023b-4fd8-864f-4e801faa8217.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="损失和精度检验"><a href="#损失和精度检验" class="headerlink" title="损失和精度检验"></a>损失和精度检验</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585140095015-dd2f09c0-edf5-4efc-bd2c-9e486f501843.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585140116706-d05e3654-3a47-44d7-9830-b0e1d5160245.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1585140128486-708da453-3c8b-4c31-bcd2-8deb4c856a7c.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>明显发现，出现过拟合现象</strong><br>**<br>可以提前设置停止训练(减少迭代)，也有其他方法(小记和后续会讲)<br>代码中将训练轮数改为 4，效果更好。</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585140225040-79e1b9fc-7401-41ed-8d85-48bfdc99a882.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="交叉熵理论"><a href="#交叉熵理论" class="headerlink" title="交叉熵理论"></a>交叉熵理论</h1><p>交叉熵与熵相对，如同协方差与方差。</p>
+<p>熵考察的是单个的信息（分布）的期望，”信息熵” (information entropy)<br>是<strong>度量样本集合纯度</strong>最常用的一种指标. 假定当前样本集合 D 中第 k 类样本所占的比例为 Pk (k = 1,2,. . . , IYI)，则 D 的信息熵定义为 ：<br><img src="https://gitee.com/cher112/image/raw/master/img/1585206725136-70b9bb42-3513-46dd-abf8-0f1c48a15ddd.png" srcset="/img/loading.gif" alt="image.png"><br>交叉熵考察的是两个的信息（分布）的期望(两个分布之间的”距离”)：<br><img src="https://gitee.com/cher112/image/raw/master/img/1585206744973-aac6ec69-ff36-4a03-882f-f4e550efa4e0.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="交叉熵代价函数"><a href="#交叉熵代价函数" class="headerlink" title="交叉熵代价函数"></a>交叉熵代价函数</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585207010581-ffeb4530-6bcc-4c75-978e-cda3ad73eacd.png" srcset="/img/loading.gif" alt="image.png"><br>为神经网络引入交叉熵代价函数，是为了弥补 sigmoid 型函数的导数形式易发生<strong>饱和（saturate，梯度更新的较慢）的缺陷(x越大曲线越平缓)。</strong><br><a href="https://zhuanlan.zhihu.com/p/70804197" target="_blank" rel="noopener">原因</a></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585208647485-db7f62c3-6998-478d-80ba-c856ad34362b.jpeg" srcset="/img/loading.gif" alt=""></p>
+<p>softmax在下一节会讲到</p>
 
-<p class="note note-warning"> - 位置 157 </p>
-中国始终以“编户齐民”，作为国族结构的基础来看。中国在不同的时代都有贵族，然而，没有像欧洲历史上，长期实行封建制度，延续贵族与平民之间的差异。
-
-<p class="note note-warning"> - 位置 158 </p>
-罗马帝国幅员广阔，吞并了许多不同地区的国族。在帝国体制之下，各个不同的属地，和罗马的本部，都有各自特定的关系，以界定其在帝国的地位
-
-<p class="note note-primary"> - 位置 162 </p>
-罗马从来没有过，中国秦汉以后，那种中央和地方郡县之间，形态一致的行政体系。中国的扩张，不是没有军事征服，更多的却是移民的扩散，缓慢、逐渐、慢慢地从核心，渗透到一层层的边区，然后充满了全部的疆域。这种长期而缓慢的大规模移民扩散，带去的不只是制度，更多的是文化与认同。而且，早期边陲，可能转变成新的核心，而核心地区，因为经常地移转，最后凝聚为中国共同体内，最大的一个核体，足以维系中国为一体。
-
-<p>中文本自序</p>
-<p class="note note-primary"> - 位置 181 </p>
-历史可以作为转治中国历史的踏脚石。时逢中国崛起、美国重振帝国主义，世局近乎二千年前秦汉皇朝、罗马帝国各自称雄东西。时势帮助了我选题。
-
-<p>导论：秦汉、罗马与中西历史演变分歧</p>
-<p class="note note-primary"> - 位置 196 </p>
-公元前202年，文明世界的东西两端，各自发生一场划时代的大战。在非洲北沿的匝马，罗马败其夙敌迦太基，清除建立大帝国的障碍。在黄河南面的垓下，汉败楚，结束秦末群雄逐鹿，奠立一个规模历时、功绩文化都媲美罗马帝国的皇朝。
-
-<p class="note note-primary"> - 位置 201 </p>
-有学者形容东西两个世界性大帝国的历史为“一大凑集”[3]。其实它们虽然走势靠近，但离聚会仍差甚远。不同社会面临类似的问题，可能采取类似的对策。然则世上深固传统纷纭、时局变幻不测，无法产生一个适应所有国度的万能楷模。在一个环境中功勋彪炳的思想制度，在另一环境下可能徒然无效。
-
-<p class="note note-primary"> - 位置 205 </p>
-帝国的观念在第二次世界大战后一度黯然，但自从美国带领入侵阿富汗和伊拉克以来，东山再起。中国崛起，经济全球化，国际风云变色，更激发人们深思。
-
-<p class="note note-primary"> - 位置 207 </p>
-学者有的说它稳定世局、能长期奏效，有的说它旨在剥削、不能持久，但都认识到帝国有异于小国，不止在量，而且在质[4]。小国寡民，同文同种，容易获得内政和谐。可是它与邻国的分歧争执，也容易升级至兵戎相见。大帝国兼并诸小国，容纳多种民族，化解或抑压它们之间的冲突，收和平建树之益。
-
-<p class="note note-primary"> - 位置 215</p>
-能雄踞宏阔领域、维持长期繁荣、堪称世界性大帝国者，只得10来个。在这杰出的短名单中，差不多同时的秦汉皇朝和罗马帝国名列前茅。它们全盛时期，各自囊括地球四分之一人口，稳固国内升平逾200年[6]。前者夸一统天下，后者夸雄霸地球（imperium orbis terrae）[7]。两者皆认为自己的权柄来源超凡：一个称天命，另一个称神授（divinitus adjuncta fortuna）[8]。
-
-<p class="note note-primary"> - 位置 224</p>
-前221年秦始皇终结数百年征伐不休的春秋战国时代，奠立统一的中国。秦朝祚短，它亡后中国备受内战蹂躏，直至前202年垓下战后，高祖建立稳定的汉朝。类似的惨烈内讧，从扩张到太平，
-
-<p class="note note-primary"> - 位置 225</p>
-
-<p>恺撒把罗马数世纪的征战带上巅峰，随即于前48年把矛头转向共和国，实行独裁。他遇刺后，罗马贵族的内战加剧，直至前31年亚克兴之战，赢家奥古斯都奠定罗马帝国。残酷的内战是罗马共和国的丧钟、皇朝中国的分娩阵痛。</p>
-<p class="note note-primary"> - 位置 230</p>
-二者的经济都是以农为本、以田地为主要财产，但货币相当流通[9]。它们的社会一样保守、崇尚权威、等级森严，以父权家庭为基本单位[10]。它们的政府都是中央集权，皇帝下辖郡县或行省[11]。
-<p class="note note-primary"> - 位置 235</p>
-一个帝国的独特政治风格部分源自其决策者的世界观：他们用什么标准衡量价值，靠什么概念鉴定利害；怎样在资料不足的情形下判断形势，随机应变；如何把有限的国力资源分配给无限的内政外交需求；引什么理由解释他们的取舍。左右人们思想倾向的世界观，部分体现在社会和政治制度上。它就像是个“意识基因”，小节时常改变以适应环境，但大体世代遗传，根深蒂固，演化缓慢，源远流长。历史渊源掣肘社会结构，一如童年经验塑造成人的品质。
-<p class="note note-primary"> - 位置 240</p>
-在龙与鹰的性格上痕迹历然，至今依稀可见。
-<p class="note note-primary"> - 位置 243</p>
-中国犹在青铜时代。春秋的诸侯贵族掌权，家国一体，有刑无法，养尊处优，礼不下庶民。地中海一带早已经历技术革命，进入铁器时代。劳动人民掌握了价廉效高的生产工具、战争武器，权势大涨，以身为奉公守法的城邦公民为荣。古代中西并无交通，但把罗马共和国到帝国和战国到汉初500年的历史并列同观，可见一出中国迎头赶上的好戏。
-<p class="note note-primary"> - 位置 246</p>
-罗马共和国成立时，其经济基础是自耕小农，军事主力是农民兼任的步兵。拥有自己耕地的农民珍爱私有地产，认为保护私产权是国家最大职责之一。罗马人珍惜家庭，但他们的政治制度清晰地区分家与国
-<p class="note note-primary"> - 位置 249</p>
-。虽然社会等级森严，但是上下尊卑都敬奉法律，因为它象征和维护公共的国家，更帮助各方达成协议。
-<p class="note note-primary"> - 位置 254</p>
-它借以稳定内政的权力制衡成为一个灵感泉源，滋养现代政治学。美国宪法的构想，便受它影响[16]。
-<p class="note note-primary"> - 位置 255</p>
-春秋列国的经济组织是井田共耕，军事主力是贵族垄断的战车。诸侯数百，口头上尊周王为天下共主，实际上各自军政独立。诸侯国实行宗法封建，官卿世袭，国与国君的宗室家庭混沌未分。
-<p class="note note-primary"> - 位置 259</p>
-青铜时代末年，封建政体崩坏声中，诞生了一个崇尚先王之道的没落贵族，即孔子。他把王官之学推广到平民之间，并加强其私德基础[18]。家庭伦理即是政治纲纪、统治者的个人德行足以平治天下等宗法封建时代的人治意念，凝固在儒家经典中，成为历代皇朝的主导思想。
-<p class="note note-primary"> - 位置 264</p>
-领导发展经济、富国强兵。这些法家人物明颁法例，提倡法律下人人平等，一面教导人民奉公守法、培养公德，一面把国与国君的家分开，裁抑世袭，营建以功能定职位的制度。国家确认私有地产权，有系统地划地授田给家庭农户，并要他们缴税和服兵役。平民步兵取代贵族战车，称雄沙场。新兴的农民战士类似罗马共和国的公民，不过中国的王侯用土地和经济利益笼络人民，罗马贵族则用投票权和政治利益。
-笔记 - 位置 268
-值得思考
-<p class="note note-primary"> - 位置 271</p>
-但打赢仗并非大功告成。从击败敌人到建立能统治旧敌的稳固政权，这是个艰难危险的过程，曾经摧毁了不少刹时灿烂的帝国。亚历山大的辉煌战功，便转头成空。
-<p class="note note-primary"> - 位置 272
-罗马帝国和秦汉皇朝挺过残酷的内战，赢得长治久安，但亦不免损伤
-<p class="note note-primary"> - 位置 273</p>
-政府必须获得政治精英的合作才能顺利统治。为了拉拢满足权贵阶层，罗马帝国牺牲了共和国的民主，中国皇朝牺牲了新萌芽的法治。一个深邃的弱点，从此忧患鹰与龙。
-<p class="note note-primary"> - 位置 276</p>
-20]。本书指出公民概念只在侵略扩张期间奏效。
-笔记 - 位置 276
-公民的概念到底是什么
-<p class="note note-primary"> - 位置 277</p>
-赫赫太平的罗马帝国剥夺了公民的所有政治权，法许的社会权利亦渐消损。后期像农奴般的贫穷罗马公民，比中国的臣民更缺实际的尊严和自由
-<p class="note note-primary"> - 位置 279</p>
-罗马帝国取缔民主选举，但保持共和国的三大权力基柱：军、财、法。即使长期和平，帝国亦一直置强大的专业常备军，主旨在保护皇权。庞大的军费促进商业经济，一如现代西方的军队和工商勾结互利[
-<p class="note note-primary"> - 位置 281</p>
-共和国时，一个公民的投票权与他的资产成正比，富人投的票比穷人投的票重要得多；最有钱的公民才有资格竞选政府职位。罗马帝国大幅提高资产标准；非极大地主，不能出任元老、帝国官员或兵团将领。行省各地，土豪巨富盘踞大小城政会，受皇帝庇护，为皇帝向土著收税。团结天下地主！
-<p class="note note-primary"> - 位置 284</p>
-罗马法律排难解纷，积聚数百年经验，递建复杂的绝对私有财产权，凝固富有的统治阶层[23]。军国主义和法律支撑的富豪统治，在整个罗马历史中始终稳立。控制兵团和富豪贵族，使它们合作但彼此牵制、不密谋造反，是皇帝最吃力的工作。一旦制衡失效，帝国即日暮途穷[24]。
-<p class="note note-primary"> - 位置 290</p>
-儒家君君臣臣，系国政于个人品德、亲戚关系的人治理想，有利专制皇朝的整个统治阶层。
-<p class="note note-primary"> - 位置 292</p>
-儒生盘踞政府，一意复古，拘国为家，贬法为刑；繁文缛礼，粉饰太平
-<p class="note note-primary"> - 位置 293</p>
-儒家士大夫是皇朝中国的招牌特色之一，也是世界史上最悠久的政治权益集团之一。他们之能维持统治，实靠中国的另一基柱。法家设计的君主集权科层机构挺过秦末内乱、汉初分封，成为政府体制的结构骨架。不过儒家士大夫上台后，改变了它的运作风气，以人情关系掩盖了理性规律[26]。法骨儒气，难怪西方人觉得中国有双重性格。
-<p class="note note-primary"> - 位置 298</p>
-另一位学者发现其国家观念薄弱：“中国其实是个文明，假装做个国家。”[27]
-<p class="note note-primary"> - 位置 300</p>
-据社会学，权势有三种泉源：政治、经济、思想意识；政治泉源又可分为军力和行政组织[28]。任何政府，缺一不可。然则鹰式权威偏重结合军事和经济，比较刚强；龙式权威偏重行政和教条，比较温柔。
-<p class="note note-primary"> - 位置 304</p>
-吏治清明、民生富庶外，成功的统治者还得控制民心、操纵舆论，以道德支撑强权，教人民以服从为义务。
-<p class="note note-primary"> - 位置 305</p>
-仁义说教充斥儒臣奏章，铁腕豪情洋溢罗马赞颂。然而华言高论不能抵偿皇朝、帝国的牺牲品。皇朝中国沿用法家制度，却猛加诋毁以维护儒家权益。士大夫的虚伪教条阻碍理性改革，使政治思想无从发展。奥古斯都颠覆了共和国，却保留了它的门面以掩饰自己的专制。
             </article>
             <hr>
             <div>
@@ -312,17 +245,10 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
                     
                   </div>
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%BE%99%E4%B8%8E%E9%B9%B0%E7%9A%84%E5%B8%9D%E5%9B%BD/">龙与鹰的帝国</a>
-                    
-                  </div>
                 
               </div>
               
@@ -333,9 +259,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/05/19/HEXO%E4%B9%8B%E7%A6%85/">
+                      <a href="/posts/cb74317f.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HEXO之禅</span>
+                        <span class="hidden-mobile">神经网络-张量引擎</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -343,8 +269,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/05/16/softmax%E4%BB%A5%E5%8F%8A%E4%BA%A4%E5%8F%89%E7%86%B5loss%20%E7%AC%94%E8%AE%B01/">
-                        <span class="hidden-mobile">softmax以及交叉熵loss 笔记</span>
+                      <a href="/posts/a49b2de.html">
+                        <span class="hidden-mobile">JAVA笔记 第五章 继承</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -730,7 +656,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "龙与鹰的帝国 读书摘抄(一)&nbsp;",
+        "神经网络——基于 relu 激活Dense 层堆叠&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
