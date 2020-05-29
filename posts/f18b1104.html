@@ -513,8 +513,8 @@
       return new Promise(function (resolve, reject) {
         Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
           .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
+          .then(({results, error}) => {
+            if (error) {
               throw error;
             }
             if (results && results.length > 0) {
