@@ -284,7 +284,7 @@ boss.setBonus(<span class="hljs-number">500</span>);
 &#125;</code></pre>
 <p>super关键词：*<em>调用超类 含有name—day 参数的构造器 *</em>的简写形式<br>                    如果没有显式调用，会默认用超类的。</p>
 <p>类似this关键字～</p>
-<h3 id="继承层次"><a href="#继承层次" class="headerlink" title="继承层次"></a>继承层次</h3><p>继承并不仅限于一个层次。 例如， 可以由 Manager 类派生 Executive 类。由一个公共超类派生出来的所有类的集合被称为<strong>继承层次（inheritance hierarchy)</strong>, 如图 5-1 所示。在继承 层次中， 从某个特定的类到其祖先的路径被称为该类的继承链 (inheritance chain)0<br><img src="https://gitee.com/cher112/image/raw/master/img/1585035342026-f1aa6bbd-6743-44e0-8e1d-fba7d9ab0f6e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="继承层次"><a href="#继承层次" class="headerlink" title="继承层次"></a>继承层次</h3><p>继承并不仅限于一个层次。 例如， 可以由 Manager 类派生 Executive 类。由一个公共超类派生出来的所有类的集合被称为<strong>继承层次（inheritance hierarchy)</strong>, 如图 5-1 所示。在继承 层次中， 从某个特定的类到其祖先的路径被称为该类的继承链 (inheritance chain)0<br><img src="https://gitee.com/cher112/image/raw/master/img/1585035342026-f1aa6bbd-6743-44e0-8e1d-fba7d9ab0f6e.png" alt="image.png"></p>
 <h3 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h3><p>有时候，可能希望阻止人们利用某个类定义子类。不允许扩展的类被称为 final 类。</p>
 <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String getNameQ</code></pre>
 <h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
@@ -295,7 +295,7 @@ boss.setBonus(<span class="hljs-number">500</span>);
 	<span class="hljs-keyword">this</span>.name = name;
 	&#125;
 &#125;</code></pre>
-<p>表述为一个抽象的大类<br><img src="https://gitee.com/cher112/image/raw/master/img/1585056601086-c45f45f2-252e-4356-a78e-ff9eb22eb006.png" srcset="/img/loading.gif" alt="image.png"><br>Employee和student在逻辑上都是通过抽象类拓展出来的。</p>
+<p>表述为一个抽象的大类<br><img src="https://gitee.com/cher112/image/raw/master/img/1585056601086-c45f45f2-252e-4356-a78e-ff9eb22eb006.png" alt="image.png"><br>Employee和student在逻辑上都是通过抽象类拓展出来的。</p>
 <p>还是不太理解抽象方法(好像在接口中会阐述)</p>
 <h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p>object是所有java类的始祖，每个类都是由他扩展出来的</p>
 <pre><code class="hljs java">Object obj =  <span class="hljs-keyword">new</span> Employee(xxx);
@@ -367,7 +367,7 @@ Manager other = (Manager) otherObject;
 <p>下面声明和构造一个保存 *<em>Employee *</em>对象的数组列表：</p>
 <p>ArrayList<Employee> staff = new ArrayList<Eniployee>0;</p>
 <p>或 ArrayList<Employee> staff = new ArrayListoQ&lt;&gt;()；</p>
-<p>菱形语法类似 var，自动检查这个变量是什么泛型类型填在&lt;&gt;中。<strong>(尖括号的类型参数不能是基本类型)</strong><br>常见方法<br><img src="https://gitee.com/cher112/image/raw/master/img/1588765552792-08f2e2d2-9a7c-494f-8be0-eda49fdab077.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>菱形语法类似 var，自动检查这个变量是什么泛型类型填在&lt;&gt;中。<strong>(尖括号的类型参数不能是基本类型)</strong><br>常见方法<br><img src="https://gitee.com/cher112/image/raw/master/img/1588765552792-08f2e2d2-9a7c-494f-8be0-eda49fdab077.png" alt="image.png"></p>
 <h1 id="对象包装器与自动装箱"><a href="#对象包装器与自动装箱" class="headerlink" title="对象包装器与自动装箱"></a>对象包装器与自动装箱</h1><p>有时， 需要将 int 这样的基本类型转换为对象。 <strong>所有的基本类型都冇一个与之对应的类。</strong><br>这些类称为包装器 （ <strong>wrapper **)<br>这些对象包装器类<br>拥有很明显的名字：</strong>Integer<strong>、</strong>Long<strong>、</strong>Float<strong>、</strong>Double<strong>、</strong>Short<strong>、</strong>Byte<strong>、</strong>Character <strong>、</strong>Void <strong>和 **Boolean。 且为final类，无法定义子类</strong><br>**</p>
 <h3 id="自动装箱-autoboxing-和自动拆箱-autowrapping"><a href="#自动装箱-autoboxing-和自动拆箱-autowrapping" class="headerlink" title="自动装箱(autoboxing)和自动拆箱(autowrapping)"></a>自动装箱(autoboxing)和自动拆箱(autowrapping)</h3><blockquote>
 <p>细节内容在第八章泛型会讲到，现在先忽视罢</p>

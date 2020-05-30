@@ -267,7 +267,7 @@ model.add(layers.Dense(<span class="hljs-number">1</span>, activation=<span clas
 </blockquote>
 <h2 id="dropout正则化"><a href="#dropout正则化" class="headerlink" title="dropout正则化"></a>dropout正则化</h2><p>dropout 是神经网络最有效也最常用的正则化方法之一<br>它是由多伦多大学的 Geoffrey Hinton和他的学生开发的。对某一层使用 dropout，就是在训<strong>练过程中随机将该层的一些输出特征舍弃（设置为 0）</strong>。</p>
 <p>假设在训练过程中，某一层对给定输入样本的返回值应该是向量 [0.2, 0.5,1.3, 0.8, 1.1]。使用 dropout 后，这个向量会有几个随机的元素变成 0，比如 [0, 0.5,1.3, 0, 1.1]。 dropout 比率（ dropout rate）是<strong>被设为 0 的特征所占的比例</strong>，通常在 0.2~0.5范围内。测试时没有单元被舍弃，而<strong>该层的输出值需要按 dropout 比率缩小</strong>，因为这时比训练时有更多的单元被激活，需要加以平衡。</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585579849183-ee994f2a-83c6-4bd4-b100-18bcb7e6854f.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1585579849183-ee994f2a-83c6-4bd4-b100-18bcb7e6854f.png" alt="image.png"></p>
 <p>Hinton 说他的灵感之一来自于银行的防欺诈机制。用他自己的话来说：“我去银行办理业务。柜员不停地换人，于是我问其中一人这是为什么。他说他不知道，但他们经常换来换去。我猜想， 银行工作人员要想成<br>功欺诈银行，他们之间要互相合作才行。</p>
 <p>这让我意识到，在每个样本中随机删除不同的部分神经元，可以阻止它们的阴谋，因此可以降低过拟合。”<br>其核心思想是<strong>在层的输出值中引入噪声，打破不显著的偶然模式</strong>（ Hinton 称之为<strong>阴谋</strong>）。</p>
 <pre><code class="hljs python">model.add(layers.Dropout(<span class="hljs-number">0.5</span>))</code></pre>

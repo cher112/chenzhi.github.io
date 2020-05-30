@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>Tags - 深度学习 - 陈之の鱼塘</title>
+  <title>Categories - 深度学习 - 陈之の鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -420,7 +420,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.html');
+          var target = decodeURI('/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -489,7 +489,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag - 深度学习&nbsp;",
+        "Category - 深度学习&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
