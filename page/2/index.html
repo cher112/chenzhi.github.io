@@ -39,6 +39,7 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -194,7 +195,7 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/posts/7ee444a5.html" target="_self">
-          <img src="https://gitee.com/cher112/image/raw/master/img/30.jpg" alt="《激荡的三十年：中国企业 1978—2008》(上) 读书摘要">
+          <img src="https://gitee.com/cher112/image/raw/master/img/30.jpg" srcset="/img/loading.gif" alt="《激荡的三十年：中国企业 1978—2008》(上) 读书摘要">
         </a>
       </div>
     
@@ -251,7 +252,7 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/posts/bc85e8d9.html" target="_self">
-          <img src="https://gitee.com/cher112/image/raw/master/img/数据库.jpg" alt="SQL基础(一)">
+          <img src="https://gitee.com/cher112/image/raw/master/img/数据库.jpg" srcset="/img/loading.gif" alt="SQL基础(一)">
         </a>
       </div>
     
@@ -397,6 +398,10 @@ select dept_name from instructor where name = </div>
 <!-- Plugins -->
 
 
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -411,8 +416,8 @@ select dept_name from instructor where name = </div>
       return new Promise(function (resolve, reject) {
         Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
           .then(resp => resp.json())
-          .then(({results, error}) => {
-            if (error) {
+          .then(({results, code, error}) => {
+            if (code === 401) {
               throw error;
             }
             if (results && results.length > 0) {

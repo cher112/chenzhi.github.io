@@ -48,6 +48,7 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -237,11 +238,11 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h1 id="SQL数据定义"><a href="#SQL数据定义" class="headerlink" title="SQL数据定义"></a>SQL数据定义</h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587471474608-067e87fc-6ba0-4618-b9a7-d54db5ec496f.png" alt="image.png"><br>如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格</p>
+              <h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h1 id="SQL数据定义"><a href="#SQL数据定义" class="headerlink" title="SQL数据定义"></a>SQL数据定义</h1><h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587471474608-067e87fc-6ba0-4618-b9a7-d54db5ec496f.png" srcset="/img/loading.gif" alt="image.png"><br>如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格</p>
 <blockquote>
 <p>用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统<br>两个char则会自动添加空格使长度一致</p>
 </blockquote>
-<h2 id="基本模式定义"><a href="#基本模式定义" class="headerlink" title="基本模式定义"></a>基本模式定义</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587471823562-c50e815f-174b-4c88-9515-db9ba11125e3.png" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587471845214-00aad91d-5bb7-4d92-97fd-1da608479dc7.png" alt="image.png"><br><strong>完整性约束</strong><br><img src="https://gitee.com/cher112/image/raw/master/img/1587471869996-67c7603c-030d-405c-b6f9-58a32ac94bf2.png" alt="image.png"></p>
+<h2 id="基本模式定义"><a href="#基本模式定义" class="headerlink" title="基本模式定义"></a>基本模式定义</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587471823562-c50e815f-174b-4c88-9515-db9ba11125e3.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1587471845214-00aad91d-5bb7-4d92-97fd-1da608479dc7.png" srcset="/img/loading.gif" alt="image.png"><br><strong>完整性约束</strong><br><img src="https://gitee.com/cher112/image/raw/master/img/1587471869996-67c7603c-030d-405c-b6f9-58a32ac94bf2.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h1 id="查询的基本结构"><a href="#查询的基本结构" class="headerlink" title="查询的基本结构"></a>查询的基本结构</h1><pre><code class="hljs sql">单关系查询
 <span class="hljs-keyword">select</span> dept_name <span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'jack'</span>
 
@@ -255,7 +256,7 @@ course(cid,title,deptname,credits); insturctor+teacher(id name deptname salary c
 
 from(instructor natural join teaches) join course using（course_id）//指定哪些相等列作为拼接
 (如果不指定，可能有跨系授课的元组被删除,因为join的时候有两个相同属性列，都作为join的依据)</code></pre>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1587472713568-fd339c6a-fe79-4025-8d95-dce39bdeaf54.png" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1587472713568-fd339c6a-fe79-4025-8d95-dce39bdeaf54.png" srcset="/img/loading.gif" alt="image.png"></p>
 <blockquote>
 <p>实际过程中，查询会尽可能只产生满足where子句谓词的笛卡尔积元素来优化执行</p>
 </blockquote>
@@ -263,25 +264,25 @@ from(instructor natural join teaches) join course using（course_id）//指定�
 <span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">as</span> instructor_name ,course_id 
 <span class="hljs-keyword">from</span> instructor <span class="hljs-keyword">as</span> T, teaches
 <span class="hljs-keyword">where</span> instructor.ID = teaches.ID</code></pre>
-<h2 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587542539899-d01905d7-d035-4889-8151-8fe6a5f4dac2.png" alt="image.png"><br>eg: where building like ‘%Watson%’  /全文包含W-word就可以筛选出来</p>
-<p>转义字符 escape‘’<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1587542641211-20af9314-18fc-49b0-8f24-6d305464f1fd.png" alt="image.png"></p>
+<h2 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587542539899-d01905d7-d035-4889-8151-8fe6a5f4dac2.png" srcset="/img/loading.gif" alt="image.png"><br>eg: where building like ‘%Watson%’  /全文包含W-word就可以筛选出来</p>
+<p>转义字符 escape‘’<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1587542641211-20af9314-18fc-49b0-8f24-6d305464f1fd.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="select子句的属性说明"><a href="#select子句的属性说明" class="headerlink" title="select子句的属性说明"></a>select子句的属性说明</h2><p>select xx.*                  所有的属性</p>
-<h2 id="排列元组的显示次序"><a href="#排列元组的显示次序" class="headerlink" title="排列元组的显示次序"></a>排列元组的显示次序</h2><p>order by、desc降序、asc升序<br><img src="https://gitee.com/cher112/image/raw/master/img/1587542716555-12bbb3ae-2606-4c3a-ae41-36572f9a2018.png" alt="image.png"></p>
-<h2 id="where子句谓词"><a href="#where子句谓词" class="headerlink" title="where子句谓词"></a>where子句谓词</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587542765188-2eb07883-d3fa-4048-9468-05d3f1634587.png" alt="image.png"></p>
-<h1 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h1><h1 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h1><h1 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h1><h1 id="数据库修改"><a href="#数据库修改" class="headerlink" title="数据库修改"></a>数据库修改</h1><h1 id="sqlzoo总结"><a href="#sqlzoo总结" class="headerlink" title="sqlzoo总结"></a>sqlzoo总结</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1588145834975-4835ade7-c2a3-43ab-85c8-68e52f15baa5.png" alt="image.png"></p>
+<h2 id="排列元组的显示次序"><a href="#排列元组的显示次序" class="headerlink" title="排列元组的显示次序"></a>排列元组的显示次序</h2><p>order by、desc降序、asc升序<br><img src="https://gitee.com/cher112/image/raw/master/img/1587542716555-12bbb3ae-2606-4c3a-ae41-36572f9a2018.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="where子句谓词"><a href="#where子句谓词" class="headerlink" title="where子句谓词"></a>where子句谓词</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1587542765188-2eb07883-d3fa-4048-9468-05d3f1634587.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h1><h1 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h1><h1 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h1><h1 id="数据库修改"><a href="#数据库修改" class="headerlink" title="数据库修改"></a>数据库修改</h1><h1 id="sqlzoo总结"><a href="#sqlzoo总结" class="headerlink" title="sqlzoo总结"></a>sqlzoo总结</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1588145834975-4835ade7-c2a3-43ab-85c8-68e52f15baa5.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="CASE"><a href="#CASE" class="headerlink" title="CASE"></a>CASE</h2><p>替换某个值为某个值<br>简单case：<br>CASE WHEN X THEN Y<br>else ‘其他’end,<br>把x换为Y，其他的不管<br>eg：select u.id,u.name,<br>  <strong>2</strong>    (case u.sex<br>  <strong>3</strong>      when <strong>1</strong> then ‘男’<br>  <strong>4</strong>      when <strong>2</strong> then ‘女’<br>  <strong>5</strong>      else ‘空的’<br>  <strong>6</strong>      end<br>  <strong>7</strong>     )性别<br>  <strong>8</strong>  from users u;</p>
 <p>将case命名为 性别</p>
-<p>其他用法<br>将sum和case结合，分段统计<br>eg：<img src="https://gitee.com/cher112/image/raw/master/img/1588146255044-f76945b8-27fb-41c9-843f-6b23552b7e78.png" alt="image.png"><br>在这里case when是作为搜索函数使用。</p>
+<p>其他用法<br>将sum和case结合，分段统计<br>eg：<img src="https://gitee.com/cher112/image/raw/master/img/1588146255044-f76945b8-27fb-41c9-843f-6b23552b7e78.png" srcset="/img/loading.gif" alt="image.png"><br>在这里case when是作为搜索函数使用。</p>
 <h2 id="Group-by"><a href="#Group-by" class="headerlink" title="Group by"></a>Group by</h2><p>GROUP BY 语句用于结合合计函数，根据一个或多个<strong>列对结果集进行分组</strong>。</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146492983-f7293223-8a60-489b-9b43-397bc8891893.png" alt="image.png"></p>
-<p>eg:<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146567763-56f2f008-0aad-4aaf-bed7-c93ab7efd0c8.png" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146492983-f7293223-8a60-489b-9b43-397bc8891893.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>eg:<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146567763-56f2f008-0aad-4aaf-bed7-c93ab7efd0c8.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146586849-0a2946c9-73be-4901-af0a-972581de73b8.png" alt="image.png"></p>
-<p>SELECT Customer,SUM(OrderPrice) FROM Orders<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146598817-ad50c03c-aa3c-4506-97a3-35df0bfad3e1.png" alt="image.png"></p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146586849-0a2946c9-73be-4901-af0a-972581de73b8.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>SELECT Customer,SUM(OrderPrice) FROM Orders<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146598817-ad50c03c-aa3c-4506-97a3-35df0bfad3e1.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p>解释：groupby通过customer给price先分组，再处理sum聚集函数。</p>
-<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h3><p>在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。(<strong>需要有一个能操作聚集函数的语句</strong>)<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146706299-1e084ac6-53a8-4e36-b38f-aaecd5009f41.png" alt="image.png"><br>eg：<br>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer<br>HAVING SUM(OrderPrice)&lt;2000</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146745631-56f87ecb-68bf-44d0-b085-e3ee6efd5d5a.png" alt="image.png"></p>
-<h2 id="between-and"><a href="#between-and" class="headerlink" title="between and"></a>between and</h2><p>包括首尾的区间<br><img src="https://gitee.com/cher112/image/raw/master/img/1588147556775-3f151e64-62db-418f-99b2-25d6b6d61388.png" alt="image.png"></p>
+<h3 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h3><p>在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。(<strong>需要有一个能操作聚集函数的语句</strong>)<br><img src="https://gitee.com/cher112/image/raw/master/img/1588146706299-1e084ac6-53a8-4e36-b38f-aaecd5009f41.png" srcset="/img/loading.gif" alt="image.png"><br>eg：<br>SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer<br>HAVING SUM(OrderPrice)&lt;2000</p>
+<p><img src="https://gitee.com/cher112/image/raw/master/img/1588146745631-56f87ecb-68bf-44d0-b085-e3ee6efd5d5a.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="between-and"><a href="#between-and" class="headerlink" title="between and"></a>between and</h2><p>包括首尾的区间<br><img src="https://gitee.com/cher112/image/raw/master/img/1588147556775-3f151e64-62db-418f-99b2-25d6b6d61388.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p>order by 有个顺序，补全笔记的时候写上。</p>
 
             </article>
@@ -327,28 +328,26 @@ from(instructor natural join teaches) join course using（course_id）//指定�
                 
                 
   <div id="vcomments"></div>
-  <script defer src="https://cdn.staticfile.org/valine/1.4.14/Valine.min.js" ></script>
-
   <script type="text/javascript">
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-
-      new Valine({
-        el: "#vcomments",
-        app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
-        app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
-        placeholder: "来说点什么吧～",
-        path: window.location.pathname,
-        avatar: "monsterid",
-        meta: ["nick","mail"],
-        pageSize: "10",
-        lang: "zh-CN",
-        highlight: false,
-        recordIP: false,
-        serverURLs: "",
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
+          app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
+          placeholder: "来说点什么吧～",
+          path: window.location.pathname,
+          avatar: "monsterid",
+          meta: ["nick","mail"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
       });
-    };
+    }
+    createObserver(loadValine, 'vcomments');
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
@@ -460,6 +459,10 @@ from(instructor natural join teaches) join course using（course_id）//指定�
 <!-- Plugins -->
 
 
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -474,8 +477,8 @@ from(instructor natural join teaches) join course using（course_id）//指定�
       return new Promise(function (resolve, reject) {
         Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
           .then(resp => resp.json())
-          .then(({results, error}) => {
-            if (error) {
+          .then(({results, code, error}) => {
+            if (code === 401) {
               throw error;
             }
             if (results && results.length > 0) {

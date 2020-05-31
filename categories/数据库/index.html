@@ -39,6 +39,7 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -297,6 +298,10 @@
 <!-- Plugins -->
 
 
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -311,8 +316,8 @@
       return new Promise(function (resolve, reject) {
         Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
           .then(resp => resp.json())
-          .then(({results, error}) => {
-            if (error) {
+          .then(({results, code, error}) => {
+            if (code === 401) {
               throw error;
             }
             if (results && results.length > 0) {
