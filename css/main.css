@@ -1,7 +1,7 @@
 html,
 body {
   font-size: 16px;
-  font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font-family: SF Pro SC;
 }
 html,
 body,
@@ -35,7 +35,7 @@ img[srcset] {
   padding: 0.45rem;
 }
 .hover-with-bg:hover {
-  background-color: #f8f9fa;
+  background-color: #ebedef;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   border-radius: 0.15rem;
@@ -597,8 +597,17 @@ sup > a::before,
 .navbar .dropdown-item:hover {
   color: #1abc9c;
 }
-.navbar .dropdown-collapse {
-  background-color: #2f4154;
+@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+  .navbar .dropdown-collapse {
+    background: rgba(47,65,84,0.7);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  .navbar .dropdown-collapse {
+    background: #2f4154;
+  }
 }
 .navbar-custom {
   color: white;
@@ -606,11 +615,29 @@ sup > a::before,
 .navbar-custom a {
   color: white;
 }
-.top-nav-collapse {
-  background-color: #2f4154;
+@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+  .top-nav-collapse {
+    background: rgba(47,65,84,0.7);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
 }
-.navbar-col-show {
-  background-color: #2f4154;
+@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  .top-nav-collapse {
+    background: #2f4154;
+  }
+}
+@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
+  .navbar-col-show {
+    background: rgba(47,65,84,0.7);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  .navbar-col-show {
+    background: #2f4154;
+  }
 }
 @media (max-width: 767px) {
   .navbar {
@@ -621,7 +648,7 @@ sup > a::before,
 .markdown-body {
   font-size: 1rem;
   margin-bottom: 2rem;
-  font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font-family: SF Pro SC;
   color: #2c3e50;
 }
 .markdown-body h1,
@@ -709,7 +736,7 @@ sup > a::before,
 }
 .pagination a:hover,
 .pagination .current {
-  background-color: #f8f9fa;
+  background-color: #ebedef;
 }
 .modal-dialog .modal-content {
   border: 0;
@@ -855,7 +882,7 @@ input[type=checkbox]:checked:after {
 }
 .list-group-item-action:focus,
 .list-group-item-action:hover {
-  background-color: #f8f9fa;
+  background-color: #ebedef;
 }
 .index-card {
   margin-bottom: 2.5rem;
@@ -1411,7 +1438,7 @@ h6::before {
   z-index: 1;
   color: #495057;
   text-decoration: none;
-  background-color: #f8f9fa;
+  background-color: #ebedef;
 }
 .category .row {
   margin-left: 0;
