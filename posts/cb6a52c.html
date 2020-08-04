@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>java week3-41 - 陈之的鱼塘</title>
+  <title>LSTM -Pytorch实现&amp;解构 - 陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-15 09:27">
-      June 15, 2020 am
+    <time datetime="2020-08-04 20:33">
+      August 4, 2020 pm
     </time>
   </div>
 
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      1.4k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      17
        分钟
     </span>
   
@@ -226,204 +226,123 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="Java-week3-4-总结"><a href="#Java-week3-4-总结" class="headerlink" title="Java week3-4 总结"></a>Java week3-4 总结</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/image-20200603111200391.png" srcset="/img/loading.gif" alt="image-20200603111200391"></p>
-<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>一个需求表明,接口中有的方法必须被掉用类的覆盖了才可以用implement</p>
-<p>不需要有方法，但可以有（默认方法）</p>
-<p>实现该接口的类的实例可以用：接口名 xx = 类名(args);</p>
-<p>可能的冲突：</p>
+              <blockquote>
+<p>部分源码和思路来源于 《Dive-into-DL-PyTorch》，很好的一本进阶书籍，推荐学习！</p>
+</blockquote>
+<p>本文适合对pytorch.nn，python-generator有一定基础的人观看，若对DL感兴趣想入门的朋友，推荐去看李宏毅2020的网课。</p>
+<h1 id="LSTM介绍"><a href="#LSTM介绍" class="headerlink" title="LSTM介绍"></a>LSTM介绍</h1><p>LSTM 中引入了3个门，即输入门（input gate）、遗忘门（forget gate）和输出门（output gate），以及与隐藏状态形状相同的记忆细胞（某些文献把记忆细胞当成一种特殊的隐藏状态），从而记录额外的信息。<br>下图是一层lstm的图示，很好的展示了lstm的“记忆”过程：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/1.png" srcset="/img/loading.gif" alt=""></p>
+<p>本次模型目标为：</p>
 <ul>
-<li>超类冲突，如果超类提供了一个具体方法，同名而且有相同参数类型的默认方法会<br>被忽略。  </li>
-<li>接口冲突。 如果一个超接口提供了一个默认方法，另一个接口提供了一个同名而且<br>参数类型 （不论是否是默认参数）相同的方法， 必须覆盖这个方法来解决冲突。  </li>
+<li>记忆周杰伦的歌词习惯</li>
+<li>给出一个歌词集里出现过的字，输出下一个字，迭代50次生成一句歌词，同时预设歌词开头为”分开”</li>
 </ul>
-<blockquote>
-<p>复习一下覆盖，同名方法+super关键字(不加super可能无法访问超类的域)</p>
-</blockquote>
-<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><p><strong>堆</strong></p>
-<p>放实例，方法区引用</p>
-<p><strong>方法区</strong></p>
-<p>class文件信息，运行时常量池，以及编译器编译后的代码堆：存储对象，对象包含类的信息，指向方法区</p>
-<p><strong>栈</strong></p>
-<p>虚拟机栈：表示<strong>Java方法执行的内存模型</strong>，每调用一个方法就会为每个方法生成一个栈帧（Stack Frame），用来存储<strong>局部变量</strong>表、<strong>操作数</strong>栈、动态链接、方法出口，线程等信息。</p>
-<p>程序计数器：程序计数器用来记录当前正在执行的指令</p>
-<p>用一个十分简单的代码段模拟一下Java堆栈的运行过程：</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppTest</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"张三"</span>);
-    person.sayHello();
-    &#125;
-    &#125;
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
-    String name;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span> </span>&#123; 
-    <span class="hljs-keyword">this</span>.name = name;
-    &#125; 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>
-<span class="hljs-function">    </span>&#123;
-    System.out.println(<span class="hljs-string">"hello "</span> + name);
-    &#125;
-    &#125;</code></pre>
+<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>数据介绍：运用的周杰伦歌词集的text。因lyric数据具有很强的时序性，因此用lstm。同时为了突出时序，在小批量训练时我们用 *<em>相邻采样 *</em>而非一般的随机采样，后面会有介绍。</p>
+<h2 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h2><ul>
+<li>读取某文本的前10000个字符，需要将字符转码为独热编码</li>
+<li>独热编码前，需要对每种字符进行”编号”，这里用了python的set和enumerate来生成不重复序列对象作为字典标识char</li>
+<li>用字典(char_to_idx)来对每个char标注，再以字典进行独热编码，作为训练数据<pre><code class="hljs python"><span class="hljs-comment"># 设定学习所需的基本参数，后面会详细解释</span>
+vocab_size: <span class="hljs-number">1027</span> —— 就是len(char_to_idx)
+num_input &amp; num_output:<span class="hljs-number">1027</span>, num_hidden: <span class="hljs-number">256</span> <span class="hljs-comment"># 规定LSTM的基本参数</span>
+num_epochs, num_steps, batch_size, lr, clipping_theta = <span class="hljs-number">160</span>, <span class="hljs-number">35</span>, <span class="hljs-number">32</span>, <span class="hljs-number">1e2</span>, <span class="hljs-number">1e-2</span>
+<span class="hljs-comment"># 对read的字符进行处理</span>
+corpus_chars = corpus_chars.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">' '</span>).replace(<span class="hljs-string">'\r'</span>, <span class="hljs-string">' '</span>)
+corpus_chars = corpus_chars[<span class="hljs-number">0</span>:<span class="hljs-number">10000</span>]
+idx_to_char = list(set(corpus_chars))
+char_to_idx = dict([(char, i) <span class="hljs-keyword">for</span> i, char <span class="hljs-keyword">in</span> enumerate(idx_to_char)]) <span class="hljs-comment"># 列表解析，后面将多次用到</span>
+vocab_size = len(char_to_idx)
+corpus_indices = [char_to_idx[char] <span class="hljs-keyword">for</span> char <span class="hljs-keyword">in</span> corpus_chars]
 
-<p>新建一个main线程的一个栈</p>
-<p>jvm在方法区寻找是否存在Person类的信息</p>
-<p>如果没找到类加载器加载Person类信息到方法区，然后在堆中创建Person对象，并持有方法区的引用</p>
-<p>把person添加到main主线程栈中，并指向堆上的Person实例。</p>
-<p>执行person的sayhello方法，找到堆上的Person实例。</p>
-<p>根据堆上Person的方法区引用，找到方法区上sayhello的字节码，然后执行完成。</p>
-<h2 id="回收方式"><a href="#回收方式" class="headerlink" title="回收方式"></a>回收方式</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/image-20200603171520932.png" srcset="/img/loading.gif" alt="image-20200603171520932"></p>
-<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/20200604094623.png" srcset="/img/loading.gif" alt="image-20200603171512678"></p>
-<p>变量回收小结：</p>
-<ul>
-<li>静态成员变量在类装载的时候就进行了创建，在整个程序结束时按序销毁。</li>
-<li>实例变量在类实例化对象时候创建，在对象销毁的时候销毁。</li>
-<li>局部变量在局部范围使用时创建，跳出局部范围销毁。</li>
+<span class="hljs-comment"># one-hot步骤忽略，比较简单</span></code></pre>
+<h2 id="生成器构造"><a href="#生成器构造" class="headerlink" title="生成器构造"></a>生成器构造</h2>如果想要自定义每次迭代时的过程，我们需要使用生成器</li>
 </ul>
-<p>JVM中判断是否回收一个对象使用的是可达性分析算法，GC ROOT不可到达的节点都将会被标记上，<strong>一个对象如果被标记了两次就会被回收掉</strong>。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Test TEST= <span class="hljs-keyword">null</span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;
-        TEST = <span class="hljs-keyword">new</span> Test();
-        TEST = <span class="hljs-keyword">null</span>;
-        System.gc();
-        <span class="hljs-keyword">try</span> &#123;
-            Thread.sleep(<span class="hljs-number">500</span>);
-        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;
-            e.printStackTrace();
-        &#125;
-        System.out.println(TEST);
-    &#125;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
-        System.out.println(<span class="hljs-string">"要死了要死了要死了!"</span>);
-    &#125; 
-&#125;
-
-output:
-<span class="hljs-string">"要死了要死了要死了!"</span>
-NULL</code></pre>
-
-
-
-<h1 id="工具类-Math-string"><a href="#工具类-Math-string" class="headerlink" title="工具类(Math,string)"></a>工具类(Math,string)</h1><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>字符串是常量；它们的值在创建之后不能更改。字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。例如：</p>
-<blockquote>
-<pre><code class="hljs armasm"><span class="hljs-keyword">String </span><span class="hljs-keyword">str </span>= <span class="hljs-string">"abc"</span><span class="hljs-comment">;</span>
- </code></pre>
+<h3 id="生成迭代对象"><a href="#生成迭代对象" class="headerlink" title="生成迭代对象"></a>生成迭代对象</h3><h4 id="相邻取样"><a href="#相邻取样" class="headerlink" title="相邻取样"></a>相邻取样</h4><blockquote>
+<p>引自D2L原文</p>
 </blockquote>
-<p>等效于：</p>
-<blockquote>
-<pre><code class="hljs processing"><span class="hljs-built_in">char</span> data[] = &#123;<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>&#125;;
-<span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(data);</code></pre>
-</blockquote>
-<p>常用方法：</p>
-<p>string.length();</p>
-<p>string1.concat(string2); //连接两个字符串</p>
-<p>Java charAt() 方法 //返回指定索引处的字符</p>
-<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/20200604094630.png" srcset="/img/loading.gif" alt="image-20200603104917493"></p>
-<p>string.append()</p>
-<p>string.insert()</p>
-<p>string.setCharAt(index,string);</p>
-<p>string.substring(index,index+2)  /左闭右开！</p>
-<p>eg:</p>
-<p>![image-20200603164324214](D:\Thunder Download\java课件\image-20200603164324214.png)</p>
-<p>output:swear oft.</p>
-<p><a href="https://www.runoob.com/java/java-string.html" target="_blank" rel="noopener">string类api</a></p>
-<h2 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h2><p>Java 的 Math 包含了用于执行基本数学运算的属性和方法，如初等指数、对数、平方根和三角函数。</p>
-<p>Math 的方法都被定义为 <strong>static 形式</strong>，通过 Math 类可以在主函数中直接调用。</p>
-<p>public class Test {      </p>
-<p>​    public static void main (String []args) {          </p>
-<p>​            System.out.println(“90 度的正弦值：” + Math.sin(Math.PI/2));</p>
-<p>​          System.out.println(“0度的余弦值：” + Math.cos(0));</p>
-<p>​          System.out.println(“60度的正切值：” + Math.tan(Math.PI/3));</p>
-<p>​          System.out.println(“1的反正切值： “ + Math.atan(1));</p>
-<p>​          System.out.println(“π/2的角度值：” + Math.toDegrees(Math.PI/2));</p>
-<p>​          System.out.println(Math.PI);</p>
-<p>​      } </p>
-<p>  }</p>
-<p>以上实例编译运行结果如下：</p>
-<pre><code class="hljs angelscript"><span class="hljs-number">90</span> 度的正弦值：<span class="hljs-number">1.0</span>
-<span class="hljs-number">0</span>度的余弦值：<span class="hljs-number">1.0</span>
-<span class="hljs-number">60</span>度的正切值：<span class="hljs-number">1.7320508075688767</span>
-<span class="hljs-number">1</span>的反正切值： <span class="hljs-number">0.7853981633974483</span>
-π/<span class="hljs-number">2</span>的角度值：<span class="hljs-number">90.0</span>
-<span class="hljs-number">3.141592653589793</span></code></pre>
+<p>令相邻的两个随机小批量在原始序列上的位置相毗邻。这时候，我们就可以用一个小批量最终时间步的隐藏状态来初始化下一个小批量的隐藏状态，从而使下一个小批量的输出也取决于当前小批量的输入，并如此循环下去。这对实现循环神经网络造成了两方面影响：一方面， 在训练模型时，我们只需在每一个迭代周期开始时初始化隐藏状态；另一方面，当多个相邻小批量通过传递隐藏状态串联起来时，模型参数的梯度计算将依赖所有串联起来的小批量序列。同一迭代周期中，随着迭代次数的增加，梯度的计算开销会越来越大。 为了使模型参数的梯度计算只依赖一次迭代读取的小批量序列，我们可以在每次读取小批量前将隐藏状态从计算图中分离出来。</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 生成迭代对象</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">data_iter_consecutive</span><span class="hljs-params">(corpus_indices, batch_size, num_steps, device=None)</span>:</span>
+    <span class="hljs-keyword">if</span> device <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        device = torch.device(<span class="hljs-string">'cuda'</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">'cpu'</span>) <span class="hljs-comment"># 深度学习计算量较大，推荐用cuda</span>
+    corpus_indices = torch.tensor(corpus_indices, dtype=torch.float32, device=device)
+    data_len = len(corpus_indices)
+    batch_len = data_len // batch_size
+    indices = corpus_indices[<span class="hljs-number">0</span>: batch_size*batch_len].view(batch_size, batch_len)
+    epoch_size = (batch_len - <span class="hljs-number">1</span>) // num_steps
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(epoch_size):
+        i = i * num_steps
+        X = indices[:, i: i + num_steps]
+        Y = indices[:, i + <span class="hljs-number">1</span>: i + num_steps + <span class="hljs-number">1</span>]
+        <span class="hljs-keyword">yield</span> X, Y</code></pre>
+<p>这里可视化一下相邻取样的逻辑<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/2.png" srcset="/img/loading.gif" alt=""></p>
+<h1 id="搭建模型"><a href="#搭建模型" class="headerlink" title="搭建模型"></a>搭建模型</h1><p>这里我们搭建一个 input_size = 1027, num_hidden = 256, output_size =1027， 一层lstm+一层全连接层的模型</p>
+<pre><code class="hljs python">lstm_layer = nn.LSTM(input_size=vocab_size, hidden_size=num_hiddens)
 
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RNNModel</span><span class="hljs-params">(nn.Module)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, rnn_layer, vocab_size)</span>:</span>
+        super(RNNModel, self).__init__()
+        self.rnn = rnn_layer
+        self.hidden_size = rnn_layer.hidden_size * (<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> rnn_layer.bidirectional <span class="hljs-keyword">else</span> <span class="hljs-number">1</span>) 
+        self.vocab_size = vocab_size
+        self.dense = nn.Linear(self.hidden_size, vocab_size)
+        self.state = <span class="hljs-literal">None</span>
 
-
-<h2 id="Number类"><a href="#Number类" class="headerlink" title="Number类"></a>Number类</h2><p>然而，在实际开发过程中，我们经常会遇到需要使用对象，而不是内置数据类型的情形。为了解决这个问题，Java 语言为每一个内置数据类型提供了对应的包装类。</p>
-<p>所有的包装wrapper类<strong>（Integer、Long、Byte、Double、Float、Short）</strong>都是抽象类 Number 的子类。</p>
-<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/20200604094637.png" srcset="/img/loading.gif" alt="image-20200603105234111"></p>
-<blockquote>
-<p>回顾一下装箱和自动拆箱。。</p>
-</blockquote>
-<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/20200604094641.png" srcset="/img/loading.gif" alt="image-20200603105317150"></p>
-<p>需要把5(int 内置类型)装箱为integer，然后为了加运算，再自动拆箱为int</p>
-<p>Numbers类的一个重大用处是用在泛型，<strong>&lt;&gt;内必须是对象而非基本类型</strong></p>
-<h1 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h1><p>没啥复习的，buttom action那块再看看</p>
-<p>布局</p>
-<h1 id="EXCEPTION"><a href="#EXCEPTION" class="headerlink" title="EXCEPTION"></a>EXCEPTION</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/image-20200602102721746.png" srcset="/img/loading.gif" alt="image-20200602102721746"></p>
-<p>IO为input output错误；Runtime 为运行时错误</p>
-<p>派生于 RuntimeException 的异常包含下面几种情况：<br>• 错误的类型转换。<br>• 数组访问越界 i<br>• 访问 null 指针</p>
-<p>不是派生于 RuntimeException 的异常包括：<br>•试图在文件尾部后面读取数据。<br>•试图打开一个不存在的文件。<br>•试图根据给定的字符串查找 Class 对象， 而这个字符串表示的类并不存在</p>
-<blockquote>
-<p>派生于RuntimeException和ERROR的为非受查(uncheck)异常,即不需要写throw，系统会自动考虑。其他都是受查异常，根据需要写(告诉编译器可能有什么错误发生)</p>
-</blockquote>
-<p>throws：抛出异常</p>
-<h2 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h2><p>JAVA的错误返回的是一个异常类对象，可以用一些方法来读取错误信息。</p>
-<p>一般步骤：</p>
-<ul>
-<li>找到合适的异常类</li>
-<li>创建这个对象</li>
-<li>将对象抛出</li>
-</ul>
-<p>eg：</p>
-<pre><code class="hljs java">EOFException e = <span class="hljs-function">nw <span class="hljs-title">EOFException</span><span class="hljs-params">()</span></span>;
-<span class="hljs-keyword">throw</span> e;
-或者
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EOPException(匿名)</code></pre>
-
-<h3 id="创建异常类"><a href="#创建异常类" class="headerlink" title="创建异常类"></a>创建异常类</h3><p>一般要继承</p>
-<p>例如， 定义一个派生于 IOException 的类。<br>习惯上， 定义的类应该包含两个构造器， 一个是默认的构造器；另一个是带有详细描述信息<br>的构造器（<strong>超类 Throwable 的 toString 方法将会打印出这些详细信息， 这在调试中非常有用)。</strong>  </p>
-<p>eg：</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileFormatException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IOException</span></span>
-<span class="hljs-class"></span>&#123;
-<span class="hljs-keyword">public</span> FileFormatExceptionO &#123;&#125;
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileFormatException</span><span class="hljs-params">(String gripe)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">super</span>(gripe); <span class="hljs-comment">//原本的含参gripe为：</span>
-    <span class="hljs-string">"Content-length: "</span> + len + <span class="hljs-string">", Received: "</span> + n;
-&#125;
-&#125;</code></pre>
-
-<p>补充，一些throwable的方法</p>
-<p>e.getMessage();</p>
-<p>e.getClass().getName();</p>
-<h2 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h2><p>try<br>more code<br>}<br>catch (ExceptionType e)<br>{<br>handlerfor this type<br>}  </p>
-<p>逻辑：</p>
-<ul>
-<li><p>如果try任何代码有e的错误，跳过try剩余代码，执行catch</p>
-</li>
-<li><p>如果没有e错误，则跳过catch</p>
-</li>
-</ul>
-<h1 id="文件输入"><a href="#文件输入" class="headerlink" title="文件输入"></a>文件输入</h1><pre><code class="hljs java">LocalDateTime dNow = LocalDateTime.now();
-DateTimeFormatter ft = DateTimeFormatter.ofPattern(<span class="hljs-string">"yyyy-MM-dd-hh-mm-ss"</span>);
-UrlString = UrlString.replaceAll(<span class="hljs-string">"\\."</span>,<span class="hljs-string">"-"</span>);
-File f = <span class="hljs-keyword">new</span> File(UrlString+<span class="hljs-string">"-"</span>+ft.format(dNow)+<span class="hljs-string">".txt"</span>);
-f.createNewFile();
-FileOutputStream file1 = <span class="hljs-keyword">new</span> FileOutputStream(f);
-PrintStream print2 = <span class="hljs-keyword">new</span> PrintStream(file1);
-System.setOut(print2);
-System.out.println(UrlString+<span class="hljs-string">"-"</span>+ft.format(dNow)+<span class="hljs-string">".txt"</span>);
-System.out.println();
-System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
-<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)&#123;
-  System.out.print(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*i+<span class="hljs-string">"-"</span>+(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*(i+<span class="hljs-number">1</span>))+<span class="hljs-string">":"</span>+list_hist.get(i));
-  System.out.println();
-  &#125; 
-
-  scanner.close();</code></pre>
-
-
-
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, inputs, state)</span>:</span> <span class="hljs-comment"># inputs: (batch, seq_len)</span>
+        <span class="hljs-comment"># 获取one-hot向量表示</span>
+        X = to_onehot(inputs, self.vocab_size) <span class="hljs-comment"># X是个list</span>
+        Y, self.state = self.rnn(torch.stack(X), state)
+        <span class="hljs-comment"># 全连接层会首先将Y的形状变成(num_steps * batch_size, num_hiddens)，它的输出</span>
+        <span class="hljs-comment"># 形状为(num_steps * batch_size, vocab_size)</span>
+        output = self.dense(Y.view(<span class="hljs-number">-1</span>, Y.shape[<span class="hljs-number">-1</span>]))
+        <span class="hljs-keyword">return</span> output, self.state
+    
+model = RNNModel(lstm_layer)</code></pre>
+<p>损失函数为交叉熵，小批量梯度下降的优化器为Adam，学习率见上，忽略。</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_and_predict_rnn_pytorch</span><span class="hljs-params">(model, num_hiddens, vocab_size, device,</span></span>
+<span class="hljs-function"><span class="hljs-params">                                corpus_indices, idx_to_char, char_to_idx,</span></span>
+<span class="hljs-function"><span class="hljs-params">                                num_epochs, num_steps, lr, clipping_theta,</span></span>
+<span class="hljs-function"><span class="hljs-params">                                batch_size, pred_period, pred_len, prefixes)</span>:</span>
+    loss = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    model.to(device)
+    state = <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(num_epochs):
+        l_sum, n, start = <span class="hljs-number">0.0</span>, <span class="hljs-number">0</span>, time.time()
+        data_iter = data_iter_consecutive(corpus_indices, batch_size, num_steps, device) <span class="hljs-comment"># 相邻采样</span>
+        <span class="hljs-keyword">for</span> X, Y <span class="hljs-keyword">in</span> data_iter:
+            <span class="hljs-keyword">if</span> state <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+                <span class="hljs-comment"># 使用detach函数从计算图分离隐藏状态, 这是为了</span>
+                <span class="hljs-comment"># 使模型参数的梯度计算只依赖一次迭代读取的小批量序列(防止梯度计算开销太大)</span>
+                <span class="hljs-keyword">if</span> isinstance (state, tuple): <span class="hljs-comment"># LSTM, state:(h, c)  </span>
+                    state = (state[<span class="hljs-number">0</span>].detach(), state[<span class="hljs-number">1</span>].detach())
+                <span class="hljs-keyword">else</span>:   
+                    state = state.detach()
+    
+            (output, state) = model(X, state) <span class="hljs-comment"># output: 形状为(num_steps * batch_size, vocab_size)</span>
+            
+            <span class="hljs-comment"># Y的形状是(batch_size, num_steps)，转置后再变成长度为</span>
+            <span class="hljs-comment"># batch * num_steps 的向量，这样跟输出的行一一对应</span>
+            y = torch.transpose(Y, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous().view(<span class="hljs-number">-1</span>)
+            l = loss(output, y.long())
+            
+            optimizer.zero_grad()
+            l.backward()
+            <span class="hljs-comment"># 梯度裁剪</span>
+            grad_clipping(model.parameters(), clipping_theta, device)
+            optimizer.step()
+            l_sum += l.item() * y.shape[<span class="hljs-number">0</span>]
+            n += y.shape[<span class="hljs-number">0</span>]
+        
+        <span class="hljs-keyword">try</span>:
+            perplexity = math.exp(l_sum / n)
+        <span class="hljs-keyword">except</span> OverflowError:
+            perplexity = float(<span class="hljs-string">'inf'</span>)
+        <span class="hljs-keyword">if</span> (epoch + <span class="hljs-number">1</span>) % pred_period == <span class="hljs-number">0</span>:
+            print(<span class="hljs-string">'epoch %d, perplexity %f, time %.2f sec'</span> % (
+                epoch + <span class="hljs-number">1</span>, perplexity, time.time() - start))
+            <span class="hljs-keyword">for</span> prefix <span class="hljs-keyword">in</span> prefixes:
+                print(<span class="hljs-string">' -'</span>, predict_rnn_pytorch(
+                    prefix, pred_len, model, vocab_size, device, idx_to_char,
+                    char_to_idx))</code></pre>
 
 
 
@@ -435,7 +354,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/JAVA/">JAVA</a>
+                      <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
                     
                   </div>
                 
@@ -443,13 +362,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JAVA/">JAVA</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%8E%A5%E5%8F%A3/">接口</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/">工具类</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">异常，垃圾回收</a>
+                      <a class="hover-with-bg" href="/tags/torch/">torch</a>
                     
                   </div>
                 
@@ -462,18 +375,12 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/posts/cb6a52c.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LSTM -Pytorch实现&解构</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/posts/214a1d7e.html">
-                        <span class="hidden-mobile">终身成长(一)</span>
+                      <a href="/posts/8a630470.html">
+                        <span class="hidden-mobile">java week3-41</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -780,7 +687,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/8a630470.html');
+          var target = decodeURI('/posts/cb6a52c.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -874,7 +781,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "java week3-41&nbsp;",
+        "LSTM -Pytorch实现&解构&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
