@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>LSTM -Pytorch实现&amp;解构 - 陈之的鱼塘</title>
+  <title>第一章 网络体系结构 - 陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-04 20:33">
-      August 4, 2020 pm
+    <time datetime="2020-09-20 14:39">
+      September 20, 2020 pm
     </time>
   </div>
 
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      2.2k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      24
        分钟
     </span>
   
@@ -226,145 +226,147 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <blockquote>
-<p>部分源码和思路来源于 《Dive-into-DL-PyTorch》，很好的一本进阶书籍，推荐学习！</p>
-</blockquote>
-<p>本文适合对pytorch.nn，python-generator有一定基础的人观看，若对DL感兴趣想入门的朋友，推荐去看李宏毅2020的网课。</p>
-<h1 id="LSTM介绍"><a href="#LSTM介绍" class="headerlink" title="LSTM介绍"></a>LSTM介绍</h1><p>LSTM 中引入了3个门，即输入门（input gate）、遗忘门（forget gate）和输出门（output gate），以及与隐藏状态形状相同的记忆细胞（某些文献把记忆细胞当成一种特殊的隐藏状态），从而记录额外的信息。<br>下图是一层lstm的图示，很好的展示了lstm的“记忆”过程：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/1.png" srcset="/img/loading.gif" alt=""></p>
-<p>本次模型目标为：</p>
+              <h1 id="第一章-网络体系结构"><a href="#第一章-网络体系结构" class="headerlink" title="第一章 网络体系结构"></a>第一章 网络体系结构</h1><p><a name="iEz6E"></a></p>
+<h1 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h1><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598925697902-7caf23bd-c872-460b-a164-dc5e2c6579b7.png#align=left&display=inline&height=254&margin=%5Bobject%20Object%5D&name=image.png&originHeight=508&originWidth=1126&size=205190&status=done&style=none&width=563" srcset="/img/loading.gif" alt="image.png"><br><a name="LTGpS"></a></p>
+<h1 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h1><p><a name="hYMj4"></a></p>
+<h2 id="概念，组成，功能，分类"><a href="#概念，组成，功能，分类" class="headerlink" title="概念，组成，功能，分类"></a>概念，组成，功能，分类</h2><p><a name="VHXgs"></a></p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>计算机网络：将分散独立的<strong>计算机系统</strong>，通过<strong>通信设备</strong>和<strong>线路</strong>连接起来（有线或无线的方式），由功能完善的软件实现资源共享和信息传递的系统<br /><br><br /></p>
+<p><a name="LKzIB"></a></p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p><br />组成部分：<br />硬件、软件、协议（一系列规则和约定的集合）<br /><br><br />工作部分：</p>
 <ul>
-<li>记忆周杰伦的歌词习惯</li>
-<li>给出一个歌词集里出现过的字，输出下一个字，迭代50次生成一句歌词，同时预设歌词开头为”分开”</li>
+<li>边缘部分（由端系统、主机组成） 用来通信（传输数据音频视频等），资源共享</li>
 </ul>
-<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>数据介绍：运用的周杰伦歌词集的text。因lyric数据具有很强的时序性，因此用lstm。同时为了突出时序，在小批量训练时我们用 *<em>相邻采样 *</em>而非一般的随机采样，后面会有介绍。</p>
-<h2 id="标注"><a href="#标注" class="headerlink" title="标注"></a>标注</h2><ul>
-<li>读取某文本的前10000个字符，需要将字符转码为独热编码</li>
-<li>独热编码前，需要对每种字符进行”编号”，这里用了python的set和enumerate来生成不重复序列对象作为字典标识char</li>
-<li>用字典(char_to_idx)来对每个char标注，再以字典进行独热编码，作为训练数据<pre><code class="hljs python"><span class="hljs-comment"># 设定学习所需的基本参数，后面会详细解释</span>
-vocab_size: <span class="hljs-number">1027</span> —— 就是len(char_to_idx)
-num_input &amp; num_output:<span class="hljs-number">1027</span>, num_hidden: <span class="hljs-number">256</span> <span class="hljs-comment"># 规定LSTM的基本参数</span>
-num_epochs, num_steps, batch_size, lr, clipping_theta = <span class="hljs-number">160</span>, <span class="hljs-number">35</span>, <span class="hljs-number">32</span>, <span class="hljs-number">1e2</span>, <span class="hljs-number">1e-2</span>
-<span class="hljs-comment"># 对read的字符进行处理</span>
-corpus_chars = corpus_chars.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">' '</span>).replace(<span class="hljs-string">'\r'</span>, <span class="hljs-string">' '</span>)
-corpus_chars = corpus_chars[<span class="hljs-number">0</span>:<span class="hljs-number">10000</span>]
-idx_to_char = list(set(corpus_chars))
-char_to_idx = dict([(char, i) <span class="hljs-keyword">for</span> i, char <span class="hljs-keyword">in</span> enumerate(idx_to_char)]) <span class="hljs-comment"># 列表解析，后面将多次用到</span>
-vocab_size = len(char_to_idx)
-corpus_indices = [char_to_idx[char] <span class="hljs-keyword">for</span> char <span class="hljs-keyword">in</span> corpus_chars]
+<p>C/S方式 client/server<br />P2P方式 peer to peer ——对等连接</p>
+<ul>
+<li>核心部分 （由网络和连接的路由器组成） 为边缘部分提供服务。</li>
+</ul>
+<br />
+<br />功能组成：
 
-<span class="hljs-comment"># one-hot步骤忽略，比较简单</span></code></pre>
-<h2 id="生成器构造"><a href="#生成器构造" class="headerlink" title="生成器构造"></a>生成器构造</h2>如果想要自定义每次迭代时的过程，我们需要使用生成器</li>
+<ul>
+<li>通信子网——数据通信</li>
+<li>资源子网——资源共享/数据处理</li>
 </ul>
-<h3 id="生成迭代对象"><a href="#生成迭代对象" class="headerlink" title="生成迭代对象"></a>生成迭代对象</h3><h4 id="相邻取样"><a href="#相邻取样" class="headerlink" title="相邻取样"></a>相邻取样</h4><blockquote>
-<p>引自D2L原文</p>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598944645096-a9371afc-22fe-43f1-ba01-7be010894fe8.png#align=left&display=inline&height=182&margin=%5Bobject%20Object%5D&name=image.png&originHeight=363&originWidth=741&size=203590&status=done&style=none&width=370.5" srcset="/img/loading.gif" alt="image.png"><br><a name="GcPZ1"></a></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>数据通信，资源共享<br /></p>
+<p><a name="d0771a42"></a></p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>见课本<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598945189427-d1824686-8b73-403b-8b4c-af66d354eea8.png#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&name=image.png&originHeight=589&originWidth=1339&size=366675&status=done&style=none&width=669.5" srcset="/img/loading.gif" alt="image.png"><br /><br><br /></p>
+<p><a name="6o5wU"></a></p>
+<h2 id="标准化工作"><a href="#标准化工作" class="headerlink" title="标准化工作"></a>标准化工作</h2><p><a name="MlJpv"></a></p>
+<h3 id="标准分类"><a href="#标准分类" class="headerlink" title="标准分类"></a>标准分类</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598945508758-939c1c7e-8368-42ee-b323-4707c5ad3545.png#align=left&display=inline&height=134&margin=%5Bobject%20Object%5D&name=image.png&originHeight=267&originWidth=1057&size=143333&status=done&style=none&width=528.5" srcset="/img/loading.gif" alt="image.png"><br /><br><br /></p>
+<p><a name="91eC7"></a></p>
+<h3 id="标准制定流程"><a href="#标准制定流程" class="headerlink" title="标准制定流程"></a>标准制定流程</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598945548050-ae34938b-1ca1-4d86-af90-d3642e17f06b.png#align=left&display=inline&height=286&margin=%5Bobject%20Object%5D&name=image.png&originHeight=571&originWidth=1233&size=348968&status=done&style=none&width=616.5" srcset="/img/loading.gif" alt="image.png"><br /><br><br />Q：因特网和计算机网络的区别？<br />A：<br><a name="Ouzap"></a></p>
+<h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><ul>
+<li>Speed 速率——连接到计算机主机网络上的主机在数字信道上传送数据的速率 单位 b/s kb/s ….</li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598945733042-15a5628a-59a2-4116-bf54-69c854b325db.png#align=left&display=inline&height=63&margin=%5Bobject%20Object%5D&name=image.png&originHeight=126&originWidth=1190&size=98035&status=done&style=none&width=595" srcset="/img/loading.gif" alt="image.png"></p>
+<ul>
+<li>Bandwidth 带宽——网络通信线路所能传送数据1能力（网络设备所支持的最高数据率）</li>
+<li>Thoughput 吞吐量——单位时间通过某个网络（信道，接口）的数据量<blockquote>
+<p>网络不同于主机，一个网络可能有几个链路集成，即使该网络的带宽是100mb/s，网络接受的链路最高有30mb/s的话，那最后主机的吞吐量只有30mb/s</p>
 </blockquote>
-<p>令相邻的两个随机小批量在原始序列上的位置相毗邻。这时候，我们就可以用一个小批量最终时间步的隐藏状态来初始化下一个小批量的隐藏状态，从而使下一个小批量的输出也取决于当前小批量的输入，并如此循环下去。这对实现循环神经网络造成了两方面影响：一方面， 在训练模型时，我们只需在每一个迭代周期开始时初始化隐藏状态；另一方面，当多个相邻小批量通过传递隐藏状态串联起来时，模型参数的梯度计算将依赖所有串联起来的小批量序列。同一迭代周期中，随着迭代次数的增加，梯度的计算开销会越来越大。 为了使模型参数的梯度计算只依赖一次迭代读取的小批量序列，我们可以在每次读取小批量前将隐藏状态从计算图中分离出来。</p>
-<pre><code class="hljs python"><span class="hljs-comment"># 生成迭代对象</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">data_iter_consecutive</span><span class="hljs-params">(corpus_indices, batch_size, num_steps, device=None)</span>:</span>
-    <span class="hljs-keyword">if</span> device <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-        device = torch.device(<span class="hljs-string">'cuda'</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">'cpu'</span>) <span class="hljs-comment"># 深度学习计算量较大，推荐用cuda</span>
-    corpus_indices = torch.tensor(corpus_indices, dtype=torch.float32, device=device)
-    data_len = len(corpus_indices)
-    batch_len = data_len // batch_size
-    indices = corpus_indices[<span class="hljs-number">0</span>: batch_size*batch_len].view(batch_size, batch_len)
-    epoch_size = (batch_len - <span class="hljs-number">1</span>) // num_steps
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(epoch_size):
-        i = i * num_steps
-        X = indices[:, i: i + num_steps]
-        Y = indices[:, i + <span class="hljs-number">1</span>: i + num_steps + <span class="hljs-number">1</span>]
-        <span class="hljs-keyword">yield</span> X, Y</code></pre>
-<p>这里可视化一下相邻取样的逻辑<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/2.png" srcset="/img/loading.gif" alt=""></p>
-<h1 id="搭建模型"><a href="#搭建模型" class="headerlink" title="搭建模型"></a>搭建模型</h1><p>这里我们搭建一个 input_size = 1027, num_hidden = 256, output_size =1027， 一层lstm+一层全连接层的模型</p>
-<pre><code class="hljs python">lstm_layer = nn.LSTM(input_size=vocab_size, hidden_size=num_hiddens)
+</li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1598946363589-796e9f1b-eb64-48ac-a365-48b21de45f3c.png#align=left&display=inline&height=237&margin=%5Bobject%20Object%5D&name=image.png&originHeight=474&originWidth=1302&size=319449&status=done&style=none&width=651" srcset="/img/loading.gif" alt="image.png"><br /></p>
+<blockquote>
+<p>补：信道——信号传输的媒介，通信的通道</p>
+</blockquote>
+<ul>
+<li><p>Delay 时延——指数据从网络（链路）的一端传送到另一端所需的总时间，由4部分构成</p>
+<pre><code>- 发送(传输时延)时延 ![image.png](https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599098514336-e0018125-9e88-4b2f-b281-93504fd8bcc7.png#align=left&amp;display=inline&amp;height=68&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=68&amp;originWidth=162&amp;size=8992&amp;status=done&amp;style=none&amp;width=162)
+- 传播时延 ![image.png](https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599098608845-a80ea19d-5879-484f-91f2-481460063637.png#align=left&amp;display=inline&amp;height=77&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=77&amp;originWidth=158&amp;size=9778&amp;status=done&amp;style=none&amp;width=158)
+- 处理时延 &lt;br /&gt;检错，找出口的时间
+- 排队时延&lt;br /&gt; (在路由器排队等待转发的时延) 等待 **输出/入** 链路可用</code></pre><blockquote>
+<p>高速链路提高的只是发送速率-&gt;减少发送时延</p>
+</blockquote>
+</li>
+<li><p>时延带宽积 ——某段链路现在有多少比特<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599098892472-db63e942-823e-4fc5-8d44-2f3516c402eb.png#align=left&display=inline&height=255&margin=%5Bobject%20Object%5D&name=image.png&originHeight=255&originWidth=509&size=69675&status=done&style=none&width=509" srcset="/img/loading.gif" alt="image.png"></p>
+</li>
+<li><p>往返时延 RTT——从发送方发送数据开始，到发送方收到接收方确认总共经历的时延<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599099055968-021df4bb-1b57-4e66-b2c4-cc1e4a7dc3a0.png#align=left&display=inline&height=147&margin=%5Bobject%20Object%5D&name=image.png&originHeight=147&originWidth=352&size=23831&status=done&style=none&width=352" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>不包括发送时延</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>信道利用率——有数据通过时间/（有+无）数据通过时间</li>
+</ul>
+<p><br />Q: 网络利用率的概念<br /></p>
+<p><a name="SuFHr"></a></p>
+<h1 id="体系结构-amp-参考模型"><a href="#体系结构-amp-参考模型" class="headerlink" title="体系结构&amp;参考模型"></a>体系结构&amp;参考模型</h1><p>计算机网络体系结构：计算机网络的各层及协议的集合<br /></p>
+<p><a name="r3LgL"></a></p>
+<h2 id="分层结构"><a href="#分层结构" class="headerlink" title="分层结构"></a>分层结构</h2><ul>
+<li>实体；第n层的活动元素称为n层实体</li>
+<li>协议：为进行网络中对等实体数据交换建立的规则、标准<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599100055959-b308f811-256c-4000-89a4-993e3d123d47.png#align=left&display=inline&height=77&margin=%5Bobject%20Object%5D&name=image.png&originHeight=77&originWidth=231&size=17113&status=done&style=none&width=231" srcset="/img/loading.gif" alt="image.png"></li>
+<li>接口(访问服务点SAP)：上层使用下层提供的服务的入口</li>
+<li>服务：下层为相邻上层提供的服务调用</li>
+</ul>
+<br />
+<br />
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RNNModel</span><span class="hljs-params">(nn.Module)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, rnn_layer, vocab_size)</span>:</span>
-        super(RNNModel, self).__init__()
-        self.rnn = rnn_layer
-        self.hidden_size = rnn_layer.hidden_size * (<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> rnn_layer.bidirectional <span class="hljs-keyword">else</span> <span class="hljs-number">1</span>) 
-        self.vocab_size = vocab_size
-        self.dense = nn.Linear(self.hidden_size, vocab_size)
-        self.state = <span class="hljs-literal">None</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, inputs, state)</span>:</span> <span class="hljs-comment"># inputs: (batch, seq_len)</span>
-        <span class="hljs-comment"># 获取one-hot向量表示</span>
-        X = to_onehot(inputs, self.vocab_size) <span class="hljs-comment"># X是个list</span>
-        Y, self.state = self.rnn(torch.stack(X), state)
-        <span class="hljs-comment"># 全连接层会首先将Y的形状变成(num_steps * batch_size, num_hiddens)，它的输出</span>
-        <span class="hljs-comment"># 形状为(num_steps * batch_size, vocab_size)</span>
-        output = self.dense(Y.view(<span class="hljs-number">-1</span>, Y.shape[<span class="hljs-number">-1</span>]))
-        <span class="hljs-keyword">return</span> output, self.state
-    
-model = RNNModel(lstm_layer)</code></pre>
-<p>损失函数为交叉熵，小批量梯度下降的优化器为Adam，学习率见上，忽略。</p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_and_predict_rnn_pytorch</span><span class="hljs-params">(model, num_hiddens, vocab_size, device,</span></span>
-<span class="hljs-function"><span class="hljs-params">                                corpus_indices, idx_to_char, char_to_idx,</span></span>
-<span class="hljs-function"><span class="hljs-params">                                num_epochs, num_steps, lr, clipping_theta,</span></span>
-<span class="hljs-function"><span class="hljs-params">                                batch_size, pred_period, pred_len, prefixes)</span>:</span>
-    loss = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    model.to(device)
-    state = <span class="hljs-literal">None</span>
-    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(num_epochs):
-        l_sum, n, start = <span class="hljs-number">0.0</span>, <span class="hljs-number">0</span>, time.time()
-        data_iter = data_iter_consecutive(corpus_indices, batch_size, num_steps, device) <span class="hljs-comment"># 相邻采样</span>
-        <span class="hljs-keyword">for</span> X, Y <span class="hljs-keyword">in</span> data_iter:
-            <span class="hljs-keyword">if</span> state <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
-                <span class="hljs-comment"># 使用detach函数从计算图分离隐藏状态, 这是为了</span>
-                <span class="hljs-comment"># 使模型参数的梯度计算只依赖一次迭代读取的小批量序列(防止梯度计算开销太大)</span>
-                <span class="hljs-keyword">if</span> isinstance (state, tuple): <span class="hljs-comment"># LSTM, state:(h, c)  </span>
-                    state = (state[<span class="hljs-number">0</span>].detach(), state[<span class="hljs-number">1</span>].detach())
-                <span class="hljs-keyword">else</span>:   
-                    state = state.detach()
-    
-            (output, state) = model(X, state) <span class="hljs-comment"># output: 形状为(num_steps * batch_size, vocab_size)</span>
-            
-            <span class="hljs-comment"># Y的形状是(batch_size, num_steps)，转置后再变成长度为</span>
-            <span class="hljs-comment"># batch * num_steps 的向量，这样跟输出的行一一对应</span>
-            y = torch.transpose(Y, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>).contiguous().view(<span class="hljs-number">-1</span>)
-            l = loss(output, y.long())
-            
-            optimizer.zero_grad()
-            l.backward()
-            <span class="hljs-comment"># 梯度裁剪</span>
-            grad_clipping(model.parameters(), clipping_theta, device)
-            optimizer.step()
-            l_sum += l.item() * y.shape[<span class="hljs-number">0</span>]
-            n += y.shape[<span class="hljs-number">0</span>]
-        
-        <span class="hljs-keyword">try</span>:
-            perplexity = math.exp(l_sum / n)
-        <span class="hljs-keyword">except</span> OverflowError:
-            perplexity = float(<span class="hljs-string">'inf'</span>)
-        <span class="hljs-keyword">if</span> (epoch + <span class="hljs-number">1</span>) % pred_period == <span class="hljs-number">0</span>:
-            print(<span class="hljs-string">'epoch %d, perplexity %f, time %.2f sec'</span> % (
-                epoch + <span class="hljs-number">1</span>, perplexity, time.time() - start))
-            <span class="hljs-keyword">for</span> prefix <span class="hljs-keyword">in</span> prefixes:
-                print(<span class="hljs-string">' -'</span>, predict_rnn_pytorch(
-                    prefix, pred_len, model, vocab_size, device, idx_to_char,
-                    char_to_idx))</code></pre>
-
-
+<p><br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1599100129431-17d057d6-e5ab-40bc-bb7e-2f5c965ab2bc.png#align=left&display=inline&height=154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=154&originWidth=775&size=64306&status=done&style=none&width=775" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>4层的PDU为3层的SDU，PDU可以笼统理解为含金量高的数据(对服务而言)</p>
+</blockquote>
+<p><br />Q：这个H和T是什么意思<br />A：H-head，控制信息 T-tail 尾部信息<br /><br><br /></p>
+<p><a name="fnfpy"></a></p>
+<h3 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h3><blockquote>
+<p>法定标准</p>
+</blockquote>
+<pre><code>![image.png](https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600053013677-996d4320-0930-4216-930b-266ed95a5766.png#align=left&amp;display=inline&amp;height=221&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=442&amp;originWidth=489&amp;size=178859&amp;status=done&amp;style=none&amp;width=244.5)&lt;br /&gt;    ![image.png](https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600053418301-df988f1b-23a6-4e62-aa0a-a90a317b82ab.png#align=left&amp;display=inline&amp;height=369&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=738&amp;originWidth=1375&amp;size=579403&amp;status=done&amp;style=none&amp;width=687.5)&lt;br /&gt;</code></pre><p><a name="xTr6P"></a></p>
+<h4 id="功能讲解"><a href="#功能讲解" class="headerlink" title="功能讲解"></a>功能讲解</h4><ul>
+<li><strong>应用层</strong>——所有能和用户交互产生网络流量的服务 </li>
+</ul>
+<p>典型应用层服务<br />FTP  file transfer protocol —— 文件传输协议<br />HTTP hyper text transfer protocol  —— 万维网<br /><br><br /></p>
+<ul>
+<li><strong>表示层</strong>——用于处理在两个通信系统中交换信息的表达方式（语法和语义）</li>
+</ul>
+<p>功能：数据格式变换；数据加密解密，数据压缩恢复<br /><br><br /></p>
+<ul>
+<li>会话层——向表示层实体进程提供<strong>建立连接</strong>并在连接上<strong>有序传输数据</strong>,即建立同步（SYN）<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600073500751-f04cb152-3818-4c23-a4a5-20a4d34d0c2c.png#align=left&display=inline&height=117&margin=%5Bobject%20Object%5D&name=image.png&originHeight=233&originWidth=707&size=49967&status=done&style=none&width=353.5" srcset="/img/loading.gif" alt="image.png"></li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600073137964-b4253f00-7bde-4d45-8779-d438e3d73904.png#align=left&display=inline&height=34&margin=%5Bobject%20Object%5D&name=image.png&originHeight=68&originWidth=306&size=17717&status=done&style=none&width=153" srcset="/img/loading.gif" alt="image.png"><br /> 功能：建立管理会话<br />    使用<strong>校验点</strong>让会话通信失效时从该点继续<strong>恢复通信，数据同步</strong>（比如steam）<br /><br><br /></p>
+<ul>
+<li><strong>传输层</strong></li>
+</ul>
+<p>负责主机中两个进程的通信（即是端到端的通信。传输单位是报文段/用户数据报）<br />      功能：<br />1）可靠/不可靠传输<br />可靠传输：把传输数据分成一个又一个的报文段，用链路传给接收端，接收端会返回一个“确认”给传输段，如果传输段没收到就要再发一次对应报文段，直到收到该确认为止，才会发送下一段<br />不可靠传输：一个数据报就能解决，不需要确认</p>
+<blockquote>
+<p>还有点没懂</p>
+</blockquote>
+<p><br />2）差错控制<br />传输层修复有问题的数据报<br /><br><br />3）流量控制<br />协调发送端和接收端的速度问题<br />Q：这个速度具体指的是？<br />4）复用&amp;分用<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600257225931-0566e7cc-1c5c-437d-98bf-cb93d0a82d3a.png#align=left&display=inline&height=50&margin=%5Bobject%20Object%5D&name=image.png&originHeight=50&originWidth=482&size=22128&status=done&style=none&width=482" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>传输层章节会系统讲</p>
+</blockquote>
+<ul>
+<li><p><strong>网络层</strong></p>
+<p>把<strong>分组</strong>从源端传到目的端，为分组交换网上的不同主机提供通信服务，传输单位是数据报<br />功能：<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600257576473-6580c1be-2062-4222-aeac-f3321cf35dd0.png#align=left&display=inline&height=236&margin=%5Bobject%20Object%5D&name=image.png&originHeight=236&originWidth=219&size=48982&status=done&style=none&width=219" srcset="/img/loading.gif" alt="image.png"></p>
+</li>
+<li><p><strong>数据链路层</strong></p>
+</li>
+</ul>
+<p>把网络层传下的数据包<strong>组装成帧</strong><br />传输单位是帧<br /><br><br />功能：<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600257717212-219384d7-a568-41fc-9870-6c68338ca506.png#align=left&display=inline&height=136&margin=%5Bobject%20Object%5D&name=image.png&originHeight=136&originWidth=503&size=55368&status=done&style=none&width=503" srcset="/img/loading.gif" alt="image.png"><br /></p>
+<ul>
+<li>物理层</li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600257736349-9cca816e-e1f0-4c28-a7fb-0e1360919287.png#align=left&display=inline&height=106&margin=%5Bobject%20Object%5D&name=image.png&originHeight=106&originWidth=568&size=61063&status=done&style=none&width=568" srcset="/img/loading.gif" alt="image.png"><br /><br><br /><br><br /><br><br /><br><br /><br><br />Q:进程的理解？<br />A：进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。在早期面向进程设计的计算机结构中，进程是程序的基本执行实体；在当代面向线程设计的计算机结构中，进程是线程的容器。</p>
+<p>Q：端口的理解？<br />A：<br /><br><br />Q:报文段的理解？<br />A：细节见tcp/ip<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600256832005-29113a29-4a57-4e06-9a0a-c906e5ba2a79.png#align=left&display=inline&height=164&margin=%5Bobject%20Object%5D&name=image.png&originHeight=164&originWidth=823&size=12403&status=done&style=none&width=823" srcset="/img/loading.gif" alt="image.png"><br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258383559-4490206b-1dc3-4a8a-8c7c-a89935d843ec.png#align=left&display=inline&height=189&margin=%5Bobject%20Object%5D&name=image.png&originHeight=189&originWidth=798&size=17963&status=done&style=none&width=798" srcset="/img/loading.gif" alt="image.png"><br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258530205-fa950167-4f6d-4dd4-966e-f2d4f572684e.png#align=left&display=inline&height=179&margin=%5Bobject%20Object%5D&name=image.png&originHeight=179&originWidth=816&size=19140&status=done&style=none&width=816" srcset="/img/loading.gif" alt="image.png"><br /></p>
+<p><a name="tBa24"></a></p>
+<h3 id="TCP-IP参考模型"><a href="#TCP-IP参考模型" class="headerlink" title="TCP/IP参考模型"></a>TCP/IP参考模型</h3><blockquote>
+<p>通用，事实标准</p>
+</blockquote>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600257798890-03833cda-046f-44fb-86ec-da332aeec399.png#align=left&display=inline&height=283&margin=%5Bobject%20Object%5D&name=image.png&originHeight=283&originWidth=535&size=98186&status=done&style=none&width=535" srcset="/img/loading.gif" alt="image.png"><br />Q：协议栈的理解？<br />A：网络中各层协议的总和<br /><br><br />Q：异构网互联的理解？<br />A：异构网络(Heterogeneous Network）是一种类型的网络，其是由不同制造商生产的计算机，<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/7667828" target="_blank" rel="noopener">网络设备</a>和系统组成的，大部分情况下运行在不同的协议上支持不同的功能或应用。<br /><br><br />Q：面向连接&amp;&amp;无连接？<br />A：面向连接：三阶段<br />1.建立连接——发出一个建立连接请求，成功建立后才能2.传数据 3.当数据传输完毕，必须释放连接<br /><br><br />无连接——直接进行数据传输<br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258097325-15c565af-d7cd-427f-913c-a10c1ff739da.png#align=left&display=inline&height=200&margin=%5Bobject%20Object%5D&name=image.png&originHeight=200&originWidth=399&size=57090&status=done&style=none&width=399" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>为什么无连接啊？<br>——IP协议强调无连接</p>
+</blockquote>
+<p>Q：IP的理解<br />A：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258631612-4dbb9075-b4b3-4c05-8ec9-bd9aa94e8d00.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=809&size=17182&status=done&style=none&width=809" srcset="/img/loading.gif" alt="image.png"><br><a name="6jhOC"></a></p>
+<h3 id="五层参考模型"><a href="#五层参考模型" class="headerlink" title="五层参考模型"></a>五层参考模型</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258211566-18ba0458-a8bd-4634-bda1-60600ea11485.png#align=left&display=inline&height=318&margin=%5Bobject%20Object%5D&name=image.png&originHeight=318&originWidth=754&size=142800&status=done&style=none&width=754" srcset="/img/loading.gif" alt="image.png"><br /><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600258306557-4421307a-7f5c-4329-a580-bfe49795fab7.png#align=left&display=inline&height=325&margin=%5Bobject%20Object%5D&name=image.png&originHeight=325&originWidth=810&size=168409&status=done&style=none&width=810" srcset="/img/loading.gif" alt="image.png"><br /><br><br /><br><br />Q：端到端和点到点的理解？<br />A：<br />端到端通信是针对<strong>传输层</strong>来说的，它是一个网络连接，指的是在数据传输之前，在发送端与接收端之间（忽略中间有多少设备）为数据的传输建立一条链路，链路建立以后，发送端就可以发送数据，知道数据发送完毕，接收端确认接收成功。 也就是说在数据传输之前，先为数据的传输开辟一条通道，然后在进行传输。从发送端发出数据到接收端接收完毕，结束。<br />点到点通信是针对数据链路层或网络层来说的，点对点是基于MAC地址和或者IP地址，是指一个设备发数据给与该这边直接连接的其他设备，这台设备又在合适的时候将数据传递给与它相连的下一个设备，通过一台一台直接相连的设备把数据传递到接收端。发送端设备送出数据后，它的任务已经完成，不需要参与整个传输过程，这样不会浪费发送端设备的资源，但是不确定接收端能否收到<br />补：点到点一般采用<strong>存储转发</strong>进行缓存，这样可以减少长距离下发送端的浪费</p>
+<p>Q：ip的不可靠性怎么解决的？<br />A：</p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/torch/">torch</a>
-                    
-                  </div>
                 
               </div>
               
@@ -375,18 +377,12 @@ model = RNNModel(lstm_layer)</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/posts/439d623b.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">第一章 网络体系结构</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/posts/8a630470.html">
-                        <span class="hidden-mobile">java week3-41</span>
+                      <a href="/posts/cb6a52c.html">
+                        <span class="hidden-mobile">LSTM -Pytorch实现&解构</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -693,7 +689,7 @@ model = RNNModel(lstm_layer)</code></pre>
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/cb6a52c.html');
+          var target = decodeURI('/posts/439d623b.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -787,7 +783,7 @@ model = RNNModel(lstm_layer)</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LSTM -Pytorch实现&解构&nbsp;",
+        "第一章 网络体系结构&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
