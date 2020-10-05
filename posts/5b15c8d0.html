@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zhihao Chen">
+  <meta name="keywords" content="">
+  <title>计网 CH2 物理层 - 陈之的鱼塘</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Nest</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-10-05 23:31">
+      October 5, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="第二章-物理层"><a href="#第二章-物理层" class="headerlink" title="第二章 物理层"></a>第二章 物理层</h1><blockquote>
+<p>多在选择题</p>
+</blockquote>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600343864371-339ccc03-5891-47f4-8158-0a06308cff5c.png#align=left&display=inline&height=292&margin=%5Bobject%20Object%5D&name=image.png&originHeight=583&originWidth=907&size=184899&status=done&style=none&width=453.5" srcset="/img/loading.gif" alt="image.png"><br><a name="WO2a4"></a></p>
+<h1 id="物理层接口特性"><a href="#物理层接口特性" class="headerlink" title="物理层接口特性"></a>物理层接口特性</h1><p>解决如何在连接各种主机的传输媒体上<strong>传输数据比特流</strong>，而不是考虑传输媒体。<br>主要任务——确认与传输媒体<strong>接口</strong>有关的特性（标准）   </p>
+<ul>
+<li><p>机械特性，定义物理连接采用的规格，接口形状，引线/引脚数目</p>
+</li>
+<li><p>电气特性，线路上信号的<strong>电压范围</strong>，阻抗匹配，传输<strong>速率</strong>，<strong>距离</strong>限制</p>
+<blockquote>
+<p>eg:某网络规定，信号电平+10-+15v为二进制0，-10V - -15V表示1，电线长度为15m内</p>
+</blockquote>
+</li>
+<li><p>功能特性，表面某条线<strong>某一电平表示何种意义</strong>，接口信号线用途</p>
+<blockquote>
+<p>eg:描述一个物理层接口引脚处与高电平是的含义</p>
+</blockquote>
+</li>
+<li><p>规格(过程)特性，定义物理线路的工作规程，时序</p>
+</li>
+</ul>
+<p><a name="ejfor"></a></p>
+<h1 id="🐌数据通信基础"><a href="#🐌数据通信基础" class="headerlink" title="🐌数据通信基础"></a>🐌数据通信基础</h1><p><a name="6KnoG"></a></p>
+<h2 id="典型数据通信模型"><a href="#典型数据通信模型" class="headerlink" title="典型数据通信模型"></a>典型数据通信模型</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600344496903-bb78c20f-3efc-4c54-bc40-888f7901f40b.png#align=left&display=inline&height=179&margin=%5Bobject%20Object%5D&name=image.png&originHeight=358&originWidth=899&size=226791&status=done&style=none&width=449.5" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>注意下面的几个专有名词</p>
+</blockquote>
+<p>Q；广域网和模拟信道什么意思？为什么要变为模拟信号？<br>A：<br><a name="fjSsO"></a></p>
+<h2 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600344687890-416cf64b-8bf0-4a6d-acbf-6a8d9b952ac1.png#align=left&display=inline&height=181&margin=%5Bobject%20Object%5D&name=image.png&originHeight=362&originWidth=804&size=261959&status=done&style=shadow&width=402" srcset="/img/loading.gif" alt="image.png"><br><a name="BOuxF"></a></p>
+<h2 id="🐱‍👤三种通信方式"><a href="#🐱‍👤三种通信方式" class="headerlink" title="🐱‍👤三种通信方式"></a>🐱‍👤三种通信方式</h2><p><a name="paQOF"></a></p>
+<h3 id="单工通信"><a href="#单工通信" class="headerlink" title="单工通信"></a>单工通信</h3><p>只有一个方向的通信，无反方向交互，只需要<strong>一条信道</strong> eg：广播<br><a name="BXveT"></a></p>
+<h3 id="半双工通信-双向交替通信"><a href="#半双工通信-双向交替通信" class="headerlink" title="半双工通信/双向交替通信"></a>半双工通信/双向交替通信</h3><p>通信双方都可以发送接收信息，但任何一方不能同时发送&amp;接受，需要<strong>两条信道</strong> eg:对讲机<br><a name="4FlqY"></a></p>
+<h3 id="全双工"><a href="#全双工" class="headerlink" title="全双工"></a>全双工</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600344954228-4089f6de-3d6d-4236-8c4c-52b3a720d1b1.png#align=left&display=inline&height=11&margin=%5Bobject%20Object%5D&name=image.png&originHeight=22&originWidth=411&size=11907&status=done&style=none&width=205.5" srcset="/img/loading.gif" alt="image.png"></p>
+<p><a name="ABNuD"></a></p>
+<h2 id="两种传输方式"><a href="#两种传输方式" class="headerlink" title="两种传输方式"></a>两种传输方式</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600345395859-a5d53372-0072-4672-b114-1338b23cc325.png#align=left&display=inline&height=201&margin=%5Bobject%20Object%5D&name=image.png&originHeight=401&originWidth=744&size=183001&status=done&style=none&width=372" srcset="/img/loading.gif" alt="image.png"></p>
+<blockquote>
+<p>一般计算机内部都是并行传输</p>
+</blockquote>
+<p><a name="1Gdis"></a></p>
+<h2 id="实现同步传输"><a href="#实现同步传输" class="headerlink" title="实现同步传输"></a>实现同步传输</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600345353877-33db8abb-abef-4f79-83c8-0943917b8e36.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=413&originWidth=901&size=176765&status=done&style=none&width=450.5" srcset="/img/loading.gif" alt="image.png"><br>Q：同步字符什么作用？<br>A：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600345485980-d83a5f6e-1e46-40d8-bb8f-52e8036dde37.png#align=left&display=inline&height=60&margin=%5Bobject%20Object%5D&name=image.png&originHeight=120&originWidth=741&size=16977&status=done&style=none&width=370.5" srcset="/img/loading.gif" alt="image.png"><br>相比起始位终止位的好处是开销会小一点，同时速度会快。</p>
+<p>Q：如何选择用同步还是异步<br>A：</p>
+<p><a name="TSVQH"></a></p>
+<h2 id="🎏数据传输速率术语"><a href="#🎏数据传输速率术语" class="headerlink" title="🎏数据传输速率术语"></a>🎏数据传输速率术语</h2><p><a name="rbFhC"></a></p>
+<h3 id="码元-Symbol"><a href="#码元-Symbol" class="headerlink" title="码元 Symbol"></a>码元 Symbol</h3><p><strong>固定时长</strong>的<strong>信号波形（数字脉冲）</strong>，代表不同离散数值的基本波形，数字通信中的计量单位。其中固定时长称为<strong>码元宽度</strong>。<br>如果码元离散状态M&gt;2，则为M进制码元<br><strong>一码元可以携带多个比特的信息量。</strong><br>eg:<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600396444402-7d298e38-6601-47b5-9d98-f72ec6b495c3.png#align=left&display=inline&height=207&margin=%5Bobject%20Object%5D&name=image.png&originHeight=207&originWidth=371&size=48194&status=done&style=none&width=371" srcset="/img/loading.gif" alt="image.png"><br>其中 0101010101数据转化为数字信号传给B，二进制且为固定时长，码元有两种，高电平的1和低电平的0，<strong>携带1比特信息量。</strong></p>
+<p>假如为4进制码元，则码元就有4种状态（信号波形），离散数值为00 01 10 11，<strong>携带2比特信息量。</strong></p>
+<p><a name="vLUoH"></a></p>
+<h3 id="速率"><a href="#速率" class="headerlink" title="速率"></a>速率</h3><p>也叫数据率，指数据的传输速率，可用<strong>码元传输速率</strong> 和 <strong>信息传输速率</strong> 表示。</p>
+<ul>
+<li>码元传输速率</li>
+</ul>
+<p>单位时间内数字通信系统传输的码元个数； 单位Baud B</p>
+<blockquote>
+<p>码元速率和进制无关，只和宽度有关</p>
+</blockquote>
+<ul>
+<li>信息传输速率，比特率</li>
+</ul>
+<p>单位时间内<strong>二进制码元(即比特数）</strong>个数。单位b/s</p>
+<blockquote>
+<p>通常比较系统传输速率用的是 信息V</p>
+</blockquote>
+<p><a name="iOVYC"></a></p>
+<h3 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600398104759-0dd8c8f7-5db8-43c4-b2f2-33c3d739d44e.png#align=left&display=inline&height=184&margin=%5Bobject%20Object%5D&name=image.png&originHeight=184&originWidth=1416&size=207021&status=done&style=none&width=1416" srcset="/img/loading.gif" alt="image.png"></p>
+<p><a name="NzIcX"></a></p>
+<h2 id="🤖奈式准则-amp-香农定理"><a href="#🤖奈式准则-amp-香农定理" class="headerlink" title="🤖奈式准则&amp;香农定理"></a>🤖奈式准则&amp;香农定理</h2><p><a name="9uwaD"></a></p>
+<h3 id="失真"><a href="#失真" class="headerlink" title="失真"></a>失真</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601133958776-8105db93-e92f-46be-984a-1db9a35247a8.png#align=left&display=inline&height=160&margin=%5Bobject%20Object%5D&name=image.png&originHeight=320&originWidth=961&size=179075&status=done&style=none&width=480.5" srcset="/img/loading.gif" alt="image.png"><br>因素：<br>**<br>eg: 码间串扰<br>接收端收到的信号波形<strong>失去了码元之间清晰界限</strong>的现象（太快了导致高低电平分不清楚）<br><a name="PfE3f"></a></p>
+<h3 id="奈式准则"><a href="#奈式准则" class="headerlink" title="奈式准则"></a>奈式准则</h3><p>在<strong>理想低通</strong>（无噪声&amp;带宽受限）下，避免码间串扰，极限码元传播速率为2W Baud W为信道带宽（单位HZ）</p>
+<blockquote>
+<p>只有这两个公式才用HZ</p>
+</blockquote>
+<p>补：<strong>极限数据传输率：2Wlog2 V(b/s)——比特率，其中V为码元的离散电平类型数 说白就是码元传播速率转换为信息。。。</strong><br><strong>eg：假如为2进制码元，极限数据传输率 就是 2W*log2 4 = 4W</strong></p>
+<hr>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601195862570-f81bf104-8838-453c-88c9-88e6488e5e4a.png#align=left&display=inline&height=63&margin=%5Bobject%20Object%5D&name=image.png&originHeight=125&originWidth=393&size=35423&status=done&style=none&width=196.5" srcset="/img/loading.gif" alt="image.png"><br>V=4<em>4=16； 2</em>3K<em>log2 16 = 24 24Kb/s<br>Q：这个4</em>4怎么得出的？<br>A：朝向&amp;调幅结合在一起</p>
+<p><a name="JI4gM"></a></p>
+<h3 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h3><p>在<strong>带宽受限且有噪声的信道</strong>中，为了不产生误差，信息的数据传输速率有上限值<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601196244004-71367adb-7dc0-4d3c-b9b8-1a7d03fb3a92.png#align=left&display=inline&height=22&margin=%5Bobject%20Object%5D&name=image.png&originHeight=44&originWidth=543&size=22096&status=done&style=none&width=271.5" srcset="/img/loading.gif" alt="image.png"> <img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601196426759-ad9a4a48-3614-4170-90d9-20ee8f155adc.png#align=left&display=inline&height=19&margin=%5Bobject%20Object%5D&name=image.png&originHeight=38&originWidth=227&size=15644&status=done&style=none&width=113.5" srcset="/img/loading.gif" alt="image.png"><br>其中，S/N为*<em>信噪比： 信号的平均功率/噪声的平均功率； *</em>W单位也为Hz</p>
+<p><strong>只要信息的传输速率低于信道极限传输速率，理论上就能实现无差别传输</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601196442377-cda92a47-d56f-4a7d-9df0-55050f4aef19.png#align=left&display=inline&height=42&margin=%5Bobject%20Object%5D&name=image.png&originHeight=83&originWidth=370&size=23842&status=done&style=none&width=185" srcset="/img/loading.gif" alt="image.png">)<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601196508313-79ce5497-cb3b-481f-8327-7bc4f2dccce7.png#align=left&display=inline&height=38&margin=%5Bobject%20Object%5D&name=image.png&originHeight=76&originWidth=564&size=27914&status=done&style=none&width=282" srcset="/img/loading.gif" alt="image.png"></strong><br>**<br><a name="zDY7Y"></a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601196578578-35aa1df9-fa4c-40b8-8976-8a933568529d.png#align=left&display=inline&height=97&margin=%5Bobject%20Object%5D&name=image.png&originHeight=194&originWidth=875&size=143927&status=done&style=none&width=437.5" srcset="/img/loading.gif" alt="image.png"><br><strong>假如题目给了 S/N &amp; V，就应该将两个公式的结果取最小值作为极限数据传输率</strong></p>
+<p><a name="B1t5v"></a></p>
+<h2 id="👩‍💻编码-amp-调制"><a href="#👩‍💻编码-amp-调制" class="headerlink" title="👩‍💻编码&amp;调制"></a>👩‍💻编码&amp;调制</h2><p><a name="4Jun4"></a></p>
+<h3 id="基带信号-宽带信号"><a href="#基带信号-宽带信号" class="headerlink" title="基带信号 宽带信号"></a>基带信号 宽带信号</h3><p><strong>基带信号</strong><br><strong>*<em>来自信源的信号 *</em></strong>将数字信号用电压表示，再送到<strong>数字信道</strong>传输<br><strong>宽带信号</strong><br>将基带信号<strong>调制</strong>后再传输到<strong>模拟信道</strong>传输<br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601276719340-4d6cc449-5523-4df7-93ee-07094d99dd08.png#align=left&display=inline&height=30&margin=%5Bobject%20Object%5D&name=image.png&originHeight=60&originWidth=940&size=58646&status=done&style=none&width=470" srcset="/img/loading.gif" alt="image.png"></strong><br>**<br><a name="w1Zai"></a></p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601276894741-55e618f2-e606-4ac8-aa25-32d35f2256bd.png#align=left&display=inline&height=43&margin=%5Bobject%20Object%5D&name=image.png&originHeight=85&originWidth=317&size=27090&status=done&style=none&width=158.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601276913746-8a8210d0-d23e-4fc8-8260-60ee0bd3ba51.png#align=left&display=inline&height=57&margin=%5Bobject%20Object%5D&name=image.png&originHeight=113&originWidth=739&size=80428&status=done&style=none&width=369.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601277557346-63d60862-a61e-487e-a669-762d80c65e15.png#align=left&display=inline&height=48&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=507&size=31502&status=done&style=none&width=253.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278129757-e1fbbe0b-5283-4251-be51-957516f3684a.png#align=left&display=inline&height=154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=308&originWidth=673&size=61669&status=done&style=none&width=336.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278227383-878e21de-9b67-44a7-911f-8dcc7e8424f0.png#align=left&display=inline&height=42&margin=%5Bobject%20Object%5D&name=image.png&originHeight=83&originWidth=634&size=13700&status=done&style=none&width=317" srcset="/img/loading.gif" alt="image.png"></p>
+<ul>
+<li>非归零 NRZ—— 1为高电平 0为低电平 <strong>难以保持同步</strong></li>
+<li>归零 RZ ——<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278217644-ac148583-ae91-47de-9d7c-451a75d8ffd9.png#align=left&display=inline&height=28&margin=%5Bobject%20Object%5D&name=image.png&originHeight=57&originWidth=282&size=13882&status=done&style=none&width=141" srcset="/img/loading.gif" alt="image.png"></li>
+<li>反向不归零 NRZI——电平反转表示0，电平不变表示1</li>
+<li>曼彻斯特—— 将一个码元分成2个相等的间隔，前高后低or前低后高 对应 01</li>
+</ul>
+<p><strong>每个码元中间都会出现电平跳变</strong>——用于CLK同步或数据信号，但<strong>频带宽度</strong>是原始基带宽度2倍<br><strong>数据传输速率为调制速率1/2</strong></p>
+<blockquote>
+<p>CLK同步的理解：出现一次跳变就知道要接受一个码元的信息了</p>
+</blockquote>
+<ul>
+<li>差分曼彻斯特——若码元为1，则半个码元与上一个码元后半段相同，0则相反。同样中间有次跳变</li>
+</ul>
+<p>抗干扰性强于曼彻斯特。</p>
+<ul>
+<li>4B/5B编码——<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278024533-18a14b6a-4f6a-4b55-8aa2-eadf16809028.png#align=left&display=inline&height=139&margin=%5Bobject%20Object%5D&name=image.png&originHeight=278&originWidth=583&size=130796&status=done&style=none&width=291.5" srcset="/img/loading.gif" alt="image.png"></li>
+</ul>
+<p><a name="qnPlq"></a></p>
+<h3 id="数字数据调制为模拟信号"><a href="#数字数据调制为模拟信号" class="headerlink" title="数字数据调制为模拟信号"></a>数字数据调制为模拟信号</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278480203-cee891f7-82db-44e7-be9f-94e322f8cf0b.png#align=left&display=inline&height=146&margin=%5Bobject%20Object%5D&name=image.png&originHeight=291&originWidth=578&size=88405&status=done&style=none&width=289" srcset="/img/loading.gif" alt="image.png"><br>Q：调频和调相是什么意思？<br>A：<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601900247408-5f0b6156-46c6-438f-9ed8-8ab443123a42.png#align=left&display=inline&height=287&margin=%5Bobject%20Object%5D&name=image.png&originHeight=556&originWidth=1013&size=109987&status=done&style=none&width=522" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601900407306-d7a5be2e-1021-4014-ba9f-2f1035d0ef5a.png#align=left&display=inline&height=260&margin=%5Bobject%20Object%5D&name=image.png&originHeight=547&originWidth=1079&size=262075&status=done&style=none&width=512" srcset="/img/loading.gif" alt="image.png"><br>QAM:<strong>调幅+调相</strong><br>**<br>例题<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601278691930-797d7f53-357e-4aa2-99e9-ea5050b5eeda.png#align=left&display=inline&height=39&margin=%5Bobject%20Object%5D&name=image.png&originHeight=69&originWidth=415&size=35912&status=done&style=none&width=232" srcset="/img/loading.gif" alt="image.png"><br>形状：4*4 = 16（种）——<br>log2 16 = 4—— 一码元的比特数</p>
+<p>波特率<em>log2V——极限数据传输速率（信息传输速率）= 1200</em>4 = 4800bit/s</p>
+<p><a name="W9I2A"></a></p>
+<h3 id="模拟信号编码为数字信号"><a href="#模拟信号编码为数字信号" class="headerlink" title="模拟信号编码为数字信号"></a>模拟信号编码为数字信号</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601901342385-f16b8c0d-189b-4f8a-8d44-7cc93576ffa4.png#align=left&display=inline&height=893&margin=%5Bobject%20Object%5D&name=image.png&originHeight=893&originWidth=1879&size=1206768&status=done&style=none&width=1879" srcset="/img/loading.gif" alt="image.png"></p>
+<p>f<strong>采 &gt; *<em>2f信号最高解释 *</em>见红图</strong><br><strong>a频率是2hz，b是1hz，假如采样频率是2hz，可以得到b的采样，但是a波一定失真</strong><br><strong>假如采样是4hz，则ab波都能被正常采上。</strong></p>
+<p><a name="aqA1i"></a></p>
+<h2 id="👨‍🏭数据交换方式"><a href="#👨‍🏭数据交换方式" class="headerlink" title="👨‍🏭数据交换方式"></a>👨‍🏭数据交换方式</h2><p><a name="NObK8"></a></p>
+<h3 id="电路交换-Cricuit-Exchanging"><a href="#电路交换-Cricuit-Exchanging" class="headerlink" title="电路交换 Cricuit Exchanging"></a>电路交换 Cricuit Exchanging</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601901709486-b9989591-8548-4f63-98d8-8feb2485f386.png#align=left&display=inline&height=223&margin=%5Bobject%20Object%5D&name=image.png&originHeight=302&originWidth=972&size=266090&status=done&style=none&width=719" srcset="/img/loading.gif" alt="image.png"></p>
+<ul>
+<li>呼叫</li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902042689-17167020-66ef-4057-9586-dde2939f6648.png#align=left&display=inline&height=218&margin=%5Bobject%20Object%5D&name=image.png&originHeight=395&originWidth=1482&size=671140&status=done&style=none&width=818" srcset="/img/loading.gif" alt="image.png"><br>B收到请求后，会按照DCBA的顺序返回<strong>呼叫应答</strong></p>
+<ul>
+<li>通信——数据传输  <strong>是全双工通信方式，双方都可以传接</strong></li>
+<li>释放连接</li>
+</ul>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902096712-9eef5191-c8bb-496e-a2bb-c5caf89470a0.png#align=left&display=inline&height=229&margin=%5Bobject%20Object%5D&name=image.png&originHeight=426&originWidth=1470&size=611635&status=done&style=none&width=790" srcset="/img/loading.gif" alt="image.png"><br>当B收到释放请求后，会<strong>返回应答</strong>，交换机按DCBA的顺序释放。</p>
+<p>原理：<strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902218594-4ee81f69-e5aa-4ec5-8baa-2ad874c03e3a.png#align=left&display=inline&height=166&margin=%5Bobject%20Object%5D&name=image.png&originHeight=201&originWidth=632&size=98792&status=done&style=none&width=523" srcset="/img/loading.gif" alt="image.png"></strong><br><strong><strong>特点：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902266560-55098ac9-6471-4bb5-a1ef-75be47ab96ab.png#align=left&display=inline&height=100&margin=%5Bobject%20Object%5D&name=image.png&originHeight=100&originWidth=1101&size=100971&status=done&style=none&width=1101" srcset="/img/loading.gif" alt="image.png"></strong></strong></p>
+<blockquote>
+<p>独占资源：该链路开始交换时无法被其他主机占用</p>
+</blockquote>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902322782-be2b5627-e203-48bf-8160-fa87919ad565.png#align=left&display=inline&height=756&margin=%5Bobject%20Object%5D&name=image.png&originHeight=756&originWidth=1743&size=1124041&status=done&style=none&width=1743" srcset="/img/loading.gif" alt="image.png"><br>Q：交换机都有什么功能？<br>A：<br><a name="ikVRu"></a></p>
+<h3 id="报文交换-Message-Exchanging"><a href="#报文交换-Message-Exchanging" class="headerlink" title="报文交换 Message Exchanging"></a>报文交换 Message Exchanging</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902439379-53afd042-0ce6-414c-bd15-59df9e06b284.png#align=left&display=inline&height=97&margin=%5Bobject%20Object%5D&name=image.png&originHeight=97&originWidth=1793&size=130710&status=done&style=none&width=1793" srcset="/img/loading.gif" alt="image.png"><br><strong>单次发送的数据块</strong><br>**<br><strong>原理：存储转发，无需建立专用通路</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902586111-c266e33a-5323-48d9-8dbc-b4066dff4247.png#align=left&display=inline&height=274&margin=%5Bobject%20Object%5D&name=image.png&originHeight=458&originWidth=1730&size=717884&status=done&style=none&width=1035" srcset="/img/loading.gif" alt="image.png"></strong></p>
+<blockquote>
+<p>路由信息——计算报文怎样传输到目的地距离最短的 线路段<br>这图种ACB距离大于AB，所以走AB</p>
+</blockquote>
+<p>Q：如何检查有无错误？<br>A：每个结点收到后会从<strong>分组数据</strong>来源的<strong>副本</strong>进行对比，若一致正确，则向来源发送确认信息，来源节点丢弃副本。</p>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902748385-fc40ed5f-9d36-4961-8a8d-a8d5bee505dd.png#align=left&display=inline&height=463&margin=%5Bobject%20Object%5D&name=image.png&originHeight=859&originWidth=1817&size=1642255&status=done&style=none&width=980" srcset="/img/loading.gif" alt="image.png"><br><a name="crHWL"></a></p>
+<h3 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902937225-6d83871a-e298-4b5b-abff-d8ede5d8798b.png#align=left&display=inline&height=124&margin=%5Bobject%20Object%5D&name=image.png&originHeight=124&originWidth=1715&size=131716&status=done&style=none&width=1715" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902909780-823a009f-8383-4218-b248-98e446537a1b.png#align=left&display=inline&height=328&margin=%5Bobject%20Object%5D&name=image.png&originHeight=328&originWidth=1682&size=258388&status=done&style=none&width=1682" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601902998363-a05a7d5e-1070-400f-b8c3-41940adc7e9e.png#align=left&display=inline&height=266&margin=%5Bobject%20Object%5D&name=image.png&originHeight=266&originWidth=1706&size=275890&status=done&style=none&width=1706" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601910348155-50981c82-4082-416b-bb69-35890b441627.png#align=left&display=inline&height=858&margin=%5Bobject%20Object%5D&name=image.png&originHeight=858&originWidth=1781&size=1681031&status=done&style=none&width=1781" srcset="/img/loading.gif" alt="image.png"><br><a name="ftH6x"></a></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><p><a name="3cHgk"></a></p>
+<h4 id="数据报"><a href="#数据报" class="headerlink" title="数据报"></a>数据报</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601910995159-66feafc1-21af-4ed4-a35f-df64fed1636b.png#align=left&display=inline&height=828&margin=%5Bobject%20Object%5D&name=image.png&originHeight=828&originWidth=1810&size=494301&status=done&style=none&width=1810" srcset="/img/loading.gif" alt="image.png"><br><strong>特点：</strong><br><strong><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601911080925-dd3e365b-32e7-4b83-8ba7-9d42a270db02.png#align=left&display=inline&height=771&margin=%5Bobject%20Object%5D&name=image.png&originHeight=771&originWidth=1788&size=1076115&status=done&style=none&width=1788" srcset="/img/loading.gif" alt="image.png"></strong></strong><br><a name="vhWGP"></a></p>
+<h4 id="🌟虚电路"><a href="#🌟虚电路" class="headerlink" title="🌟虚电路"></a>🌟虚电路</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601911423235-70d261fb-e5d8-4bfc-8a83-736babdc0994.png#align=left&display=inline&height=830&margin=%5Bobject%20Object%5D&name=image.png&originHeight=830&originWidth=1842&size=1058602&status=done&style=none&width=1842" srcset="/img/loading.gif" alt="image.png"><br><strong>特点</strong><br><strong><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601911466978-13bd1f26-8eed-4401-b5fc-2929440084f8.png#align=left&display=inline&height=822&margin=%5Bobject%20Object%5D&name=image.png&originHeight=822&originWidth=1863&size=1186530&status=done&style=none&width=1863" srcset="/img/loading.gif" alt="image.png"></strong></strong><br><a name="wWfFX"></a></p>
+<h3 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601910509056-b5355a46-509b-4aaf-964f-79577a34962b.png#align=left&display=inline&height=803&margin=%5Bobject%20Object%5D&name=image.png&originHeight=803&originWidth=1870&size=707134&status=done&style=none&width=1870" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601911520420-cc798e87-22c3-47b9-800c-af17903d878a.png#align=left&display=inline&height=723&margin=%5Bobject%20Object%5D&name=image.png&originHeight=723&originWidth=1781&size=474012&status=done&style=none&width=1781" srcset="/img/loading.gif" alt="image.png"><br><a name="6ac23978"></a></p>
+<h1 id="②物理层传输介质"><a href="#②物理层传输介质" class="headerlink" title="②物理层传输介质"></a>②物理层传输介质</h1><p>略，见书本</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/posts/cbf972d8.html">
+                        <span class="hidden-mobile">hololive事件之我见</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
+          app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
+          placeholder: "来说点什么吧～",
+          path: window.location.pathname,
+          avatar: "monsterid",
+          meta: ["nick","mail"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#e6d0b2',
+      preload: 'none',
+      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"https://music.163.com/song/media/outer/url?id=552983173.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover.jpg"},{"name":"愛の悲しみ","url":"http://music.163.com/song/media/outer/url?id=29744803.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover2.jpg"},{"name":"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1","artisi":"Arthur Rubinstein","url":"https://music.163.com/song/media/outer/url?id=25961289.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover3.jpg"},{"name":"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ","artist":"secret crates","url":"https://music.163.com/song/media/outer/url?id=448741213.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover4.jpg"},{"name":"The Way We Were","artist":"David Davidson","url":"https://music.163.com/song/media/outer/url?id=22538946.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover5.jpg"},{"name":"Valse di Fantastica","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=448722043.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"Somnus (Instrumental Version)","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=443292557.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"The Lark","artist":"Evgeny Kissin","url":"https://music.163.com/song/media/outer/url?id=1340025.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover7.jpg"},{"name":"心分け","artist":"上北健","url":"https://music.163.com/song/media/outer/url?id=474932684.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover8.jpg"},{"name":"なごり雪","artist":"中西保志","url":"https://music.163.com/song/media/outer/url?id=480751.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover9.jpg"},{"name":"花・太阳・雨","artist":"PYG","url":"https://music.163.com/song/media/outer/url?id=26127075.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover10.jpg"},{"name":"冷めたスープ","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=26140679.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover11.jpg"},{"name":"終電","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=562339.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover12.jpg"},{"name":"铃色日和","artist":"永夜蛰居","url":"https://music.163.com/song/media/outer/url?id=1430147412.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover13.jpg"},{"name":"春夏秋冬","artist":"ビリー・バンバン","url":"https://music.163.com/song/media/outer/url?id=22683759.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover14.jpg"},{"name":"碧い瞳のエリス","artist":"玉置浩二","url":"https://music.163.com/song/media/outer/url?id=523584.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover15.jpg"},{"name":"rain stops, good-bye","artist":"セリユ","url":"https://music.163.com/song/media/outer/url?id=859900.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover16.jpg"},{"name":"好きだよ。~100回の後悔","artist":"Che Nelle","url":"https://music.163.com/song/media/outer/url?id=28613731.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover17.jpg"},{"name":"Silly - Error happens ╥﹏╥","artist":"家入レオ","url":"http://music.163.com/song/media/outer/url?id=29744742.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover18.jpg"},{"name":"常夜灯","artist":"玉置浩二","url":"http://music.163.com/song/media/outer/url?id=523504.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover19.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/posts/5b15c8d0.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz'
+    var app_key = 'Qj9gggkYd7RhSSxinWCvCCMk'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "计网 CH2 物理层&nbsp;",
+      ],
+      cursorChar: "🐟",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-166912137-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
