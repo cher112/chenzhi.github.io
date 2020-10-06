@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>计组 Chapter1 计算机系统概述 - 陈之的鱼塘</title>
+  <title>计组 Chapter2 数据的表示与运算 - 陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-09-24 13:51">
-      September 24, 2020 pm
+    <time datetime="2020-10-06 22:38">
+      October 6, 2020 pm
     </time>
   </div>
 
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      900 字
+      989 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      11
        分钟
     </span>
   
@@ -226,60 +226,54 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章 计算机系统概述"></a>第一章 计算机系统概述</h1><h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>计算机系统=硬件（主机，外设）+软件</p>
-<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><ul>
-<li>系统软件——管理整个计算机系统 eg:语言处理/DBMS/操作系统</li>
-<li>应用软件——按任务编制成的程序</li>
-</ul>
-<h3 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h3><p>机器语言/汇编语言(<strong>需要考虑电脑本身特性</strong>) -&gt; FORTRAN -&gt; PASCAL -&gt;…..</p>
-<h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><p>逻辑元件——处理电信号最小的单元 eg:电子管</p>
-<h3 id="发展-1"><a href="#发展-1" class="headerlink" title="发展"></a>发展</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600844434742-d343e2bf-c7a9-4a28-ab12-a2803857a70a.png#align=left&display=inline&height=135&margin=%5Bobject%20Object%5D&name=image.png&originHeight=181&originWidth=717&size=179879&status=done&style=none&width=536" srcset="/img/loading.gif" alt="image.png"></p>
-<blockquote>
-<p>第一代用的是机器语言，即0101010….<br>第二代出现了面向过程的语言，且有了操作系统的原型。晶体管为手动焊接<br>第三代有了集成电路，不是手动焊接更加稳定<br>第四代开始出现微处理机，微型计算机，PC萌芽，出现操作系统</p>
+              <h1 id="第二章-数据的表示与运算"><a href="#第二章-数据的表示与运算" class="headerlink" title="第二章 数据的表示与运算"></a>第二章 数据的表示与运算</h1><p><a name="DMhmG"></a></p>
+<h1 id="2-1-数位转换"><a href="#2-1-数位转换" class="headerlink" title="2.1 数位转换"></a>2.1 数位转换</h1><p>略<br><a name="F0R6A"></a></p>
+<h1 id="2-1-2🦐BCD码"><a href="#2-1-2🦐BCD码" class="headerlink" title="2.1.2🦐BCD码"></a>2.1.2🦐BCD码</h1><p>BCD_ Binary-Coded Decimal 二进制编码的十进制<br><a name="25iWS"></a></p>
+<h2 id="8421码"><a href="#8421码" class="headerlink" title="8421码"></a>8421码</h2><blockquote>
+<p>主要是加法</p>
 </blockquote>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600844783596-583558b8-e72a-443c-91eb-0cbeba23ece2.png#align=left&display=inline&height=80&margin=%5Bobject%20Object%5D&name=image.png&originHeight=160&originWidth=522&size=73164&status=done&style=none&width=261" srcset="/img/loading.gif" alt="image.png"></p>
-<blockquote>
-<p>摩尔定律：集成电路每隔18个月会double，整体性能double</p>
-</blockquote>
-<h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><h4 id="冯诺依曼机-EDVAC"><a href="#冯诺依曼机-EDVAC" class="headerlink" title="冯诺依曼机 EDVAC"></a>冯诺依曼机 EDVAC</h4><blockquote>
-<p>程序指令的解析 经过存储器和控制器的<strong>控制线</strong> 由控制器完成</p>
-</blockquote>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600845404425-c6c92d17-2f51-4fae-9d90-a8a135f1267c.png#align=left&display=inline&height=221&margin=%5Bobject%20Object%5D&name=image.png&originHeight=324&originWidth=796&size=151264&status=done&style=none&width=543" srcset="/img/loading.gif" alt="image.png"><br>Tip: 软件和硬件在逻辑上是等价的<br>A：硬件可以用电路实现，软件可以用多次加法实现。</p>
-<p>特点：</p>
+<p>4bit表示一组十进制位<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600924373627-7003c4bf-aa12-420f-befc-479aacd6b532.png#align=left&display=inline&height=49&margin=%5Bobject%20Object%5D&name=image.png&originHeight=98&originWidth=620&size=58711&status=done&style=none&width=310" srcset="/img/loading.gif" alt="image.png"><br>如果储存95 就是 1001 0101<br><strong>注意！1010-1111没有定义（10-15）</strong></p>
+<p><strong>加法：</strong></p>
 <ul>
-<li>由五大部件</li>
-<li>指令&amp; 数据以同等地位(地址)在储存器</li>
-<li>指令&amp; 数据 二进制表示</li>
-<li>指令由*<em>操作码 地址码 *</em>组成</li>
-<li>存储程序</li>
-<li><strong>以运算器为中心</strong></li>
+<li><strong>手算，可以先用十进制得出结果再转为2进制</strong></li>
+<li><strong>机算，假如遇到非法区域，加6进一位  (指10+6 = 16 ，0001 1111) ; 如果合法则不用管</strong></li>
 </ul>
-<p><strong>解释：</strong>数据通过输入设备先经过<strong>运算器</strong>为中转进存储器，存储器收到命令再把数据传给运算器（对应那个数据线双箭头）<br>效率有点差</p>
-<h4 id="现代计算机"><a href="#现代计算机" class="headerlink" title="现代计算机"></a>现代计算机</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600845772367-e6c4b80d-383b-4fb6-9e15-6fc6ceafe96f.png#align=left&display=inline&height=151&margin=%5Bobject%20Object%5D&name=image.png&originHeight=218&originWidth=459&size=62321&status=done&style=none&width=318" srcset="/img/loading.gif" alt="image.png"><br><strong>以存储器为中心！</strong><br>补充，存储器有主存&amp;辅存<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600845851720-92a8f1b3-a287-4e6f-905f-577bab26cdd9.png#align=left&display=inline&height=98&margin=%5Bobject%20Object%5D&name=image.png&originHeight=195&originWidth=340&size=39112&status=done&style=none&width=170" srcset="/img/loading.gif" alt="image.png"><br>Q：辅存啥意思？<br>A：</p>
-<h3 id="硬件部件-工作原理"><a href="#硬件部件-工作原理" class="headerlink" title="硬件部件 工作原理"></a>硬件部件 工作原理</h3><h4 id="主存储器"><a href="#主存储器" class="headerlink" title="主存储器"></a>主存储器</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600846028422-75e08bb7-4568-4078-8a83-f69a541b2932.png#align=left&display=inline&height=237&margin=%5Bobject%20Object%5D&name=image.png&originHeight=317&originWidth=191&size=44616&status=done&style=none&width=143" srcset="/img/loading.gif" alt="image.png"><br><strong>存储体</strong>——数据在存储体内按地址存储<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600846251601-38f93a21-b454-4fe7-83d1-3a0bd5c11c35.png#align=left&display=inline&height=176&margin=%5Bobject%20Object%5D&name=image.png&originHeight=352&originWidth=419&size=89388&status=done&style=none&width=209.5" srcset="/img/loading.gif" alt="image.png"><br>举例：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600846452065-702513fc-a09e-4bfc-b63c-0885024440c9.png#align=left&display=inline&height=57&margin=%5Bobject%20Object%5D&name=image.png&originHeight=114&originWidth=285&size=31238&status=done&style=none&width=142.5" srcset="/img/loading.gif" alt="image.png"></p>
-<h4 id="运算器——实现算术运算，逻辑运算"><a href="#运算器——实现算术运算，逻辑运算" class="headerlink" title="运算器——实现算术运算，逻辑运算"></a>运算器——实现算术运算，逻辑运算</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600846576520-b2d8bbde-b10c-419e-ae84-20dc275c63d5.png#align=left&display=inline&height=250&margin=%5Bobject%20Object%5D&name=image.png&originHeight=381&originWidth=780&size=169549&status=done&style=none&width=512" srcset="/img/loading.gif" alt="image.png"></p>
-<blockquote>
-<p>操作码6位 地址码10位，总共16位，计算机会自动拆分</p>
+<p>举例：5+8 = 13<br>机算：0101+1000 = 1101（普通的13） -&gt; 0001 0011  <strong>正好是13 in 8421</strong><br>**</p>
+<p>其他：<br>余三码<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600925046833-90679b9d-6e70-4b7a-88b0-7ad5cda3b735.png#align=left&display=inline&height=48&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=642&size=68824&status=done&style=none&width=321" srcset="/img/loading.gif" alt="image.png"><br>2421码<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600925115886-a947c31e-8742-4fe9-add1-cb823f8a16ea.png#align=left&display=inline&height=50&margin=%5Bobject%20Object%5D&name=image.png&originHeight=100&originWidth=630&size=83594&status=done&style=none&width=315" srcset="/img/loading.gif" alt="image.png"></p>
+<p><a name="sheqo"></a></p>
+<h2 id="有权码"><a href="#有权码" class="headerlink" title="有权码"></a>有权码</h2><p>8421 指 对应位数上的*<em>权重 *</em>2^3-2^0 -&gt; 8421<br>2421 则是改变权值定义的码<br>都是有权码</p>
+<p>但是余三码不存在权重，被称为<strong>无权码</strong></p>
+<p><a name="Drxv4"></a></p>
+<h1 id="⛓2-2-字符串表示方法"><a href="#⛓2-2-字符串表示方法" class="headerlink" title="⛓2.2 字符串表示方法"></a>⛓2.2 字符串表示方法</h1><p><a name="biqYJ"></a></p>
+<h2 id="🎫ASCII码"><a href="#🎫ASCII码" class="headerlink" title="🎫ASCII码"></a>🎫ASCII码</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600925437442-c99007d7-aa2c-46ae-9c0c-0466b19f2c36.png#align=left&display=inline&height=199&margin=%5Bobject%20Object%5D&name=image.png&originHeight=397&originWidth=726&size=285055&status=done&style=none&width=363" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600925536527-c6cad443-cde4-4c58-bcc1-3736305ab1f6.png#align=left&display=inline&height=16&margin=%5Bobject%20Object%5D&name=image.png&originHeight=31&originWidth=274&size=12518&status=done&style=none&width=137" srcset="/img/loading.gif" alt="image.png"> <strong>前四位刚好是8421</strong><br><strong>eg:</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600925712729-a9300fbe-c561-472b-9a21-d4b2dc7ba7d7.png#align=left&display=inline&height=97&margin=%5Bobject%20Object%5D&name=image.png&originHeight=194&originWidth=690&size=71755&status=done&style=none&width=345" srcset="/img/loading.gif" alt="image.png"></strong><br><a name="SK71M"></a></p>
+<h2 id="✍汉字表示"><a href="#✍汉字表示" class="headerlink" title="✍汉字表示"></a>✍汉字表示</h2><p>GB2312，用区位（坐标）来确定汉字<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600926034667-6082083f-8334-4f52-aa23-b1a69e50a2f3.png#align=left&display=inline&height=152&margin=%5Bobject%20Object%5D&name=image.png&originHeight=240&originWidth=402&size=87220&status=done&style=none&width=255" srcset="/img/loading.gif" alt="image.png"><br>+十六进制20H -&gt; +二进制32<strong>国标码 *<em>—&gt; +80H  +1000 0000 二进制  128十进制 -&gt; 彻底跃出ASCII的位数(区分) *</em>汉字内码</strong></p>
+<p><strong>输入编码——</strong>把输入法的拼音+数字 字符串 变为 国标码，再由软件变为汉字内码 存储<br><strong>汉字字形码——</strong>汉字内码转换为字模信息</p>
+<p><a name="3zK7O"></a></p>
+<h2 id="🎭奇偶校验"><a href="#🎭奇偶校验" class="headerlink" title="🎭奇偶校验"></a>🎭奇偶校验</h2><p><a name="pygRQ"></a></p>
+<h3 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h3><blockquote>
+<p>补充概念<br>由若干个代码组成（表示）的字 ——码字<br>将2个码字逐位对比，具有<strong>不同位的个数</strong>称为<strong>两个码字间的距离</strong><br>if一种编码方案有多个合法码字，他们的最小距离称为<strong>码距——</strong>d</p>
 </blockquote>
-<h4 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h4><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600846758973-956de346-7d05-4fcc-8841-e9853bfaaa83.png#align=left&display=inline&height=166&margin=%5Bobject%20Object%5D&name=image.png&originHeight=331&originWidth=709&size=153111&status=done&style=none&width=354.5" srcset="/img/loading.gif" alt="image.png"></p>
-<h4 id="🌀举例"><a href="#🌀举例" class="headerlink" title="🌀举例"></a>🌀举例</h4><p>eg: “取数”操作 int a = 2<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600847433775-b99052ac-7f65-4b9c-bd8a-336994cf541a.png#align=left&display=inline&height=200&margin=%5Bobject%20Object%5D&name=image.png&originHeight=373&originWidth=823&size=271540&status=done&style=none&width=441" srcset="/img/loading.gif" alt="image.png"><br>其中，(部件) 表示硬件内存储的数据， OP(IR)表示指令集的操作码，M( )表示地址码<br>101 -&gt; 5（引用到主存5地址的指令）       000001-&gt;取数操作           10-&gt; 2（无地址存放的是Data:int类型的2）<br><strong>补充：a=2存放到ACC后，PC计数器+1</strong><br>**<br>eg2:” a<em>b”<br>*</em><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600848048658-90835b05-963c-4644-a365-721aee360bbb.png#align=left&display=inline&height=210&margin=%5Bobject%20Object%5D&name=image.png&originHeight=370&originWidth=800&size=269088&status=done&style=none&width=453" srcset="/img/loading.gif" alt="image.png">**<br><strong>比</strong>上面多了个运算器的逻辑</p>
-<p>eg3 停机<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600848400788-80b13e91-07ae-49c1-b8c9-734c9e2c5689.png#align=left&display=inline&height=230&margin=%5Bobject%20Object%5D&name=image.png&originHeight=413&originWidth=809&size=274523&status=done&style=none&width=450" srcset="/img/loading.gif" alt="image.png"><br>总结：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600848498479-98c3bde0-a924-4503-aaa7-80cc970f0de7.png#align=left&display=inline&height=26&margin=%5Bobject%20Object%5D&name=image.png&originHeight=51&originWidth=552&size=21300&status=done&style=none&width=276" srcset="/img/loading.gif" alt="image.png"></p>
-<p>Q：x不是操作数寄存器么？为什么存a=2, “<strong>操作数</strong>怎么理解”<br>A：X准确应该是<strong>通用寄存器，</strong>既可以传输&amp;存数据，也可以参与逻辑运算，在存数据那块可以看之前那个表格，在算术运算中它储存的是加数，ACC存储的是被加数</p>
-<h2 id="计算机系统的五层结构"><a href="#计算机系统的五层结构" class="headerlink" title="计算机系统的五层结构"></a>计算机系统的五层结构</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600863347407-2f418133-87db-4d77-8606-e7b257306a58.png#align=left&display=inline&height=893&margin=%5Bobject%20Object%5D&name=image.png&originHeight=893&originWidth=1577&size=624147&status=done&style=none&width=1577" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>一种编码方案的码距和检错能力是有关系的</strong><br>eg：<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601017944193-21795d22-6e69-4bd0-a9a2-2d4b4ee06818.png#align=left&display=inline&height=69&margin=%5Bobject%20Object%5D&name=image.png&originHeight=138&originWidth=769&size=104111&status=done&style=none&width=384.5" srcset="/img/loading.gif" alt="image.png"><br>第一种编码方式：2bit 4种方案均为合法 码距为1<br>假如出现（一）位错误，接受方无法判断错误</p>
+<p>第二种编码方式： 3bit 4个合法 4个非法  码距为2<br>当出现一位错误时， 接受方可以发现并报错。<br><a name="aQyE2"></a></p>
+<h3 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601018236758-ae6de6ba-f47d-49b9-8662-311982a88967.png#align=left&display=inline&height=109&margin=%5Bobject%20Object%5D&name=image.png&originHeight=218&originWidth=607&size=44123&status=done&style=none&width=303.5" srcset="/img/loading.gif" alt="image.png"><br>eg:<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601018255904-d9940f66-a50c-4bb3-9fdb-adb3efbbff54.png#align=left&display=inline&height=16&margin=%5Bobject%20Object%5D&name=image.png&originHeight=32&originWidth=541&size=12857&status=done&style=none&width=270.5" srcset="/img/loading.gif" alt="image.png"><br>手算：1001101      奇 1 1001101  偶 0 1001101<br>机算：<strong>偶校验：</strong>对各信息进行异或运算，得到的结果为偶校验位<br>                  对所有位进行异或，若结果为1则wrong<br>eg：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601018531483-fa90de8c-c99a-4160-ae7c-30e8c64f949d.png#align=left&display=inline&height=11&margin=%5Bobject%20Object%5D&name=image.png&originHeight=21&originWidth=241&size=10115&status=done&style=none&width=120.5" srcset="/img/loading.gif" alt="image.png"> 偶数位为0；<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601018610970-f3d5ba9b-5018-411b-af77-afeba54d85fe.png#align=left&display=inline&height=9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=18&originWidth=276&size=10608&status=done&style=none&width=138" srcset="/img/loading.gif" alt="image.png"> 对；</p>
 <blockquote>
-<p>虚拟机器——以为能和计算机对话。。。。</p>
+<p>局限性：只能发现奇数位错误，且无法知道哪出错。</p>
 </blockquote>
-<h3 id="三种级别的语言"><a href="#三种级别的语言" class="headerlink" title="三种级别的语言"></a>三种级别的语言</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600863561204-0a6a11a1-1706-44c1-b172-54768851a7d3.png#align=left&display=inline&height=860&margin=%5Bobject%20Object%5D&name=image.png&originHeight=860&originWidth=1324&size=862138&status=done&style=none&width=1324" srcset="/img/loading.gif" alt="image.png"></p>
-<blockquote>
-<p>load 助记符就是 CU ACC理解的取数</p>
+<p><a name="LoKOf"></a></p>
+<h2 id="🦍Hamming校验码"><a href="#🦍Hamming校验码" class="headerlink" title="🦍Hamming校验码"></a>🦍Hamming校验码</h2><p><a name="AstAL"></a></p>
+<h3 id="思路简介"><a href="#思路简介" class="headerlink" title="思路简介"></a>思路简介</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601971480103-4402a78f-cfd8-45ee-9e2d-0bef98f8d06f.png#align=left&display=inline&height=156&margin=%5Bobject%20Object%5D&name=image.png&originHeight=156&originWidth=968&size=81681&status=done&style=none&width=968" srcset="/img/loading.gif" alt="image.png"><br>！！注意，海明码是一种可以纠正<strong>一位差错</strong>的编码<br><a name="2PNQU"></a></p>
+<h3 id="需要几个校验位"><a href="#需要几个校验位" class="headerlink" title="需要几个校验位"></a>需要几个校验位</h3><blockquote>
+<p>标识，Hi为海明码位，Di为信息位，Pi为校验位</p>
 </blockquote>
-<ul>
-<li>编译程序——将高级语言编写的源程序一次性翻译为机器语言程序&amp;执行</li>
-<li>解释程序——翻译一句执行一句</li>
-</ul>
-<h2 id="计算机性能"><a href="#计算机性能" class="headerlink" title="计算机性能"></a>计算机性能</h2><h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><p>总容量——存储单元个数<em>存储字长（bit）<br>MAD位数反应*</em>存储单元个数（2的对数）<strong>，MDR位数反映</strong>每个存储单元的大小（bit）**<br>eg: MAD为32位,MDR为8位              总容量 2^32 * 8bit = 2^32 Byte = 4GB<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600863840033-62989457-2c32-4d49-89e2-bc0518c1c08e.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=581&size=87808&status=done&style=none&width=581" srcset="/img/loading.gif" alt="image.png"></p>
-<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p><strong>CPU主频——CPU内脉冲信号震荡频率</strong><br><strong>** <img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600864030205-1d4b8ebe-6e80-4d33-a501-e94cc9adeca3.png#align=left&display=inline&height=261&margin=%5Bobject%20Object%5D&name=image.png&originHeight=261&originWidth=674&size=99527&status=done&style=none&width=674" srcset="/img/loading.gif" alt="image.png">**</strong><br><strong><strong>CPI——执行一条指令所需的时钟周期数</strong></strong><br><strong><strong>执行一条指令的耗时——CPI*时钟周期</strong></strong><br>eg:<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600864171067-99e23c33-6266-4ecc-ae1e-796228e9cf5c.png#align=left&display=inline&height=247&margin=%5Bobject%20Object%5D&name=image.png&originHeight=247&originWidth=1310&size=159330&status=done&style=none&width=1310" srcset="/img/loading.gif" alt="image.png"></p>
-<p><strong>IPS(Instructions Per Second):每秒执行多少指令</strong><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1600864245903-cce3e9a5-d51a-41d7-a7f4-a2240606dab1.png#align=left&display=inline&height=106&margin=%5Bobject%20Object%5D&name=image.png&originHeight=106&originWidth=266&size=35369&status=done&style=none&width=266" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601972692040-1311483e-35e7-4213-b4e9-e6e84dc68c64.png#align=left&display=inline&height=200&margin=%5Bobject%20Object%5D&name=image.png&originHeight=200&originWidth=813&size=116088&status=done&style=none&width=813" srcset="/img/loading.gif" alt="image.png"></strong><br>** <strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601971682307-3348c52a-2f47-497a-935b-da7aa570a17b.png#align=left&display=inline&height=288&margin=%5Bobject%20Object%5D&name=image.png&originHeight=288&originWidth=1247&size=192993&status=done&style=none&width=1247" srcset="/img/loading.gif" alt="image.png"><br>其中，</strong>码元一共有n+k个比特位，共包含2^k个校验状态，其中只有一种状态是“对”，n+k个码一位出错的情况有“n+k”种，故总信息数要大于等于错误+正确的情况**<br><strong>即 2^k&gt;=n+k+1</strong><br>**<br><a name="kE6Db"></a></p>
+<h3 id="校验位放到哪"><a href="#校验位放到哪" class="headerlink" title="校验位放到哪"></a>校验位放到哪</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601972175386-da3f459e-a149-42bc-91da-144e40afb8d8.png#align=left&display=inline&height=94&margin=%5Bobject%20Object%5D&name=image.png&originHeight=94&originWidth=624&size=43316&status=done&style=none&width=624" srcset="/img/loading.gif" alt="image.png"><br>eg: 4位信息，3位校验<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601972225315-729a297c-a39d-4e39-8bd4-02a2e429a6d6.png#align=left&display=inline&height=180&margin=%5Bobject%20Object%5D&name=image.png&originHeight=180&originWidth=814&size=93319&status=done&style=none&width=814" srcset="/img/loading.gif" alt="image.png"><br>规则，3个组每个进行偶校验<br><a name="7kH7X"></a></p>
+<h3 id="分组如何校验"><a href="#分组如何校验" class="headerlink" title="分组如何校验"></a>分组如何校验</h3><p>校验位的“地址”刚好代表的<strong>二进制的权重，即124…，</strong>对于3，5，6，7这四个地址都可以用二进制表示，刚好是 三位 ——》校验码的个数<br>然后按照二进制位数进行校验<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601972628307-3db12773-8b85-4951-b3aa-7bd3c1f37d53.png#align=left&display=inline&height=586&margin=%5Bobject%20Object%5D&name=image.png&originHeight=586&originWidth=802&size=313473&status=done&style=none&width=802" srcset="/img/loading.gif" alt="image.png"><br>如图，对于第一个校验位P1，对应二进制位数为第一位，校验的组为 H3 H6 H7（D1 D2 D4），对此这三个数的值进行校验 结果为 校验位P1的值，其余同理。<br><a name="ueXxI"></a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><a name="f8bYE"></a></p>
+<h3 id="如何找错"><a href="#如何找错" class="headerlink" title="如何找错"></a>如何找错</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601973084038-6b43d46d-6509-4398-bd83-b4b6910f3666.png#align=left&display=inline&height=590&margin=%5Bobject%20Object%5D&name=image.png&originHeight=590&originWidth=745&size=366428&status=done&style=none&width=745" srcset="/img/loading.gif" alt="image.png">)<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601973108235-ccb3a08e-a5bc-48c6-b706-41f4bbc0b2c3.png#align=left&display=inline&height=277&margin=%5Bobject%20Object%5D&name=image.png&originHeight=277&originWidth=293&size=95683&status=done&style=none&width=293" srcset="/img/loading.gif" alt="image.png"><br><strong>补充：一般还有一位“全校验码”来填补偶校验的“单位检错”问题，即可以检错最多2位，但纠错（0-&gt;1&amp;1-&gt;0）最多1位</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601973626690-2eafeb80-6e86-4b09-80e4-8b83c27f2c0c.png#align=left&display=inline&height=134&margin=%5Bobject%20Object%5D&name=image.png&originHeight=134&originWidth=828&size=92148&status=done&style=none&width=828" srcset="/img/loading.gif" alt="image.png"></strong><br><strong>解释:<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601973620524-5021888a-5033-42c4-b66c-44a950035e74.png#align=left&display=inline&height=342&margin=%5Bobject%20Object%5D&name=image.png&originHeight=342&originWidth=1396&size=281516&status=done&style=none&width=1396" srcset="/img/loading.gif" alt="image.png"></strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601973713261-be983f71-9f7e-41e9-998e-6cc36396a898.png#align=left&display=inline&height=226&margin=%5Bobject%20Object%5D&name=image.png&originHeight=226&originWidth=1172&size=188045&status=done&style=none&width=1172" srcset="/img/loading.gif" alt="image.png"></strong><br>**<br><a name="MmrhH"></a></p>
+<h3 id="🎂循环冗余校验码"><a href="#🎂循环冗余校验码" class="headerlink" title="🎂循环冗余校验码"></a>🎂循环冗余校验码</h3><blockquote>
+<p>会算就行</p>
+</blockquote>
+<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601983890840-9d3444cc-25fb-4198-95ed-5c8d1e55be63.png#align=left&display=inline&height=191&margin=%5Bobject%20Object%5D&name=image.png&originHeight=368&originWidth=754&size=220942&status=done&style=none&width=392" srcset="/img/loading.gif" alt="image.png"><br><strong>步骤：</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984012828-ccb19550-c84b-4551-94bb-a4cd1f63ba09.png#align=left&display=inline&height=291&margin=%5Bobject%20Object%5D&name=image.png&originHeight=654&originWidth=1634&size=326666&status=done&style=none&width=727" srcset="/img/loading.gif" alt="image.png"></strong><br>Q：模二除&amp;模二减计算？<br>A：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984286633-676cabd7-9689-49f4-a9d2-31fe2034ffc1.png#align=left&display=inline&height=355&margin=%5Bobject%20Object%5D&name=image.png&originHeight=590&originWidth=381&size=52379&status=done&style=none&width=229" srcset="/img/loading.gif" alt="image.png"><br><strong>检错和纠错</strong><br>有检错能力，<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984452575-683ab1ca-9f92-4a13-b8b4-10609301c433.png#align=left&display=inline&height=154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=191&originWidth=906&size=156962&status=done&style=none&width=729" srcset="/img/loading.gif" alt="image.png"><br>但纠错有限制（因为有时候出错位数会高于2^校验码位数）<br>当<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984422892-b7889f07-bb7d-4957-9cd8-83820f67d155.png#align=left&display=inline&height=34&margin=%5Bobject%20Object%5D&name=image.png&originHeight=57&originWidth=1350&size=61708&status=done&style=none&width=796" srcset="/img/loading.gif" alt="image.png"><br>Q：不太懂检错特点&amp;<strong>生成多项式</strong>的原理？？<br>A：好像了解下就行。</p>
 
             </article>
             <hr>
@@ -303,18 +297,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/posts/cbf972d8.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hololive事件之我见</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/posts/439d623b.html">
-                        <span class="hidden-mobile">计网 Chapter1 网络体系结构</span>
+                      <a href="/posts/5b15c8d0.html">
+                        <span class="hidden-mobile">计网 Chapter2 物理层</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -621,7 +609,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/31c36041.html');
+          var target = decodeURI('/posts/a3943bb.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -715,7 +703,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "计组 Chapter1 计算机系统概述&nbsp;",
+        "计组 Chapter2 数据的表示与运算&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
