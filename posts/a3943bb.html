@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -28,7 +28,11 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
   
 
   
@@ -36,11 +40,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -49,6 +53,7 @@
 
 
   <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -143,8 +148,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -152,25 +163,28 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              
-  <div class="mt-3 post-meta">
-    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-10-06 22:38">
-      October 6, 2020 pm
-    </time>
-  </div>
-
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-06 22:38" pubdate>
+        October 6, 2020 pm
+      </time>
+    </span>
+  
+</div>
 
 <div class="mt-1">
   
@@ -223,9 +237,11 @@
     <div class="col-lg-8 nopadding-md">
       <div class="container nopadding-md" id="board-ctn">
         <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">计组 Chapter2 数据的表示与运算</h1>
             
-            <article class="markdown-body">
+            <div class="markdown-body" id="post-body">
               <h1 id="第二章-数据的表示与运算"><a href="#第二章-数据的表示与运算" class="headerlink" title="第二章 数据的表示与运算"></a>第二章 数据的表示与运算</h1><p><a name="DMhmG"></a></p>
 <h1 id="2-1-数位转换"><a href="#2-1-数位转换" class="headerlink" title="2.1 数位转换"></a>2.1 数位转换</h1><p>略<br><a name="F0R6A"></a></p>
 <h1 id="2-1-2🦐BCD码"><a href="#2-1-2🦐BCD码" class="headerlink" title="2.1.2🦐BCD码"></a>2.1.2🦐BCD码</h1><p>BCD_ Binary-Coded Decimal 二进制编码的十进制<br><a name="25iWS"></a></p>
@@ -275,7 +291,7 @@
 </blockquote>
 <p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601983890840-9d3444cc-25fb-4198-95ed-5c8d1e55be63.png#align=left&display=inline&height=191&margin=%5Bobject%20Object%5D&name=image.png&originHeight=368&originWidth=754&size=220942&status=done&style=none&width=392" srcset="/img/loading.gif" alt="image.png"><br><strong>步骤：</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984012828-ccb19550-c84b-4551-94bb-a4cd1f63ba09.png#align=left&display=inline&height=291&margin=%5Bobject%20Object%5D&name=image.png&originHeight=654&originWidth=1634&size=326666&status=done&style=none&width=727" srcset="/img/loading.gif" alt="image.png"></strong><br>Q：模二除&amp;模二减计算？<br>A：<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984286633-676cabd7-9689-49f4-a9d2-31fe2034ffc1.png#align=left&display=inline&height=355&margin=%5Bobject%20Object%5D&name=image.png&originHeight=590&originWidth=381&size=52379&status=done&style=none&width=229" srcset="/img/loading.gif" alt="image.png"><br><strong>检错和纠错</strong><br>有检错能力，<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984452575-683ab1ca-9f92-4a13-b8b4-10609301c433.png#align=left&display=inline&height=154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=191&originWidth=906&size=156962&status=done&style=none&width=729" srcset="/img/loading.gif" alt="image.png"><br>但纠错有限制（因为有时候出错位数会高于2^校验码位数）<br>当<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1601984422892-b7889f07-bb7d-4957-9cd8-83820f67d155.png#align=left&display=inline&height=34&margin=%5Bobject%20Object%5D&name=image.png&originHeight=57&originWidth=1350&size=61708&status=done&style=none&width=796" srcset="/img/loading.gif" alt="image.png"><br>Q：不太懂检错特点&amp;<strong>生成多项式</strong>的原理？？<br>A：好像了解下就行。</p>
 
-            </article>
+            </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
@@ -294,7 +310,7 @@
               
               
                 <div class="post-prevnext row">
-                  <div class="post-prev col-6">
+                  <article class="post-prev col-6">
                     
                     
                       <a href="/posts/41dfe9fa.html">
@@ -303,8 +319,8 @@
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
-                  </div>
-                  <div class="post-next col-6">
+                  </article>
+                  <article class="post-next col-6">
                     
                     
                       <a href="/posts/5b15c8d0.html">
@@ -313,14 +329,14 @@
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
-                  </div>
+                  </article>
                 </div>
               
             </div>
 
             
               <!-- Comments -->
-              <div class="comments" id="comments">
+              <article class="comments" id="comments">
                 
                 
   <div id="vcomments"></div>
@@ -343,15 +359,15 @@
         });
       });
     }
-    createObserver(loadValine, 'vcomments');
+    waitElementVisible('vcomments', loadValine);
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
-              </div>
+              </article>
             
-          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -404,41 +420,12 @@
   
 
   
-    <!-- APlayer 音乐播放器 -->
-    <div id="aplayer"></div>
-    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
-<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-<script type="text/javascript">
-  var oldLoadAp = window.onload;
-  window.onload = function () {
-    oldLoadAp && oldLoadAp();
 
-    new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,
-      autoplay: 'false' === 'true',
-      loop: 'all',
-      order: 'random',
-      theme: '#e6d0b2',
-      preload: 'none',
-      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"https://music.163.com/song/media/outer/url?id=552983173.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover.jpg"},{"name":"愛の悲しみ","url":"http://music.163.com/song/media/outer/url?id=29744803.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover2.jpg"},{"name":"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1","artisi":"Arthur Rubinstein","url":"https://music.163.com/song/media/outer/url?id=25961289.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover3.jpg"},{"name":"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ","artist":"secret crates","url":"https://music.163.com/song/media/outer/url?id=448741213.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover4.jpg"},{"name":"The Way We Were","artist":"David Davidson","url":"https://music.163.com/song/media/outer/url?id=22538946.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover5.jpg"},{"name":"Valse di Fantastica","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=448722043.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"Somnus (Instrumental Version)","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=443292557.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"The Lark","artist":"Evgeny Kissin","url":"https://music.163.com/song/media/outer/url?id=1340025.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover7.jpg"},{"name":"心分け","artist":"上北健","url":"https://music.163.com/song/media/outer/url?id=474932684.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover8.jpg"},{"name":"なごり雪","artist":"中西保志","url":"https://music.163.com/song/media/outer/url?id=480751.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover9.jpg"},{"name":"花・太阳・雨","artist":"PYG","url":"https://music.163.com/song/media/outer/url?id=26127075.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover10.jpg"},{"name":"冷めたスープ","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=26140679.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover11.jpg"},{"name":"終電","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=562339.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover12.jpg"},{"name":"铃色日和","artist":"永夜蛰居","url":"https://music.163.com/song/media/outer/url?id=1430147412.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover13.jpg"},{"name":"春夏秋冬","artist":"ビリー・バンバン","url":"https://music.163.com/song/media/outer/url?id=22683759.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover14.jpg"},{"name":"碧い瞳のエリス","artist":"玉置浩二","url":"https://music.163.com/song/media/outer/url?id=523584.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover15.jpg"},{"name":"rain stops, good-bye","artist":"セリユ","url":"https://music.163.com/song/media/outer/url?id=859900.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover16.jpg"},{"name":"好きだよ。~100回の後悔","artist":"Che Nelle","url":"https://music.163.com/song/media/outer/url?id=28613731.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover17.jpg"},{"name":"Silly - Error happens ╥﹏╥","artist":"家入レオ","url":"http://music.163.com/song/media/outer/url?id=29744742.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover18.jpg"},{"name":"常夜灯","artist":"玉置浩二","url":"http://music.163.com/song/media/outer/url?id=523504.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover19.jpg"}]
-    });
-  }
-</script>
-
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
   
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
   <div class="statistics">
     
     
@@ -465,10 +452,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -484,6 +470,10 @@
     
       <script  src="/js/lazyload.js" ></script>
     
+  
+
+
+
   
 
 
@@ -685,7 +675,7 @@
 
       tocbot.init({
         tocSelector: '#tocbot',
-        contentSelector: 'article.markdown-body',
+        contentSelector: '#post-body',
         headingSelector: 'h1,h2,h3,h4,h5,h6',
         linkClass: 'tocbot-link',
         activeLinkClass: 'tocbot-active-link',
@@ -778,31 +768,17 @@
 
 
 
-
-
-
-
-
   
 
   
     <!-- Google Analytics -->
     <script defer>
-      (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
       ga('create', 'UA-166912137-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
   
 
   

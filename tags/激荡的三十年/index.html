@@ -1,7 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -27,11 +27,11 @@
 
 <!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -40,6 +40,7 @@
 
 
   <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -134,8 +135,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -143,12 +150,12 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background" parallax=true
+    <div class="banner intro-2" id="background" parallax=true
          style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
@@ -174,7 +181,7 @@
                 
 
 <div class="list-group">
-<!--  <p class="h4">1 posts in total.</p>-->
+  <p class="h4">1 posts in total.</p>
   <hr>
   
     
@@ -183,7 +190,7 @@
     
     <a href="/posts/7ee444a5.html" class="list-group-item list-group-item-action">
       <span class="archive-post-title">《激荡的三十年：中国企业 1978—2008》(上) 读书摘要</span>
-      <span style="float: right;">05-11</span>
+      <time style="float: right;">05-11</time>
     </a>
   
 </div>
@@ -229,41 +236,12 @@
   
 
   
-    <!-- APlayer 音乐播放器 -->
-    <div id="aplayer"></div>
-    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
-<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
-<script type="text/javascript">
-  var oldLoadAp = window.onload;
-  window.onload = function () {
-    oldLoadAp && oldLoadAp();
 
-    new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,
-      autoplay: 'false' === 'true',
-      loop: 'all',
-      order: 'random',
-      theme: '#e6d0b2',
-      preload: 'none',
-      audio: [{"name":"Four Divertimentos: Nº 1, Andantino Grazioso","artist":"Trinidad Huerta","url":"https://music.163.com/song/media/outer/url?id=552983173.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover.jpg"},{"name":"愛の悲しみ","url":"http://music.163.com/song/media/outer/url?id=29744803.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover2.jpg"},{"name":"Nocturne No. 1 in B Flat Minor, Op. 9, No. 1","artisi":"Arthur Rubinstein","url":"https://music.163.com/song/media/outer/url?id=25961289.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover3.jpg"},{"name":"░░_Ｓｐｒｉｎｇｔｉｍｅ  Ｓｔｒｏｌｌ_Westminster Quarters =Ⓣɪᴍᴇ ➋ Ⓜᴇᴇᴛ","artist":"secret crates","url":"https://music.163.com/song/media/outer/url?id=448741213.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover4.jpg"},{"name":"The Way We Were","artist":"David Davidson","url":"https://music.163.com/song/media/outer/url?id=22538946.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover5.jpg"},{"name":"Valse di Fantastica","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=448722043.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"Somnus (Instrumental Version)","artist":"下村陽子","url":"https://music.163.com/song/media/outer/url?id=443292557.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover6.jpg"},{"name":"The Lark","artist":"Evgeny Kissin","url":"https://music.163.com/song/media/outer/url?id=1340025.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover7.jpg"},{"name":"心分け","artist":"上北健","url":"https://music.163.com/song/media/outer/url?id=474932684.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover8.jpg"},{"name":"なごり雪","artist":"中西保志","url":"https://music.163.com/song/media/outer/url?id=480751.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover9.jpg"},{"name":"花・太阳・雨","artist":"PYG","url":"https://music.163.com/song/media/outer/url?id=26127075.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover10.jpg"},{"name":"冷めたスープ","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=26140679.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover11.jpg"},{"name":"終電","artist":"柴田淳","url":"https://music.163.com/song/media/outer/url?id=562339.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover12.jpg"},{"name":"铃色日和","artist":"永夜蛰居","url":"https://music.163.com/song/media/outer/url?id=1430147412.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover13.jpg"},{"name":"春夏秋冬","artist":"ビリー・バンバン","url":"https://music.163.com/song/media/outer/url?id=22683759.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover14.jpg"},{"name":"碧い瞳のエリス","artist":"玉置浩二","url":"https://music.163.com/song/media/outer/url?id=523584.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover15.jpg"},{"name":"rain stops, good-bye","artist":"セリユ","url":"https://music.163.com/song/media/outer/url?id=859900.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover16.jpg"},{"name":"好きだよ。~100回の後悔","artist":"Che Nelle","url":"https://music.163.com/song/media/outer/url?id=28613731.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover17.jpg"},{"name":"Silly - Error happens ╥﹏╥","artist":"家入レオ","url":"http://music.163.com/song/media/outer/url?id=29744742.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover18.jpg"},{"name":"常夜灯","artist":"玉置浩二","url":"http://music.163.com/song/media/outer/url?id=523504.mp3","cover":"https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/cover19.jpg"}]
-    });
-  }
-</script>
-
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
   
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
   <div class="statistics">
     
     
@@ -290,10 +268,9 @@
   </div>
 
 
-    
+  
 
-    
-  </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
@@ -307,6 +284,10 @@
 
   
     
+  
+
+
+
   
 
 
@@ -547,31 +528,17 @@
 
 
 
-
-
-
-
-
   
 
   
     <!-- Google Analytics -->
     <script defer>
-      (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
       ga('create', 'UA-166912137-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
   
 
   
