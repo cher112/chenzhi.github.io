@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>Archives - 陈之的鱼塘</title>
+  <title>陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -45,7 +45,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -151,7 +151,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
+         style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -164,6 +164,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -173,27 +177,80 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">21 posts in total.</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/posts/cb6a52c.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LSTM -Pytorch实现&amp;解构</span>
-      <time style="float: right;">08-04</time>
-    </a>
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/bc85e8d9.html" target="_self">
+          <img src="https://gitee.com/cher112/image/raw/master/img/数据库.jpg" alt="SQL基础(一)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/bc85e8d9.html">SQL基础(一)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/bc85e8d9.html">
+          
+          
+            
+          
+          SQLSQL数据定义基本类型如果对char(10)属性存入Avi，则空的七个字符会被空格填入，varchar(10)则不会有空格
+
+用var和char对比，var 不一定 会自动填入空格来使长度一致，取决于数据库系统两个char则会自动添加空格使长度一致
+
+基本模式定义完整性约束
+查询的基本结构单关系查询
+select dept_name from instructor where name = 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-11 20:44" pubdate>
+              2020-05-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </span>
+  </nav>
   
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -419,7 +476,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/08/index.html');
+          var target = decodeURI('/page/3/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -488,7 +545,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "今日摸鱼（1|1）&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,

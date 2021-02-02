@@ -188,12 +188,24 @@
       
       <p class="h5">2020</p>
     
-    <a href="/posts/cb6a52c.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LSTM -Pytorch实现&amp;解构</span>
-      <time style="float: right;">08-04</time>
+    <a href="/posts/bc85e8d9.html" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">SQL基础(一)</span>
+      <time style="float: right;">05-11</time>
     </a>
   
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -419,7 +431,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2020/08/index.html');
+          var target = decodeURI('/archives/page/3/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {

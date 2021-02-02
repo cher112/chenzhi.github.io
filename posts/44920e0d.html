@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Zhihao Chen">
+  <meta name="keywords" content="">
+  <title>操作系统 实验五-基于内核栈切换的进程切换 - 陈之的鱼塘</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>My Nest</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                目录
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-02 17:34" pubdate>
+        February 2, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统 实验五-基于内核栈切换的进程切换</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="实验五-基于内核栈切换的进程切换"><a href="#实验五-基于内核栈切换的进程切换" class="headerlink" title="实验五 基于内核栈切换的进程切换"></a>实验五 基于内核栈切换的进程切换</h1><blockquote>
+<p>本文资源来自 哈工大李治军老师的 操作系统原理与实践 课程<br>实验地址：<a href="https://www.lanqiao.cn/courses/115" target="_blank" rel="noopener">https://www.lanqiao.cn/courses/115</a><br>课程地址：<a href="https://www.bilibili.com/video/BV1d4411v7u7" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1d4411v7u7</a><br>部分图文来自 《操作系统真像还原》 郑刚，带我走进操作系统</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h1 id="对初学者的建议"><a href="#对初学者的建议" class="headerlink" title="对初学者的建议"></a>对初学者的建议</h1><p>如果想真正学会操作系统，需要的远不仅仅是“看懂”CPU 内存管理 外设 IO 的 抽象原理，真正要做的是动手去写。而最易懂的方法是 <strong>在linux中操作</strong>。通过 bochs 自动生成img镜像 自己往镜像里面写一个不那么完整操作系统，并在此过程中调试，<del>最终逐渐理解一切</del><br>~~<br>想要做实验，需要具有以下基础</p>
+<ul>
+<li>intel汇编，AT&amp;T汇编</li>
+<li>会拆解内联汇编</li>
+<li>c语言，尤其指针和结构体部分</li>
+<li>linux命令</li>
+</ul>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611759932556-202f8ca2-d00a-4485-b954-68a88349a41d.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p>上图展示了 linux 0.11版本 从系统加电起执行程序的顺序，其中 .s是汇编源代码文件，.c是c|c++文件。因此需要系统学习汇编和c语言基础，我们在内核部分还会碰到在c语言内嵌入汇编代码的情况，因此这两部分是硬实力，必须掌握。除此之外推荐“拿来主义”，到了再学。</p>
+<h1 id="TSS-PCB-TCB-LDT"><a href="#TSS-PCB-TCB-LDT" class="headerlink" title="TSS PCB/TCB LDT"></a>TSS PCB/TCB LDT</h1><h2 id="TSS"><a href="#TSS" class="headerlink" title="TSS"></a>TSS</h2><p>TSS ，即 Task State Segment ，意为任务状态段，它是处理器在硬件上原生支持多任务的一种实现方式，下图是它的数据结构，TSS 是每个任务都有的结构 它用于任务的标识，相当于任务的身份证，程序拥有此结构才能运<br>行，这是处理器硬件上用于任务管理的系统结构。通过在GDT注册后使用</p>
+<p>从28-100就是把寄存器压栈，存储该任务的<strong>状态</strong>，espX代表了对应<strong>特权级</strong>的栈地址。本实验中因为tss用于操作内核栈，故使用esp0。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611760549047-32be31a3-c691-49d3-9ac6-d69fb519cab5.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611761392878-d50f2965-f4ac-4265-b5d5-66a3c7d091f0.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p>操作系统为每个进程提供了 PCB ，Process Control Block，即程序控制块，它就是进程的身份证，用它来记录与此进程相关的信息，比如进程状态、 PID 、优先级等。又可称为进程表项。tcb就是thread CB，类比。</p>
+<p>要注意的是，PCB格式并不唯一，大小以 页（4KB）为单位，而本实验中的<strong>内核栈指针</strong>位于满栈的栈顶。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611760839689-abf8bd7a-450e-459b-8628-7db36a95f680.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="LDT"><a href="#LDT" class="headerlink" title="LDT"></a>LDT</h2><p>LDT Local Descriptor Table 的缩写，即局部描述符表。Inter建议为每个程序单独赋予一个程序描述其<strong>私有资源</strong>（代码段，数据段，栈段）的数据结构，即LDT。在GDT注册使用</p>
+<p>通过选择子找到对应的LDT描述符，再通过段基址：偏移+映射找到对应私有资源地址。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611761188491-86108645-c194-4254-ae9c-329179eaf349.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="实验逻辑"><a href="#实验逻辑" class="headerlink" title="实验逻辑"></a>实验逻辑</h1><p>本实验最终要求不完全依靠TSS，用PCB和LDT实现堆栈形式的基于内核栈切换的进程切换。<br>其中内核级进程使用的是fork（）陷入，因此简易了创建新进程的步骤。</p>
+<p>进程切换最关键的函数在 switch_to，通过TCB的内核栈指针，ret到内核程序，用CS:IP切到用户段。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612254147283-0a117db4-e892-40d5-a682-51ba7609e1a7.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="修改schedule调度函数"><a href="#修改schedule调度函数" class="headerlink" title="修改schedule调度函数"></a>修改schedule调度函数</h2><pre><code class="hljs c">kernal/sched.c schedule() 函数:
+
+<span class="hljs-keyword">if</span> ((*p)-&gt;state == TASK_RUNNING &amp;&amp; (*p)-&gt;counter &gt; c)
+    c = (*p)-&gt;counter, next = i, pnext = *p;
+
+
+switch_to(pnext, LDT(next));
+&#125;</code></pre>
+
+<ul>
+<li>pnext——下一进程的指针，与current对应。</li>
+<li>LDT(next)——下一进程的LDT地址</li>
+<li>current——在 &lt;asm/current.h&gt; 中定义, 它产生一个指针指向结构 task_struct，在此指向当前运行进程</li>
+</ul>
+<p>next在没学选择子前，可以理解为GDT数组标号。</p>
+<h2 id="补充-c语言函数调用栈"><a href="#补充-c语言函数调用栈" class="headerlink" title="补充 c语言函数调用栈"></a>补充 c语言函数调用栈</h2><p>在schedule()中，switch是被调函数，所以ebp位置如图(EBP of callee function)<br>所以在schedule的函数调用栈中，<br>switch_to运行时，2个参数分别位于8（ebp）和12（ebp）。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612251461308-3b5faea6-9882-43be-bbc4-26c2f3fd1fb1.jpeg" srcset="/img/loading.gif" alt=""></p>
+<h2 id="实现不主要依靠TSS的switch-to"><a href="#实现不主要依靠TSS的switch-to" class="headerlink" title="实现不主要依靠TSS的switch_to()"></a>实现不主要依靠TSS的switch_to()</h2><pre><code class="hljs c">已修改版本，在代码块里逐行讲。老师写的太漂亮了～
+switch_to:
+    pushl %ebp
+    movl %esp,%ebp
+ !这里栈帧初始化，然后把子进程PCB指针地址pnext传给ebx，和全局变量current对比
+    pushl %ecx
+    pushl %ebx
+    pushl %eax
+    movl <span class="hljs-number">8</span>(%ebp),%ebx
+    cmpl %ebx,current
+    je <span class="hljs-number">1f</span>
+! 切换PCB
+    movl %ebx,%eax
+	xchgl %eax,current	! 交换current和eax,实现PCB指针切换
+    
+    
+! TSS中的内核栈指针的重写
+! 只是充当“保留”功能，因为原linux用的tss切换(数据结构繁琐，相对耗时)，这里作保留的把<span class="hljs-number">0</span>号tss
+! 的esp0(位于<span class="hljs-number">4</span>偏移),对应内核栈指针重写为下一进程PCB顶部的nei
+    movl tss,%ecx
+    addl $<span class="hljs-number">4096</span>,%ebx
+    movl %ebx,ESP0(%ecx)
+! 切换内核栈
+    KERNEL_STACK = <span class="hljs-number">12</span>
+	movl %esp,KERNEL_STACK(%eax)
+! 再取一下 ebx，因为前面修改过 ebx 的值
+	movl <span class="hljs-number">8</span>(%ebp),%ebx
+	movl KERNEL_STACK(%ebx),%esp
+! 切换LDT，本质是切换用户态映射。
+    movl <span class="hljs-number">12</span>(%ebp),%ecx
+    mov %cx,%fs
+    movl $<span class="hljs-number">0x17</span>,%ecx
+    mov %cx,%fs
+! 和后面的 clts 配合来处理协处理器，由于和主题关系不大，此处不做论述
+    cmpl %eax,last_task_used_math
+    jne <span class="hljs-number">1f</span>
+    clts
+
+<span class="hljs-number">1</span>:    popl %eax
+    popl %ebx
+    popl %ecx
+    popl %ebp
+ret</code></pre>
+<pre><code class="hljs c"><span class="hljs-comment">// 在 include/linux/sched.h 中</span>
+<span class="hljs-comment">//原本PCB中是没有内核栈指针的属性的，但可以人为添加，看一下新PCB数据结构</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> &#123;</span>
+    <span class="hljs-keyword">long</span> state;
+    <span class="hljs-keyword">long</span> counter;
+    <span class="hljs-keyword">long</span> priority;
+    <span class="hljs-keyword">long</span> kernelstack;
+<span class="hljs-comment">//......</span></code></pre>
+
+
+<h2 id="修改fork-c"><a href="#修改fork-c" class="headerlink" title="修改fork.c"></a>修改fork.c</h2><p>fork直译是叉子，可以形象理解为最上面的尖头是父进程，下面的是子进程，是通过<strong>拷贝父进程+修改生成的</strong><br>这是fork.c修改的部分代码，是看懂switch必须会的部分。</p>
+<pre><code class="hljs c">! sched -&gt; sys_fork -&gt;call copy_process
+copy_process()&#123;
+    <span class="hljs-keyword">long</span> * krnstack; 
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> *<span class="hljs-title">p</span></span>
+<span class="hljs-class">    <span class="hljs-title">p</span>= (<span class="hljs-title">struct</span> <span class="hljs-title">task_struct</span> *)<span class="hljs-title">get_free_page</span>();</span><span class="hljs-comment">//获取一个空闲页用作存放自定义内核栈+PCB</span>
+    
+    krnstack=(<span class="hljs-keyword">long</span>)(PAGE_SIZE+(<span class="hljs-keyword">long</span>)p);<span class="hljs-comment">//把krnstack内容放在页末（对应后面问题）</span>
+    
+    !PCB初始化
+    p-&gt;state = TASK_UNINTERRUPTIBLE; 
+    p-&gt;pid = last_pid; 
+    p-&gt;father = current-&gt;pid; 
+    p-&gt;counter = p-&gt;priority
+    
+    
+    *(--krnstack) = ss &amp; <span class="hljs-number">0xffff</span>;
+    *(--krnstack) = esp;
+    *(--krnstack) = eflags;
+    *(--krnstack) = cs &amp; <span class="hljs-number">0xffff</span>;
+    *(--krnstack) = eip;
+    *(--krnstack) = ebp;
+    *(--krnstack) = ecx;
+    *(--krnstack) = ebx;
+    <span class="hljs-comment">// 这里的 0 最有意思，细致观察会发现弹栈这里对应的是%eax，原因放在“问题”做解释</span>
+    *(--krnstack) = <span class="hljs-number">0</span>;
+
+    p-&gt;kernelstack = krnstack;</code></pre>
+
+
+<h1 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h1><p>针对下面的代码片段：</p>
+<pre><code class="hljs mel">movl tss,%ecx
+addl $4096,%ebx
+movl %ebx,ESP0(%ecx)</code></pre>
+<p>回答问题：</p>
+<ul>
+<li>（1）为什么要加4096；</li>
+</ul>
+<p>在copy_process()中，子进程的PCB大小设置为一页4KB，而内核栈基址设在了页末所以是 PCB指针+4096</p>
+<ul>
+<li>（2）为什么没有设置tss中的ss0。</li>
+</ul>
+<p>对于linux0.11来说，内核栈段的选择子永远都是0x10，故ss0不用初始化</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/41dfe9fa.html">
+                        <span class="hidden-mobile">CPP基础笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
+          app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
+          placeholder: "来说点什么吧～",
+          path: window.location.pathname,
+          avatar: "monsterid",
+          meta: ["nick","mail"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/posts/44920e0d.html');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz'
+    var app_key = 'Qj9gggkYd7RhSSxinWCvCCMk'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "操作系统 实验五-基于内核栈切换的进程切换&nbsp;",
+      ],
+      cursorChar: "🐟",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-166912137-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
