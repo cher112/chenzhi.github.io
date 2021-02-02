@@ -359,9 +359,9 @@ copy_process()&#123;
     p-&gt;kernelstack = krnstack;</code></pre>
 
 <h1 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h1><p>针对下面的代码片段：</p>
-<pre><code class="hljs xquery">movl tss,<span class="hljs-meta">%ecx</span>
-addl <span class="hljs-variable">$4096</span>,<span class="hljs-meta">%ebx</span>
-movl <span class="hljs-meta">%ebx</span>,ESP<span class="hljs-number">0</span>(<span class="hljs-meta">%ecx</span>)</code></pre>
+<pre><code class="hljs mel">movl tss,%ecx
+addl $4096,%ebx
+movl %ebx,ESP0(%ecx)</code></pre>
 <p>回答问题：</p>
 <ul>
 <li>（1）为什么要加4096；</li>
@@ -422,7 +422,7 @@ movl <span class="hljs-meta">%ebx</span>,ESP<span class="hljs-number">0</span>(<
           el: "#vcomments",
           app_id: "a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz",
           app_key: "Qj9gggkYd7RhSSxinWCvCCMk",
-          placeholder: "Write a Comment O(∩_∩)O~～",
+          placeholder: "欢迎评论～O(∩_∩)O",
           path: window.location.pathname,
           avatar: "monsterid",
           meta: ["nick","mail"],
