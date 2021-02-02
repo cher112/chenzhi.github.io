@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>java week3-41 - 陈之的鱼塘</title>
+  <title>陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -54,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -201,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      23
        分钟
     </span>
   
@@ -239,7 +239,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">java week3-41</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body" id="post-body">
               <h1 id="Java-week3-4-总结"><a href="#Java-week3-4-总结" class="headerlink" title="Java week3-4 总结"></a>Java week3-4 总结</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/image-20200603111200391.png" srcset="/img/loading.gif" alt="image-20200603111200391"></p>
@@ -264,7 +264,7 @@
 <p>用一个十分简单的代码段模拟一下Java堆栈的运行过程：</p>
 <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppTest</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"张三"</span>);
+    Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;张三&quot;</span>);
     person.sayHello();
     &#125;
     &#125;
@@ -275,10 +275,9 @@
     &#125; 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>
 <span class="hljs-function">    </span>&#123;
-    System.out.println(<span class="hljs-string">"hello "</span> + name);
+    System.out.println(<span class="hljs-string">&quot;hello &quot;</span> + name);
     &#125;
     &#125;</code></pre>
-
 <p>新建一个main线程的一个栈</p>
 <p>jvm在方法区寻找是否存在Person类的信息</p>
 <p>如果没找到类加载器加载Person类信息到方法区，然后在堆中创建Person对象，并持有方法区的引用</p>
@@ -309,27 +308,25 @@
     &#125;
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
-        System.out.println(<span class="hljs-string">"要死了要死了要死了!"</span>);
+        System.out.println(<span class="hljs-string">&quot;要死了要死了要死了!&quot;</span>);
     &#125; 
 &#125;
 
 output:
-<span class="hljs-string">"要死了要死了要死了!"</span>
+<span class="hljs-string">&quot;要死了要死了要死了!&quot;</span>
 NULL</code></pre>
-
 
 
 <h1 id="工具类-Math-string"><a href="#工具类-Math-string" class="headerlink" title="工具类(Math,string)"></a>工具类(Math,string)</h1><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>字符串是常量；它们的值在创建之后不能更改。字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。例如：</p>
 <blockquote>
-<pre><code class="hljs armasm"><span class="hljs-keyword">String </span><span class="hljs-keyword">str </span>= <span class="hljs-string">"abc"</span><span class="hljs-comment">;</span>
- </code></pre>
-</blockquote>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">String str</span> = <span class="hljs-string">&quot;abc&quot;</span>;</code></pre>
 <p>等效于：</p>
-<blockquote>
-<pre><code class="hljs processing"><span class="hljs-built_in">char</span> data[] = &#123;<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>&#125;;
-<span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(data);</code></pre>
 </blockquote>
+<blockquote>
+<pre><code class="hljs processing"><span class="hljs-built_in">char</span> data[] = &#123;<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>&#125;;
+<span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(data);</code></pre>
 <p>常用方法：</p>
+</blockquote>
 <p>string.length();</p>
 <p>string1.concat(string2); //连接两个字符串</p>
 <p>Java charAt() 方法 //返回指定索引处的字符</p>
@@ -341,7 +338,7 @@ NULL</code></pre>
 <p>eg:</p>
 <p>![image-20200603164324214](D:\Thunder Download\java课件\image-20200603164324214.png)</p>
 <p>output:swear oft.</p>
-<p><a href="https://www.runoob.com/java/java-string.html" target="_blank" rel="noopener">string类api</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-string.html">string类api</a></p>
 <h2 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h2><p>Java 的 Math 包含了用于执行基本数学运算的属性和方法，如初等指数、对数、平方根和三角函数。</p>
 <p>Math 的方法都被定义为 <strong>static 形式</strong>，通过 Math 类可以在主函数中直接调用。</p>
 <p>public class Test {      </p>
@@ -355,13 +352,12 @@ NULL</code></pre>
 <p>​      } </p>
 <p>  }</p>
 <p>以上实例编译运行结果如下：</p>
-<pre><code class="hljs angelscript"><span class="hljs-number">90</span> 度的正弦值：<span class="hljs-number">1.0</span>
-<span class="hljs-number">0</span>度的余弦值：<span class="hljs-number">1.0</span>
-<span class="hljs-number">60</span>度的正切值：<span class="hljs-number">1.7320508075688767</span>
-<span class="hljs-number">1</span>的反正切值： <span class="hljs-number">0.7853981633974483</span>
-π/<span class="hljs-number">2</span>的角度值：<span class="hljs-number">90.0</span>
-<span class="hljs-number">3.141592653589793</span></code></pre>
-
+<pre><code class="hljs jboss-cli">90 度的正弦值：1.0
+0度的余弦值：1.0
+60度的正切值：1.7320508075688767
+1的反正切值： 0.7853981633974483
+π<span class="hljs-string">/2</span>的角度值：90.0
+3.141592653589793</code></pre>
 
 
 <h2 id="Number类"><a href="#Number类" class="headerlink" title="Number类"></a>Number类</h2><p>然而，在实际开发过程中，我们经常会遇到需要使用对象，而不是内置数据类型的情形。为了解决这个问题，Java 语言为每一个内置数据类型提供了对应的包装类。</p>
@@ -394,8 +390,8 @@ NULL</code></pre>
 <pre><code class="hljs java">EOFException e = <span class="hljs-function">nw <span class="hljs-title">EOFException</span><span class="hljs-params">()</span></span>;
 <span class="hljs-keyword">throw</span> e;
 或者
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EOPException(匿名)</code></pre>
-
+<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EOPException(匿名)
+</code></pre>
 <h3 id="创建异常类"><a href="#创建异常类" class="headerlink" title="创建异常类"></a>创建异常类</h3><p>一般要继承</p>
 <p>例如， 定义一个派生于 IOException 的类。<br>习惯上， 定义的类应该包含两个构造器， 一个是默认的构造器；另一个是带有详细描述信息<br>的构造器（<strong>超类 Throwable 的 toString 方法将会打印出这些详细信息， 这在调试中非常有用)。</strong>  </p>
 <p>eg：</p>
@@ -405,10 +401,9 @@ NULL</code></pre>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileFormatException</span><span class="hljs-params">(String gripe)</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-keyword">super</span>(gripe); <span class="hljs-comment">//原本的含参gripe为：</span>
-    <span class="hljs-string">"Content-length: "</span> + len + <span class="hljs-string">", Received: "</span> + n;
+    <span class="hljs-string">&quot;Content-length: &quot;</span> + len + <span class="hljs-string">&quot;, Received: &quot;</span> + n;
 &#125;
 &#125;</code></pre>
-
 <p>补充，一些throwable的方法</p>
 <p>e.getMessage();</p>
 <p>e.getClass().getName();</p>
@@ -421,23 +416,22 @@ NULL</code></pre>
 </li>
 </ul>
 <h1 id="文件输入"><a href="#文件输入" class="headerlink" title="文件输入"></a>文件输入</h1><pre><code class="hljs java">LocalDateTime dNow = LocalDateTime.now();
-DateTimeFormatter ft = DateTimeFormatter.ofPattern(<span class="hljs-string">"yyyy-MM-dd-hh-mm-ss"</span>);
-UrlString = UrlString.replaceAll(<span class="hljs-string">"\\."</span>,<span class="hljs-string">"-"</span>);
-File f = <span class="hljs-keyword">new</span> File(UrlString+<span class="hljs-string">"-"</span>+ft.format(dNow)+<span class="hljs-string">".txt"</span>);
+DateTimeFormatter ft = DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd-hh-mm-ss&quot;</span>);
+UrlString = UrlString.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>,<span class="hljs-string">&quot;-&quot;</span>);
+File f = <span class="hljs-keyword">new</span> File(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);
 f.createNewFile();
 FileOutputStream file1 = <span class="hljs-keyword">new</span> FileOutputStream(f);
 PrintStream print2 = <span class="hljs-keyword">new</span> PrintStream(file1);
 System.setOut(print2);
-System.out.println(UrlString+<span class="hljs-string">"-"</span>+ft.format(dNow)+<span class="hljs-string">".txt"</span>);
+System.out.println(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);
 System.out.println();
-System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
+System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span>);
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)&#123;
-  System.out.print(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*i+<span class="hljs-string">"-"</span>+(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*(i+<span class="hljs-number">1</span>))+<span class="hljs-string">":"</span>+list_hist.get(i));
+  System.out.print(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*i+<span class="hljs-string">&quot;-&quot;</span>+(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*(i+<span class="hljs-number">1</span>))+<span class="hljs-string">&quot;:&quot;</span>+list_hist.get(i));
   System.out.println();
   &#125; 
 
   scanner.close();</code></pre>
-
 
 
 
@@ -471,7 +465,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -489,7 +483,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
                     
                     
                       <a href="/posts/214a1d7e.html">
-                        <span class="hidden-mobile">终身成长(一)</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -526,7 +520,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
     }
     waitElementVisible('vcomments', loadValine);
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
@@ -864,7 +858,7 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "java week3-41&nbsp;",
+        "&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
@@ -958,5 +952,10 @@ System.out.println(<span class="hljs-string">"RTT(ms) histogram"</span>);
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
+<!-- hexo injector body_end start -->
+  <div id="aplayer"></div>
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+  <script defer src="/js/aplayer.js"></script>
+<!-- hexo injector body_end end --><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
 </html>

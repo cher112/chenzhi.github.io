@@ -54,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -259,9 +259,9 @@
 <h3 id="3-D张量"><a href="#3-D张量" class="headerlink" title="3+D张量"></a>3+D张量</h3><p>将多个矩阵组合成一个新的数组，可以得到一个 3D 张量，你可以将其直观地理解为数字<br>组成的立方体。下面是一个 Numpy 的 3D 张量。<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1585137256173-2ae121f0-e513-4070-b7b5-bbb5d62d5bf0.png" srcset="/img/loading.gif" alt="image.png"><br>4D类似。</p>
 <p>图解张量：</p>
 <p><img src="https://gitee.com/cher112/image/raw/master/img/1585137499192-308c0ea3-2732-4787-8662-c68d910c8671.jpeg" srcset="/img/loading.gif" alt=""></p>
-<h2 id="张量运算"><a href="#张量运算" class="headerlink" title="张量运算"></a>张量运算</h2><pre><code class="hljs python">keras.layers.Dense(<span class="hljs-number">512</span>, activation=<span class="hljs-string">'relu'</span>)
-output = relu(dot(W, input) + b)</code></pre>
-<p>可以理解为 一个函数 输入input，操作后返回另一个2D张量<br>我们将上式拆开来看。这里有三个张量运算：输入张量和张量 W 之间的<strong>点积运算（ dot）</strong>、<br>得到的 2D 张量与向量 b 之间的<strong>加法运算（ +）</strong>、最后的 <strong>relu 运算</strong>。 relu(x) 是 max(x, 0)。<br><a href="https://zhuanlan.zhihu.com/p/46255482" target="_blank" rel="noopener">RELU详解</a></p>
+<h2 id="张量运算"><a href="#张量运算" class="headerlink" title="张量运算"></a>张量运算</h2><pre><code class="hljs python">keras.layers.Dense(<span class="hljs-number">512</span>, activation=<span class="hljs-string">&#x27;relu&#x27;</span>)
+output = relu(dot(W, <span class="hljs-built_in">input</span>) + b)</code></pre>
+<p>可以理解为 一个函数 输入input，操作后返回另一个2D张量<br>我们将上式拆开来看。这里有三个张量运算：输入张量和张量 W 之间的<strong>点积运算（ dot）</strong>、<br>得到的 2D 张量与向量 b 之间的<strong>加法运算（ +）</strong>、最后的 <strong>relu 运算</strong>。 relu(x) 是 max(x, 0)。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46255482">RELU详解</a></p>
 <h3 id="逐元素运算"><a href="#逐元素运算" class="headerlink" title="逐元素运算"></a>逐元素运算</h3><p>该运算独立地应用于张量中的每个元素<br>方法：</p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 z = x + y
@@ -274,7 +274,6 @@ z = np.maximum(z, <span class="hljs-number">0.</span>)
 x = np.random.random((<span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">10</span>))
 y = np.random.random((<span class="hljs-number">32</span>, <span class="hljs-number">10</span>))
 z = np.maximum(x, y) //输出形状为(<span class="hljs-number">64</span>,<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">10</span>)</code></pre>
-
 
 <h3 id="张量点积"><a href="#张量点积" class="headerlink" title="张量点积"></a>张量点积</h3><p><strong>点积运算，也叫张量积（ tensor product，不要与逐元素的乘积弄混）</strong>，是最常见也最有用的<br>张量运算。与逐元素的运算不同，它将输入张量的元素合并在一起。<br><img src="https://gitee.com/cher112/image/raw/master/img/1585138183116-a208c9ad-7798-4d6b-ae4d-65cd3776a975.png" srcset="/img/loading.gif" alt="image.png"><br>对于两个矩阵 x 和 y，当且仅当 x.shape[1] == y.shape[0] 时，你才可以对它们做点积（dot(x, y)）。<br>得到的结果是一个形状为 (x.shape[0], y.shape[1])   的矩阵，其元素为 x的行与 y 的列之间的点积。<br>图解<br><img src="https://gitee.com/cher112/image/raw/master/img/1585138236648-a13ee44b-5ca8-4134-808a-01b6ebcc89b5.png" srcset="/img/loading.gif" alt="image.png"><br>维度：(a,b) . (b,c) → (a,c)<br>高维拓展<br>(a, b, c, d) . (d,) -&gt; (a, b, c)<br>(a, b, c, d) . (d, e) -&gt; (a, b, c, e)</p>
 <blockquote>
@@ -304,7 +303,6 @@ momentum = <span class="hljs-number">0.1</span>
 	past_velocity = velocity
 	update_parameter(w)</code></pre>
 
-
 <p>Q:不太理解V的概念，学到优化器再补充</p>
 
             </div>
@@ -329,7 +327,7 @@ momentum = <span class="hljs-number">0.1</span>
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -384,7 +382,7 @@ momentum = <span class="hljs-number">0.1</span>
     }
     waitElementVisible('vcomments', loadValine);
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
       powered by Valine.</a></noscript>
 
 
@@ -816,5 +814,10 @@ momentum = <span class="hljs-number">0.1</span>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
+<!-- hexo injector body_end start -->
+  <div id="aplayer"></div>
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+  <script defer src="/js/aplayer.js"></script>
+<!-- hexo injector body_end end --><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/gh/cher112/live2d@master/live2d_models/Yamato/Yamato.model.json"},"mobile":{"show":false},"display":{"superSample":2,"position":"right","vOffset":-20,"hOffset":40,"width":200,"height":300},"react":{"opacity":0.8},"log":false});</script></body>
 </html>
