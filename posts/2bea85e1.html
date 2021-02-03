@@ -19,10 +19,23 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>Tags - Vtubers - 陈之的鱼塘</title>
+  <title>鱼塘2.0 功能介绍 - 陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +58,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -161,6 +174,42 @@
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-03 15:08" pubdate>
+        February 3, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      107 字
+    </span>
+  
+
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -171,37 +220,244 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">1 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/posts/cbf972d8.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">hololive事件之我见</span>
-      <time style="float: right;">10-01</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">鱼塘2.0 功能介绍</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是考研结束前最后一次更新，更新了大量内容</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li>HEXO-FLUID-THEME v1.8.7搭载</li>
+<li>Aplayer注入器实现</li>
+<li>valine-admin魔改，QQ邮箱自动爬取头像，admin功能，垃圾评论防火墙</li>
+<li><del>清除了hololive和musedash相关内容</del></li>
+</ul>
+<blockquote>
+<p>特别感谢 <a target="_blank" rel="noopener" href="https://www.antmoe.com/posts/2380732b/index.html">https://www.antmoe.com/posts/2380732b/index.html</a> 的保姆级教程</p>
+</blockquote>
+<p>过年期间会陆续放一些os和csapp的笔记，尽情期待。</p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/44920e0d.html">
+                        <span class="hidden-mobile">操作系统 实验五-基于内核栈切换的进程切换</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      // Valine.min.js
+      addScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          master: '5a0838f4824bddba01cb0c13c83bc63f',
+          friends: '05e1fa6e2fd5507abae71327eea8fe40',
+          app_id: "PcujGXtWWTUj0YN2DPPKPLrO-MdYXbMMI",
+          app_key: "J7vh9A9xqNtQ4wQqHUInONzi",
+          placeholder: "欢迎评论～O(∩_∩)O",
+          path: window.location.pathname,
+          avatar: "monsterid",
+          meta: ["nick","mail"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+          emojiCDN: 'https://valinecdn.bili33.top/', 
+    // 表情title和图片映射
+    emojiMaps: {
+      "QQ1": "QQ/aini.gif",
+      "QQ2": "QQ/aixin.gif",
+      "QQ3": "QQ/aoman.gif",
+      "QQ4": "QQ/baiyan.gif",
+      "QQ5": "QQ/bangbangtang.gif",
+      "QQ6": "QQ/baojin.gif",
+      "QQ7": "QQ/baoquan.gif",
+      "QQ8": "QQ/bishi.gif",
+      "QQ9": "QQ/bizui.gif",
+      "QQ11": "QQ/cahan.gif",
+      "QQ12": "QQ/caidao.gif",
+      "QQ13": "QQ/chi.gif",
+      "QQ14": "QQ/ciya.gif",
+      "QQ15": "QQ/dabing.gif",
+      "QQ16": "QQ/daku.gif",
+      "QQ17": "QQ/dan.gif",
+      "QQ18": "QQ/deyi.gif",
+      "QQ19": "QQ/doge.gif",
+      "QQ20": "QQ/fadai.gif",
+      "QQ21": "QQ/fanu.gif",
+      "QQ22": "QQ/fendou.gif",
+      "QQ23": "QQ/ganga.gif",
+      "QQ24": "QQ/gouyin.gif",
+      "QQ25": "QQ/guzhang.gif",
+      "QQ26": "QQ/haixiu.gif",
+      "QQ27": "QQ/hanxiao.gif",
+      "QQ28": "QQ/haobang.gif",
+      "QQ29": "QQ/haqian.gif",
+      "QQ30": "QQ/hecai.gif",
+      "QQ31": "QQ/hexie.gif",
+      "QQ32": "QQ/huaixiao.gif",
+      "QQ33": "QQ/jie.gif",
+      "QQ34": "QQ/jingkong.gif",
+      "QQ35": "QQ/jingxi.gif",
+      "QQ36": "QQ/jingya.gif",
+      "QQ37": "QQ/juhua.gif",
+      "QQ38": "QQ/keai.gif",
+      "QQ39": "QQ/kelian.gif",
+      "QQ40": "QQ/koubi.gif",
+      "QQ41": "QQ/ku.gif",
+      "QQ42": "QQ/kuaikule.gif",
+      "QQ43": "QQ/kulou.gif",
+      "QQ44": "QQ/kun.gif",
+      "QQ45": "QQ/lanqiu.gif",
+      "QQ46": "QQ/leiben.gif",
+      "QQ47": "QQ/lenghan.gif",
+      "QQ48": "QQ/liuhan.gif",
+      "QQ49": "QQ/liulei.gif",
+      "QQ50": "QQ/nanguo.gif",
+      "QQ51": "QQ/OK.gif",
+      "QQ52": "QQ/penxue.gif",
+      "QQ53": "QQ/piezui.gif",
+      "QQ54": "QQ/pijiu.gif",
+      "QQ55": "QQ/qiang.gif",
+      "QQ56": "QQ/qiaoda.gif",
+      "QQ57": "QQ/qinqin.gif",
+      "QQ58": "QQ/qiudale.gif",
+      "QQ59": "QQ/quantou.gif",
+      "QQ60": "QQ/saorao.gif",
+      "bilibili22332": "bilibili2233/[2233娘_卖萌].png",
+      "bilibili22333": "bilibili2233/[2233娘_吃惊].png",
+      "bilibili22334": "bilibili2233/[2233娘_吐魂].png",
+      "bilibili22335": "bilibili2233/[2233娘_喝水].png",
+      "bilibili22336": "bilibili2233/[2233娘_困惑].png",
+      "bilibili22337": "bilibili2233/[2233娘_大哭].png",
+      "bilibili22338": "bilibili2233/[2233娘_大笑].png",
+      "bilibili22339": "bilibili2233/[2233娘_委屈].png",
+      "bilibili223310": "bilibili2233/[2233娘_怒].png",
+      "bilibili223311": "bilibili2233/[2233娘_无言].png",
+      "bilibili223312": "bilibili2233/[2233娘_汗].png",
+      "bilibili223313": "bilibili2233/[2233娘_疑问].png",
+      "bilibili223314": "bilibili2233/[2233娘_第一].png",
+      "bilibili223315": "bilibili2233/[2233娘_耶].png",
+      "bilibili223316": "bilibili2233/[2233娘_郁闷].png",
+      "Yurui-Neko1": "Yurui-Neko/001.png",
+      "Yurui-Neko2": "Yurui-Neko/002.png",
+      "Yurui-Neko3": "Yurui-Neko/003.png",
+      "Yurui-Neko4": "Yurui-Neko/004.png",
+      "Yurui-Neko5": "Yurui-Neko/005.png",
+      "Yurui-Neko6": "Yurui-Neko/006.png",
+      "Yurui-Neko7": "Yurui-Neko/007.png",
+      "Yurui-Neko8": "Yurui-Neko/008.png",
+      "Yurui-Neko9": "Yurui-Neko/009.png",
+      "Yurui-Neko10": "Yurui-Neko/010.png",
+      "Yurui-Neko11": "Yurui-Neko/011.png",
+      "Yurui-Neko12": "Yurui-Neko/012.png",
+      "Yurui-Neko13": "Yurui-Neko/013.png",
+      "Yurui-Neko14": "Yurui-Neko/014.png",
+      "Yurui-Neko15": "Yurui-Neko/015.png",
+      "Yurui-Neko16": "Yurui-Neko/016.png",
+      "Yurui-Neko17": "Yurui-Neko/017.png",
+      "Yurui-Neko18": "Yurui-Neko/018.png",
+      "Yurui-Neko19": "Yurui-Neko/019.png",
+      "Yurui-Neko20": "Yurui-Neko/020.png",
+      "Yurui-Neko21": "Yurui-Neko/021.png",
+      "Yurui-Neko22": "Yurui-Neko/022.png",
+      "Yurui-Neko23": "Yurui-Neko/023.png",
+      "Yurui-Neko24": "Yurui-Neko/024.png",
+      "Yurui-Neko25": "Yurui-Neko/025.png",
+      "Yurui-Neko26": "Yurui-Neko/026.png",
+      "Yurui-Neko27": "Yurui-Neko/027.png",
+      "Yurui-Neko28": "Yurui-Neko/028.png",
+      "Yurui-Neko29": "Yurui-Neko/029.png",
+      "Yurui-Neko30": "Yurui-Neko/030.png",
+      "Yurui-Neko31": "Yurui-Neko/031.png",
+      "Yurui-Neko32": "Yurui-Neko/032.png",
+      "Yurui-Neko33": "Yurui-Neko/033.png",
+      "Yurui-Neko34": "Yurui-Neko/034.png",
+      "Yurui-Neko35": "Yurui-Neko/035.png",
+      "Yurui-Neko36": "Yurui-Neko/036.png",
+      "Yurui-Neko37": "Yurui-Neko/037.png",
+      "Yurui-Neko38": "Yurui-Neko/038.png",
+      "Yurui-Neko39": "Yurui-Neko/039.png",
+      "Yurui-Neko40": "Yurui-Neko/040.png"
+        // ... 更多表情
+    }
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <style>
+    .v[data-class=v] .veditor {
+        background-image: url(https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/c_girl.gif);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+    </style>
+    
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -283,6 +539,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -416,10 +674,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/Vtubers/index.html');
+          var target = decodeURI('/posts/2bea85e1.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -481,6 +739,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -488,7 +771,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tag - Vtubers&nbsp;",
+        "鱼塘2.0 功能介绍&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
@@ -503,6 +786,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -516,6 +814,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

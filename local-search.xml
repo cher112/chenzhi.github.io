@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>鱼塘2.0 功能介绍</title>
+    <link href="/posts/2bea85e1.html"/>
+    <url>/posts/2bea85e1.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是考研结束前最后一次更新，更新了大量内容</p><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul><li>HEXO-FLUID-THEME v1.8.7搭载</li><li>Aplayer注入器实现</li><li>valine-admin魔改，QQ邮箱自动爬取头像，admin功能，垃圾评论防火墙</li><li><del>清除了hololive和musedash相关内容</del></li></ul><blockquote><p>特别感谢 <a href="https://www.antmoe.com/posts/2380732b/index.html">https://www.antmoe.com/posts/2380732b/index.html</a> 的保姆级教程</p></blockquote><p>过年期间会陆续放一些os和csapp的笔记，尽情期待。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>操作系统 实验五-基于内核栈切换的进程切换</title>
     <link href="/posts/44920e0d.html"/>
     <url>/posts/44920e0d.html</url>
@@ -80,31 +93,6 @@
       
     </categories>
     
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>hololive事件之我见</title>
-    <link href="/posts/cbf972d8.html"/>
-    <url>/posts/cbf972d8.html</url>
-    
-    <content type="html"><![CDATA[<p>假期前这几天，被蛆皇这事整的每天郁闷地不行，消极怠工，写篇文章发泄一下后准备彻底脱离箱推，逐渐退坑～</p><h1 id="事件回顾"><a href="#事件回顾" class="headerlink" title="事件回顾"></a>事件回顾</h1><p>懒得复述，想了解的自己去nga看置顶帖介绍</p><blockquote><p><a href="https://bbs.nga.cn/read.php?tid=23508046">https://bbs.nga.cn/read.php?tid=23508046</a></p></blockquote><h1 id="hololive的决策"><a href="#hololive的决策" class="headerlink" title="hololive的决策"></a>hololive的决策</h1><p>说实话，我认为最大的问题在于hololive管理&amp;运营部门，任何全球化的大企业在不同国家开启业务的时候，会有很多关于<strong>当地风俗政策红线的培训</strong>，而很明显cover是没做到这点的。</p><p>全球化时代，人们不可避免的会接触和自己政治思想有差异的人，这是无解的，想要和平共处就只能不去聊这个话题。</p><p>政治范畴的讨论和娱乐不该扯上关系。对任何有良知的、不是历史虚无主义的中国人来说，我们经历了地狱难度的国家复兴…..</p><p>待续</p><iframe src="//player.bilibili.com/player.html?aid=754799290&bvid=BV1uk4y1C73a&cid=240966842&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe><p><strong>小羊真的好温柔啊。。。。。</strong></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>杂谈</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Vtubers</tag>
-      
-    </tags>
     
   </entry>
   

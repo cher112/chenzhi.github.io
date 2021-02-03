@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://cher112.top/posts/44920e0d.html</loc>
+    <loc>http://cher112.top/posts/2bea85e1.html</loc>
     
-    <lastmod>2021-02-02</lastmod>
+    <lastmod>2021-02-03</lastmod>
     
   </url>
   
   <url>
     <loc>http://cher112.top/posts/ad1a2ca7.html</loc>
     
-    <lastmod>2020-11-03</lastmod>
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cher112.top/posts/44920e0d.html</loc>
+    
+    <lastmod>2021-02-02</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://cher112.top/posts/5b15c8d0.html</loc>
     
     <lastmod>2020-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://cher112.top/posts/cbf972d8.html</loc>
-    
-    <lastmod>2020-10-01</lastmod>
     
   </url>
   
@@ -207,13 +207,6 @@
   </url>
   
   <url>
-    <loc>http://cher112.top/tags/Vtubers/</loc>
-    <lastmod>2021-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://cher112.top/tags/CPP/</loc>
     <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
@@ -280,13 +273,6 @@
   
   <url>
     <loc>http://cher112.top/categories/JAVA/</loc>
-    <lastmod>2021-02-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://cher112.top/categories/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
