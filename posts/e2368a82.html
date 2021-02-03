@@ -19,7 +19,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
-  <title>CPP基础笔记 - 陈之的鱼塘</title>
+  <title>操作系统 内存图像 - 陈之的鱼塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -179,8 +179,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-13 22:38" pubdate>
-        October 13, 2020 pm
+      <time datetime="2021-02-03 22:57" pubdate>
+        February 3, 2021 pm
       </time>
     </span>
   
@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      3.2k 字
     </span>
   
 
@@ -230,168 +230,47 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">CPP基础笔记</h1>
+            <h1 style="display: none">操作系统 内存图像</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="⚓CPP基础学习"><a href="#⚓CPP基础学习" class="headerlink" title="⚓CPP基础学习"></a>⚓CPP基础学习</h1><p>练习代码可以来  <a target="_blank" rel="noopener" href="https://github.com/cher112/PAT----">https://github.com/cher112/PAT----</a>  看</p>
-<h1 id="🏍输入输出"><a href="#🏍输入输出" class="headerlink" title="🏍输入输出"></a>🏍输入输出</h1><h2 id="📫scanf（）"><a href="#📫scanf（）" class="headerlink" title="📫scanf（）"></a>📫scanf（）</h2><p><strong>数组名称</strong>本身就代表了这个数组第一个元素的地址<br>因此 scan(“%s”,str)——字符串数组，不需要加地址符</p>
-<p>scanf的%c格式可以<strong>读入空格和换行</strong>。<br>%s识别空格作为<strong>字符串的结尾</strong></p>
-<h2 id="实用输出格式"><a href="#实用输出格式" class="headerlink" title="实用输出格式"></a>实用输出格式</h2><ul>
-<li>%md</li>
-</ul>
-<p>使不足m位的int 以m位用空格进行右对齐输出，若超过m位则不动</p>
+              <h1 id="内存图像"><a href="#内存图像" class="headerlink" title="内存图像"></a>内存图像</h1><blockquote>
+<p>本文资源来自 哈工大李治军老师的 操作系统原理与实践 课程<br>实验地址：<a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/115">https://www.lanqiao.cn/courses/115</a><br>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d4411v7u7">https://www.bilibili.com/video/BV1d4411v7u7</a><br>部分图文来自 《操作系统真像还原》 郑刚，带我走进操作系统</p>
+</blockquote>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>内存视图可以分为三部分</p>
 <ul>
-<li>%0md</li>
+<li>段：偏移模式</li>
+<li>页模式</li>
+<li>段页结合，虚拟内存</li>
 </ul>
-<p>与上个相似，不是空格而是“0”填充<br><strong>在某些题很有用。</strong></p>
-<ul>
-<li>%.mf</li>
-</ul>
-<p>让浮点数保留m位小数输出</p>
-<h2 id="getchar-putchar"><a href="#getchar-putchar" class="headerlink" title="getchar putchar"></a>getchar putchar</h2><p>用来输入/ 输出单个字符。<br>注意：</p>
-<ul>
-<li>getchar可以识别换行符</li>
-<li>可以用 getchar（）；进行空读，不储存</li>
-</ul>
-<h2 id="gets-puts"><a href="#gets-puts" class="headerlink" title="gets puts"></a>gets puts</h2><ul>
-<li>gets用来<strong>输入一行字符串</strong>  识别换行符\n作为输入结束</li>
-<li>puts用来输出一行字符串，将某数组的一维在界面输出，<strong>并紧跟一个换行</strong></li>
-</ul>
-<p>**<br>**</p>
-<h1 id="📜C语言标准库"><a href="#📜C语言标准库" class="headerlink" title="📜C语言标准库"></a>📜C语言标准库</h1><blockquote>
-<p>C 标准库是一组 C 内置函数、常量和头文件，比如 &lt;stdio.h&gt;、&lt;stdlib.h&gt;、&lt;math.h&gt;，等等。这个标准库可以作为 C 程序员的参考手册。<br>而 STL是 C++的标准模板库。</p>
-</blockquote>
-<h2 id="math-h-常用math函数"><a href="#math-h-常用math函数" class="headerlink" title="math.h 常用math函数"></a>math.h 常用math函数</h2><ul>
-<li>fabs（double x）——对double变量取绝对值 return double</li>
-<li>floor（double x）&amp; ceil（double x）——double类型的 <strong>向下/向上 取整</strong> return double</li>
-<li>pow（double r,double p）——返回 r^p（double 型）</li>
-<li>sqrt（double x）——返回double类算术平方根</li>
-<li>sin/cos/tan（double x）——取三角函数值</li>
-<li>round（double x）——对double变量四舍五入 return double型</li>
-</ul>
-<h2 id="string-h-常用str函数"><a href="#string-h-常用str函数" class="headerlink" title="string.h 常用str函数"></a>string.h 常用str函数</h2><ul>
-<li>strlen（）——返回字符数组中第一个\0前字符的个数。<blockquote>
-<p>一维字符数组，二维字符数组的第二位的末尾都有一个<strong>空字符\0</strong><br>表示存放的字符串的结尾<br><strong>!!注意：如果不是用scanf(%s)或者gets()输入字符串，一定要在末尾加\0，不然无法识别字符串末尾，出现乱码</strong></p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>strcmp（1，2）——返回两个字符串大小比较结果，1&lt;2返回负整数；1==2返回0</li>
-</ul>
-<p>1&gt;2返回正整数<br>依照字典序</p>
-<blockquote>
-<p>字典序：<br>以 a、b、c……z 的顺序排列；如果第一个字母一样，那么比较第二个、第三个乃至后面的字母。如果比到最后两个单词不一样长（比如，sigh 和 sight），那么把短者排在前。<br>eg: aaaa小于aab，因为到第三个字符b&gt;a</p>
-</blockquote>
-<ul>
-<li>strcpy（str 1，str2）</li>
-</ul>
-<p>把一个字符串（包括结束符），复制给另外一个字符数组</p>
-<ul>
-<li>strcat（str 1，str 2）</li>
-</ul>
-<p>把一个字符串接到另一个后面</p>
-<ul>
-<li>🌟sscanf，sprintf</li>
-</ul>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602085082468-1dc70864-bf3f-4a26-980f-e583f3aa67c7.png#align=left&display=inline&height=47&margin=%5Bobject%20Object%5D&name=image.png&originHeight=58&originWidth=481&size=28610&status=done&style=none&width=387" srcset="/img/loading.gif" alt="image.png"><br>sscanf的s理解为str<br>则sscanf（str，“%d”,&amp;n）——把str的内容读给n<br>ssprintf（str，“&amp;d”，n）——把n的值打印到str</p>
-<blockquote>
-<p>当然%d,%lf,&amp;s也是可以的。</p>
-</blockquote>
-<h1 id="🍜非基本数据类型"><a href="#🍜非基本数据类型" class="headerlink" title="🍜非基本数据类型"></a>🍜非基本数据类型</h1><h2 id="🕵️‍♀️指针"><a href="#🕵️‍♀️指针" class="headerlink" title="🕵️‍♀️指针"></a>🕵️‍♀️指针</h2><p>&amp;是取地址运算符；<br>int * p = &amp;a 中，int* 是指针变量的类型，&amp;a赋给p而不是 <em>p *</em>星号只是表示类型的一部分。**<br>printf(“%d”,<em>p); 中，*</em>星号视为一把开启的钥匙，引到地址对应的val   星号-》 解引用符。**<br>**<br>而 &amp;和<em>都是 *</em>类型修饰符**</p>
-<blockquote>
-<p>int <em>p 中， int被称为*</em>基类型**</p>
-</blockquote>
-<p>数组名称作为 <strong>数组的首地址</strong>使用</p>
-<h2 id="使用指针变量作为函数参数"><a href="#使用指针变量作为函数参数" class="headerlink" title="使用指针变量作为函数参数"></a>使用指针变量作为函数参数</h2><blockquote>
-<p>假如不return 值，函数内的很多地址和内容（with 作为函数参数的副本值）在函数结束后会被释放掉<br>经典：swap(int a,int b)，假如传进去2值，只会对这两个值的副本进行操作，函数执行结束gc。</p>
-</blockquote>
-<p>正确——在函数内 把地址内的值进行修改</p>
-<blockquote>
-<p>c语言是按值传递，”传址”只不过是c里指定的“传输地址的unsigned int”</p>
-</blockquote>
-<h2 id="🎃引用"><a href="#🎃引用" class="headerlink" title="🎃引用"></a>🎃引用</h2><p>相当于给main里变量起了<strong>“别名”，</strong>而不是函数中作为局部变量的副本，不会销毁。因此不用担心局部变量销毁问题。<br>对引用修改就相当于给被绑定的对象修改<br>eg:<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602169879530-0a7f74a6-1ec0-4a07-9410-9d5e69b29545.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=153&originWidth=287&size=5041&status=done&style=none&width=180" srcset="/img/loading.gif" alt="image.png"><br><strong>引用不是对象</strong></p>
-<h3 id="对const引用"><a href="#对const引用" class="headerlink" title="对const引用"></a>对const引用</h3><p>把引用绑定到const上，<strong>对常量的引用不能用作修改被绑定的对象。</strong><br><strong>eg:</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602508433168-7f8bfccf-3e40-49b0-862b-c3fb2ed12dc6.png#align=left&display=inline&height=104&margin=%5Bobject%20Object%5D&name=image.png&originHeight=207&originWidth=314&size=7710&status=done&style=none&width=157" srcset="/img/loading.gif" alt="image.png"></strong></p>
-<blockquote>
-<p>2\n 3\n 3</p>
-</blockquote>
-<p>如果用p++; 会给出 <em>increment of read-only reference ‘p’ 只读引用。</em></p>
-<h2 id="Struct使用"><a href="#Struct使用" class="headerlink" title="Struct使用"></a>Struct使用</h2><p>struct stuInfo{<br> int id;<br> char gender;<br>}stu, *p;</p>
-<p>含义：定义一个结构体，有 id gender两个域<br>stu是结构体名，而p是对应的指针变量名<br>可以用 stu.gender ||  (*p).gender || p-&gt;gender         来访问域</p>
-<p><strong>🦐初始化</strong><br>struct stuInfo{<br>/<em>id 和 gender域，省略</em>/<br>stuInfo（）{}<br>stuInfo（int _id, char _gender）{….对结构体变量赋值 }<br>}</p>
-<p>可以用上面的访问方法来一个一个初始化，<br>or用<strong>构造函数</strong>来初始化。其中，只要参数个数类型不完全一样，就可以定义多个构造函数～</p>
-<blockquote>
-<p>补充：int _id意味着 id在结构体的<strong>私有域</strong>。OOP saigao。</p>
-</blockquote>
-<p>Q：列表初始化<br>A：<br>🎇<strong>Q：如何在C++中创建类</strong><br><strong>A：到第七章</strong><br>**<br>Q：分离式编译——声明和定义的区别。声明加 extern 关键字有什么用<br>A：   C++程序通常由许多文件组成，为了让多个文件访问相同的变量，C++区分了声明和定义。</p>
-<pre><code>变量的定义（definition）用于**为变量分配存储空间**，还可以**为变量指定初始值。**在程序中，变量有且仅有**一个**定义。
-声明（declaration）用于向**程序表明变量的类型和名字**。定义也是声明：当定义变量的时候我们声明了它的类型和名字。可以通过使用extern声明变量名而不定义它。不定义变量的声明包括对象名、对象类型和对象类型前的关键字extern。
-extern声明不是定义，也**不分配存储空间**。事实上它只是说明变量定义在程序的其他地方。程序中变量可以声明多次，但只能定义一次。
-任何在多文件中使用的变量都需要有与定义分离的声明。在这种情况下，一个文件含有变量的定义，使用该变量的其他文件则包含该变量的声明（而不是定义）。</code></pre><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602256800353-2875b913-b2ae-45bc-a76d-b2ac013464ba.png#align=left&display=inline&height=125&margin=%5Bobject%20Object%5D&name=image.png&originHeight=209&originWidth=772&size=25847&status=done&style=none&width=461" srcset="/img/loading.gif" alt="image.png"></p>
-<h2 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h2><h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602508991347-6cb693b6-3cd3-4648-892e-21c3e7a84934.png#align=left&display=inline&height=214&margin=%5Bobject%20Object%5D&name=image.png&originHeight=427&originWidth=1215&size=304665&status=done&style=none&width=607.5" srcset="/img/loading.gif" alt="image.png"></p>
-<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602509026486-058e726d-c0c4-4d1f-9e9f-6895d6944e05.png#align=left&display=inline&height=107&margin=%5Bobject%20Object%5D&name=image.png&originHeight=214&originWidth=1149&size=166191&status=done&style=none&width=574.5" srcset="/img/loading.gif" alt="image.png"></p>
-<h3 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h3><h1 id="👷‍♂️STL"><a href="#👷‍♂️STL" class="headerlink" title="👷‍♂️STL"></a>👷‍♂️STL</h1><blockquote>
-<p>概念补充：容器<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602597969543-df5b033f-8ce9-42ab-829e-0fb1617d3cd8.png#align=left&display=inline&height=95&margin=%5Bobject%20Object%5D&name=image.png&originHeight=190&originWidth=1144&size=137300&status=done&style=none&width=572" srcset="/img/loading.gif" alt="image.png"></p>
-</blockquote>
-<h2 id="string容器"><a href="#string容器" class="headerlink" title="string容器"></a>string容器</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309013173-69554ebc-1a0e-4f9e-814c-552e9f4cf0dc.png#align=left&display=inline&height=51&margin=%5Bobject%20Object%5D&name=image.png&originHeight=68&originWidth=376&size=20005&status=done&style=none&width=283" srcset="/img/loading.gif" alt="image.png"></p>
-<p>std::cin中， ::是<strong>作用域操作符</strong> —— 从左侧类&amp;命名空间的作用域中寻找“cin”的域</p>
-<blockquote>
-<p>类和命名空间访问作用域都是用：：</p>
-</blockquote>
-<p>Q：命名空间和类区别？<br>A：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126481010">命名空间详解</a></p>
-<p>标准库的string类型不是 字符串字面值</p>
-<p>假如遍历字符串，可以<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308353362-7e446da8-f252-4650-adad-b2552c5b980d.png#align=left&display=inline&height=76&margin=%5Bobject%20Object%5D&name=image.png&originHeight=94&originWidth=474&size=26263&status=done&style=none&width=382" srcset="/img/loading.gif" alt="image.png"></p>
-<p><strong>可以使用下标[n]表示，其中</strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308622196-a0ada97f-3b6b-436d-b0f1-04d499be6a28.png#align=left&display=inline&height=20&margin=%5Bobject%20Object%5D&name=image.png&originHeight=39&originWidth=515&size=19370&status=done&style=none&width=257.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308568427-c0499637-9f31-4326-805f-5ea701d9928d.png#align=left&display=inline&height=117&margin=%5Bobject%20Object%5D&name=image.png&originHeight=200&originWidth=511&size=66737&status=done&style=none&width=299" srcset="/img/loading.gif" alt="image.png">)<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308579203-0666a570-3ea6-4312-b7cd-49511628f42b.png#align=left&display=inline&height=63&margin=%5Bobject%20Object%5D&name=image.png&originHeight=126&originWidth=540&size=30657&status=done&style=none&width=270" srcset="/img/loading.gif" alt="image.png"><br>Q：.size() 和 size_type类型的关系<br>A：<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309108599-2168bb85-ab49-4009-8858-155dd4fe6e74.png#align=left&display=inline&height=260&margin=%5Bobject%20Object%5D&name=image.png&originHeight=520&originWidth=725&size=45744&status=done&style=none&width=362.5" srcset="/img/loading.gif" alt="image.png"><br>方法：<br>记住append（）</p>
-<h2 id="vector容器"><a href="#vector容器" class="headerlink" title="vector容器"></a>vector容器</h2><blockquote>
-<p>vector不是类&amp;函数，是<strong>类模板，</strong>根据模板创建类的过程称为实例化</p>
-</blockquote>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309393028-8b45d43f-de8d-4d2e-9253-a77bffe9207d.png#align=left&display=inline&height=85&margin=%5Bobject%20Object%5D&name=image.png&originHeight=136&originWidth=517&size=56248&status=done&style=none&width=324" srcset="/img/loading.gif" alt="image.png"><br>Q：C++的初始&amp;实例化和 java的区别？ java写的是不是也是类模板而不是类？<br>A：自我理解：类模板对各种域的类型还未规定，所以只是搭建了一个模板而不是真实的类<br>而class已经定了各种域和方法，无法显式改变类别。<br><strong>具体内容待补充</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309922814-8a041786-b35a-4b92-8407-77b04bb165d3.png#align=left&display=inline&height=101&margin=%5Bobject%20Object%5D&name=image.png&originHeight=135&originWidth=494&size=76235&status=done&style=none&width=371" srcset="/img/loading.gif" alt="image.png"></strong></p>
-<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602424356609-60185bdf-ee38-43f6-95e6-ed6ea7b8609a.png#align=left&display=inline&height=182&margin=%5Bobject%20Object%5D&name=image.png&originHeight=363&originWidth=1230&size=274786&status=done&style=none&width=615" srcset="/img/loading.gif" alt="image.png"></p>
-<blockquote>
-<p>比较喜欢用倒数第二个方法</p>
-</blockquote>
-<p>额外方法<br>用迭代器一个个push<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602579975875-db1eacc1-d248-4d26-86db-b789611e665f.png#align=left&display=inline&height=80&margin=%5Bobject%20Object%5D&name=image.png&originHeight=159&originWidth=812&size=58916&status=done&style=none&width=406" srcset="/img/loading.gif" alt="image.png"></p>
-<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>for(auto i: vector) {cout&lt;&lt;i&lt;&lt;” “;}</p>
-<blockquote>
-<p>遍历打印vector元素，其中 i是vector的 下标索引（int类型）</p>
-</blockquote>
-<h2 id="二维vector"><a href="#二维vector" class="headerlink" title="二维vector"></a>二维vector</h2><p>vector<int> v(&amp;v1[0],&amp;v1[6]); //一维一维的写</p>
-<h2 id="😘迭代器"><a href="#😘迭代器" class="headerlink" title="😘迭代器"></a>😘迭代器</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602310305323-9cb9c536-fbfa-457a-9663-1cc0cfc0f4a6.png#align=left&display=inline&height=76&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=536&size=50367&status=done&style=none&width=424" srcset="/img/loading.gif" alt="image.png"><br><strong>！迭代器初始化</strong><br>/<em>对于标准库类型</em>/<br>auto it = s(某个标准库类型).begin();<br>auto it( s.begin());<br>/<em>对于数组</em>/<br>auto it( array[0]);<br>auto it（std::begin( array )）  （补充，尾元素用 std::end(array_name)）</p>
-<p>⭐Q：运算符it.begin() 为什么不是函数（方法）？ 或者说  begin() 和 .begin（）有什么区别，为什么后面是关键字<br>A：api说，begin和end 是  string vector的<strong>成员，</strong>同时使STL函数，感觉是写错了。。。</p>
-<p><strong>注意！！！</strong><br><strong>C++11 auto</strong><br>auto可以在声明变量的时候根据变量初始值的类型自动为此变量选择匹配的类型，类似的关键字还有decltype。举个例子：</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
-<span class="hljs-keyword">auto</span> au_a = a;<span class="hljs-comment">//自动类型推断，au_a为int类型</span>
-<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-keyword">typeid</span>(au_a).name() &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">//typeid返回变量类型</span></code></pre>
-<p>迭代器中，用auto只是为了方便，正确的应该是<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602421169745-6598a0e9-7778-4bef-bde0-6a07586f182e.png#align=left&display=inline&height=27&margin=%5Bobject%20Object%5D&name=image.png&originHeight=27&originWidth=316&size=1911&status=done&style=none&width=312" srcset="/img/loading.gif" alt="image.png"></p>
-<h2 id="👌数组-amp-指针"><a href="#👌数组-amp-指针" class="headerlink" title="👌数组&amp;指针"></a>👌数组&amp;指针</h2><blockquote>
-<p>使用数组的时候，编译器一般会把他转化为指针</p>
-</blockquote>
-<pre><code class="hljs cpp"><span class="hljs-comment">/*nums是个数组*/</span>
-<span class="hljs-built_in">string</span> *p = &amp;nums[<span class="hljs-number">0</span>];
-等价于：
-<span class="hljs-built_in">string</span> *p = nums</code></pre>
-<p><strong>数组类型的对象其实是  指向该数组首元素的指针</strong></p>
-<h3 id="指针运算"><a href="#指针运算" class="headerlink" title="指针运算"></a>指针运算</h3><p>给一个指针加减一个整数，仍是指针，相比原来的前进/后退了几个位置（非机器字长，而是地址）<br>eg:<br>int *ip = arr; // &amp;arr[0]<br>int * ip2 = ip+4;  //指向arr[4]</p>
-<p>指针相减，结果是两指针间的地址距离，<strong>参与运算的必须指向同一个“数组”</strong><br>end(arr) - begin(arr)  // return ptrdiff_t  标准库（signed）类型，类似size_t  都是机器相关类型</p>
-<h1 id="💽表达式-运算符"><a href="#💽表达式-运算符" class="headerlink" title="💽表达式 运算符"></a>💽表达式 运算符</h1><blockquote>
-<p>比起运算符，感觉更应该叫“操作符”</p>
-</blockquote>
-<ul>
-<li>成员访问运算符： 点运算符&amp;箭头运算符</li>
-<li>位操作符（检查和设置2进制位）：暂忽略。<blockquote>
-<p>大多数用于 unsigned，因为符号位处理没规定。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="🤕局部对象"><a href="#🤕局部对象" class="headerlink" title="🤕局部对象"></a>🤕局部对象</h1><p>在C++中，<strong>名字有作用域 对象有生命周期</strong></p>
-<blockquote>
-<p>same as java&gt;&gt;&gt;</p>
-</blockquote>
-<p>局部对象——形参和函数体内部定义的变量</p>
-<h2 id="自动对象"><a href="#自动对象" class="headerlink" title="自动对象"></a>自动对象</h2><p>存在于块执行期间的对象，当块执行完就变为未定义。</p>
-<blockquote>
-<p>形参也是自动对象，函数开始时 申请储存空间，函数终止即gc</p>
-</blockquote>
-<h2 id="局部静态对象"><a href="#局部静态对象" class="headerlink" title="局部静态对象"></a>局部静态对象</h2><p>从第一次初始化到 程序终止才gc，即使函数结束执行也不影响</p>
+<p>理解内存视图之前，首先必须理解这张图<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612360470668-381b9a49-e487-447d-b48f-af9bf9a978d3.png" srcset="/img/loading.gif" alt="image.png"><br>了解** 取址执行 **，其中DRAM和SRAM ROM部分放到计组部分讲解</p>
+<h1 id="段：偏移模式"><a href="#段：偏移模式" class="headerlink" title="段：偏移模式"></a>段：偏移模式</h1><p>段+偏移是取址执行的关键部分，在实模式使用段地址&lt;&lt;4+偏移取值，在保护模式以后使用段选择子+偏移查多种表来取址。接下来正式介绍。</p>
+<h2 id="实模式分段"><a href="#实模式分段" class="headerlink" title="实模式分段"></a>实模式分段</h2><p>在8086中，因为16位系统需要用到20位内存(1MB)，所以采用了段&lt;&lt;4+偏移的方式，而实模式的*<em>实 *</em>体现在使用的是真实的物理地址，而保护模式为了对用户态透明内存，使用虚拟内存作为遮蔽。这里简单写一下，但不代表他不重要，必须吃透。</p>
+<h3 id="实模式寄存器"><a href="#实模式寄存器" class="headerlink" title="实模式寄存器"></a>实模式寄存器</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612360661447-cb63df54-b12e-4807-8468-79517085d6c1.png" srcset="/img/loading.gif" alt="image.png"><br>寻址方式，从大方向来看可以分为三大类：<br>( 1 ）寄存器寻址：<br>(2 ）立即数寻址：<br>(3 ）内存寻址，把操作数从内存中读取<br>在第 种内存寻址中又分为：<br>( l ）直接寻址： mov ax, [0x1234] 读的就是 ds:0x1234的地址<br>(2 ）基址寻址：mov [bp],ax  //eg:把sp提前mov给bp，保护sp<br>(3 ）变址寻址：mov [si+0x1234],ax<br>(4 ）基址变址寻址 mov [bx+di],ax</p>
+<h2 id="分段目的"><a href="#分段目的" class="headerlink" title="分段目的"></a>分段目的</h2><p>8086之前，程序对内存的访问是 <strong>写死</strong> 的，地址必须写死，即硬编码，这会导致安全性和复杂度问题加重。为了解决，可以先给程序分配指定区域内存(20位)，把该内存按照 16位+0000的起始地址（段基址），0000H-ffffH的偏移“数组”取址。</p>
+<h2 id="保护模式分段"><a href="#保护模式分段" class="headerlink" title="保护模式分段"></a>保护模式分段</h2><h2 id="保护模式32位寄存器拓展"><a href="#保护模式32位寄存器拓展" class="headerlink" title="保护模式32位寄存器拓展"></a>保护模式32位寄存器拓展</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612361526887-35715fd0-20df-464e-bc42-0d6b40b18bc0.png" srcset="/img/loading.gif" alt="image.png"><br>寄存器中低 16 位的部分是为了兼容实模式，可以单独使用。高 16 位没办法单独使用，只能在用 32位寄存器时才有机会用到它们。</p>
+<h2 id="PE模式寻址"><a href="#PE模式寻址" class="headerlink" title="PE模式寻址"></a>PE模式寻址</h2><p>基址寄存器不再只是 bx bp，而是所有 32 位的通用寄存器，变址寄存器也是一样，不再只是 si di ，而是除 esp 之外的所有 32通用寄存器，偏移量由实模式的 16 位变成了 32 位。并且，还可以对变址寄存器乘以一个比例因子(1,2,4,8)<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612361650827-f0880bf5-bbce-490a-8bf1-e29d71691de5.png" srcset="/img/loading.gif" alt="image.png"><br>mov eax,[eax+edx*8+0x12345678]<br>但是在PE及以后，段+偏移不只是右移4位再相加，而是段选择子+偏移量查表GDT</p>
+<h2 id="GDT-全局描述符表"><a href="#GDT-全局描述符表" class="headerlink" title="GDT 全局描述符表"></a>GDT 全局描述符表</h2><p>到了保护模式下，内存段（如数据段、代码段等〉不再是简单地用段寄存器加载下段基址就能用啦，段的信息增加了很多，需要提前把段定义好才能使用</p>
+<h3 id="段描述符"><a href="#段描述符" class="headerlink" title="段描述符"></a>段描述符</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612361848883-895e00a2-b7a0-4e2d-afc2-100510693588.png" srcset="/img/loading.gif" alt="image.png"><br>段界限用来限制段内偏移，依靠G（粒度），这里不做介绍。<br>段寄存器 cs DS ES FS GS SS ，在实模式下时，段中存储的是段基地址，即内存段的起始地址。而在保护模式下时，由于段基址已经存入了段描述符中，所以段寄存器中再存放段基址是没有意义的，在段寄存器中存入的是一个叫作选择子的东西一－selector 。选择子“基本上”是个索引值，<strong>确定段描述符&amp;属性</strong></p>
+<p>段基址放在描述符表中，cpu通过寄存器的选择子+偏移选择对应描述符表，描述符表经过处理读取内存对应地址<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612362051284-3f7ffa7f-249e-4d77-9276-a2fd2b60ec1c.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612362066900-a234bf97-06b8-4f3e-9b55-9b1e8f50a57c.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="内存分页机制，畅游虚拟空间"><a href="#内存分页机制，畅游虚拟空间" class="headerlink" title="内存分页机制，畅游虚拟空间"></a>内存分页机制，畅游虚拟空间</h1><h2 id="为什么要分页"><a href="#为什么要分页" class="headerlink" title="为什么要分页"></a>为什么要分页</h2><p>连续进程块再多进程图像中不现实，引入连续进程块是为了介绍 <strong>线性地址.</strong>我们把段基址＋段内偏移地址称为线性地址，线性地址是唯一的，只能属于某1个进程 , 而程序也能用线性地址是连续的<br>如果使用线性地址<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612362334351-1a9e6fbe-383a-4324-a4a5-c528a28ebdf0.png" srcset="/img/loading.gif" alt="image.png"><br>1阶段执行完成,B进程腾出内存,这时候CPU安排进程D进内存, 如果是连续地址,D进程不够用了.因此需要如图4-7一样,将物理内存拆开,不连续的使用.<br>按照这种思路，我们首先要做的是解除线性地址与物理地址一一对应的关系，然后将它们的关系重新<br>建立。通过某种映射关系，可以将线性地址映射到任意物理地址,这就是页表的原理</p>
+<h2 id="一-二级页表"><a href="#一-二级页表" class="headerlink" title="一 二级页表"></a>一 二级页表</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612362924757-ca0068b9-8e3c-487f-afe1-49e3f6bc877c.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>分页机制的作用有两方面<br>• 将线性地址转换成物理地址。<br>• 用大小相等的<strong>页(一般4KB)</strong>代替大小不等的段。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363039799-9cba14f2-f43b-42a6-8ab2-182705e282b5.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="一级页表"><a href="#一级页表" class="headerlink" title="一级页表"></a>一级页表</h3><p>页是地址空间的计量单位，并不是专属物理地址或线性地址，只要是 阻的地址空间都可以称为一<br>页，所以线性地址的一页也要对应物理地址的一页。一页大小为 4KB ，这样一来， 4GB 地址空间被划分<br>4GB/4KB=lM 个页，也就是 4GB 空间中可以容纳 1048576 个页，页表中自然也要有 1048576 个页表项，<br>这就是我们要说的一级页表。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363096965-f4dedea0-20e9-4a1a-901e-158bbdf3816b.png" srcset="/img/loading.gif" alt="image.png"><br>eg: mov ax,[0x1234]<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363126714-2755c282-a078-43aa-b1f8-9786c3302b72.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363146382-09e7c2d5-7e1c-42d2-bc73-f5aa1773878e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="二级页表"><a href="#二级页表" class="headerlink" title="二级页表"></a>二级页表</h3><p>用页目录表+页表来处理,总共是4KB<em>1024</em>1024,即可以映射4GB的物理内存<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363227930-c82a7793-6a50-49cf-b6ab-17b01f89b2ca.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363476466-4f90c4e3-863b-4f15-937c-6837a03fa2b4.png" srcset="/img/loading.gif" alt="image.png"><br>寻址逻辑:<br>经以上分析，二级页表地址转换原理是将 32 位虚拟地址拆分成高 10 位、中间 1o 位、低 12 位三部分，它们<br>的作用是：高 10 位作为页表的索引，用于在页目录表中定位 个页目录项 PDE，页目录项中有页表物理地址，<br>也就是定位到了某个页表。中间 10 位作为物理页的索引，用于在页表内定位到某个页表项 PTE ，页表项中有分<br>配的物理页地址，也就是定位到了某个物理页。低 12 位作为页内偏移量用于在已经定位到的物理页内寻址。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363332748-e58d0a90-be11-40c7-be9b-e55be0c83210.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363489748-08af8acf-1afd-4599-bed8-3c34c6903257.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="内存换入-amp-换出"><a href="#内存换入-amp-换出" class="headerlink" title="内存换入&amp;换出"></a>内存换入&amp;换出</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363564029-681d67fd-14aa-44aa-979b-42a48c24f64a.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="换入"><a href="#换入" class="headerlink" title="换入"></a>换入</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363576666-c41717e0-ff73-4d67-aae2-b9344d5bdd0d.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="换出"><a href="#换出" class="headerlink" title="换出"></a>换出</h2><p>换出逻辑跟换入类似,所以主要讲如何选择换出页</p>
+<p>思想:  <strong>并不能总是获得新的页，内存是有限的 需要选择一页淘汰，换出到磁盘，选择哪一页?</strong></p>
+<h3 id="FIFO（先入先出）"><a href="#FIFO（先入先出）" class="headerlink" title="FIFO（先入先出）"></a>FIFO（先入先出）</h3><p>即每次缺页的时候就替换掉最开始的那一页，这种算法肯定在这个方面肯定不是最好的算法，因为它没有任何机制保证替换次数尽可能少。</p>
+<h3 id="MIN算法"><a href="#MIN算法" class="headerlink" title="MIN算法"></a>MIN算法</h3><p>选择最远将使用的页淘汰，什么意思呢？假设这个进程只分配了三个页框，现在分别存储了A、B、C三页，假设进程后面使用的页数依次是：C、B、A、D、C、B、A、B、C，使用C、B、A的时候不用换页，当使用D的时候，先看一下后面最远使用的页是哪个，然后将它换掉；对于上例，最远使用的页是A，于是便将A换出，将D换入。可以看出这种方法是最好的方案，但是它实现不了。因为它需要事先知道进程后续要使用哪些页，而这点是做不到的。</p>
+<h3 id="LRU算法"><a href="#LRU算法" class="headerlink" title="LRU算法"></a>LRU算法</h3><p>唐太宗李世民在《旧唐书·魏徵传》中说过：“以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。”；其中“以古为镜，可以知兴替”说的就是可以通过历史来预测未来（当然原句的翻译是：用历史当作镜子，可以知道国家兴亡的原因；）。虽然不能知晓未来，但是可以通过前面调用的页的顺序来推测未来哪些页是常用的。理论基础就是程序的空间局部性。<br>LRU算法就是这样：选最近最长一段时间没有使用的页淘汰(最近最少使用)。</p>
+<h4 id="LRU算法的准确实现：用时间戳"><a href="#LRU算法的准确实现：用时间戳" class="headerlink" title="LRU算法的准确实现：用时间戳"></a>LRU算法的准确实现：用时间戳</h4><p>用时间戳来记录每页的访问时间，比如某个进程访问页的顺序为：A 、B 、C 、A 、B 、D 、A 、D 、B 、C 、B；该进程只有三个页框。那么使用时间戳<br>实现，如下图：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363696043-7e4cb5ed-76e3-44ff-b929-cd286344fcc5.png" srcset="/img/loading.gif" alt=""><br>第一次将A放入页框中，并记录当前时间为1；第二次将B放入页框中，并记录当前时间为2；第三次将C放入页框中，并记录当前时间为3；第四次又是访问A页，更新A页访问时间，第五次访问B页，更新B页访问时间；第六次访问D页，不存在，那么就在A、B、C页中选择一个最早使用的也就是数字最小的替换，即C页。这种方式理论上是可行的，但是每次地址访问都要修改时间戳，需要维护一个全局时钟，需要找到最小值……实现代价太大了。</p>
+<h4 id="LRU算法的准确时间：用页码栈"><a href="#LRU算法的准确时间：用页码栈" class="headerlink" title="LRU算法的准确时间：用页码栈"></a>LRU算法的准确时间：用页码栈</h4><p>还是上面的例子，<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363696013-cefa76f3-2c9e-41dc-9015-857320d9dab0.png" srcset="/img/loading.gif" alt=""><br>每次地址访问都需要修改栈，实现代价也比较大。其实LRU准确实现用的少，因此维护代价太高了。从上面两种算法可以看出，主要是在维护时间戳上面花费的时间比较多，但是能不能将LRU算法做一个优化呢？或者说近似实现？</p>
+<h3 id="clock算法"><a href="#clock算法" class="headerlink" title="clock算法"></a>clock算法</h3><p>LRU的近似实现 - 将时间计数变为是和否</p>
+<h4 id="二次机会算法"><a href="#二次机会算法" class="headerlink" title="二次机会算法"></a>二次机会算法</h4><p>具体操作是这样的，每页增加一个引用位( R )，每一次访问该页时，就将该位置为1。当发生缺页时用一个指针查看每一页的引用位，如果是1则将其置为0，如果是0就直接淘汰。如下图：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363696047-5312e930-48a0-454b-a448-f5aa441c8a30.png" srcset="/img/loading.gif" alt=""><br>用这种方式实现就不必维护时间戳了，提高了内存使用效率。但是这种算法真的可以使用吗？在实际中，缺页的情况肯定不会很多；如果缺页很多了，说明内存太小了或者算法不行。那当这个算法缺页很少的情况会怎么样呢？假设初始状态所有的页的引用位都是1，这是很有可能的，因为缺页情况少，进程使用的一直是内存里面存在的页。那么当发生缺页时，指针转一圈之后将所有的页的引用位都置为0，没找到能替换的，继续转，这时候发现最开始那个页引用位为0，将其置换出去，指针后移；然后又一段时间没有发生缺页，所有页的引用位都为1，当发生缺页之后，又会将这一轮最开始的那一页置换出去；然后指针后移，一段时间之后发生缺页，又会将这一轮最开始的那一页置换出去。wait…，这不是变成FIFO了吗。<br>究其原因还是因为指针扫描的时间太长了，也就是记录了太长的历史信息。其中一个解决办法是再加一个指针用来清除每一页的引用位，可以放在时钟中断里面，定时清除；这个时间可以事先设置好，也可以在软件里面实现。</p>
+<h4 id="给进程分配多少个页框"><a href="#给进程分配多少个页框" class="headerlink" title="给进程分配多少个页框"></a>给进程分配多少个页框</h4><p>嗯嗯，现在置换策略有了，但是还有一个问题需要解决：给进程分配多少个页框。<br>如果分配的多了，那么请求调页导致的内存高效利用就没有了。而且内存就那么大，如果每一个进程分配很多的话，跑的进程数量就少了。如果分配的少，系统内进程增多，每个进程的缺页率增大，当缺页率大到一定程度，进程就会总等待调页完成，导致cpu利用率降低。如下图<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363696843-77d8a803-7e6e-467c-9e03-b42459227cec.png" srcset="/img/loading.gif" alt=""><br>中间那个急剧下降的状态称为颠簸。一种可以采用的方法是，先给进程分配一定数量的页框，如果增加页框能增加cpu利用率，就慢慢增加，如果导致cpu利用率减少，就降低页框分配。当然实际情况下每个进程对应的页框数量肯定是得动态调整的。</p>
 
             </div>
             <hr>
@@ -401,17 +280,10 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/PAT%E4%B8%8A%E6%9C%BA/">PAT上机</a>
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
                     
                   </div>
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/CPP/">CPP</a>
-                    
-                  </div>
                 
               </div>
               
@@ -422,9 +294,9 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/44920e0d.html">
+                      <a href="/posts/6161fe24.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">操作系统 多进程图像 实验五-基于内核栈切换的进程切换</span>
+                        <span class="hidden-mobile">计组 Chapter3 存储系统</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -432,8 +304,8 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/a3943bb.html">
-                        <span class="hidden-mobile">计组 Chapter2 数据的表示与运算</span>
+                      <a href="/posts/2bea85e1.html">
+                        <span class="hidden-mobile">鱼塘2.0 功能介绍</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -845,7 +717,7 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/41dfe9fa.html');
+          var target = decodeURI('/posts/e2368a82.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -939,7 +811,7 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "CPP基础笔记&nbsp;",
+        "操作系统 内存图像&nbsp;",
       ],
       cursorChar: "🐟",
       typeSpeed: 70,
