@@ -363,9 +363,12 @@ momentum = <span class="hljs-number">0.1</span>
   <div id="vcomments"></div>
   <script type="text/javascript">
     function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+      // Valine.min.js
+      addScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
         new Valine({
           el: "#vcomments",
+          master: '5a0838f4824bddba01cb0c13c83bc63f',
+          friends: '05e1fa6e2fd5507abae71327eea8fe40',
           app_id: "PcujGXtWWTUj0YN2DPPKPLrO-MdYXbMMI",
           app_key: "J7vh9A9xqNtQ4wQqHUInONzi",
           placeholder: "欢迎评论～O(∩_∩)O",
