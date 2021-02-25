@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
+  <link rel="icon" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,26 +16,32 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  
+    <meta name="description" content="">
+  
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
+  
   <title>JAVA笔记 第五章 继承 - 陈之的鱼塘</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -52,6 +58,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"cher112.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐟","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":true,"baidu":null,"google":"UA-166912137-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz","app_key":"Qj9gggkYd7RhSSxinWCvCCMk","server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.3.0"></head>
@@ -141,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                留言板
               </a>
             </li>
           
@@ -163,13 +173,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JAVA笔记 第五章 继承">
               
             </span>
 
@@ -201,9 +211,9 @@
   
     
       <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -222,136 +232,47 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">JAVA笔记 第五章 继承</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h1 id="第五章-继承"><a href="#第五章-继承" class="headerlink" title="第五章 继承"></a>第五章 继承</h1><h1 id="类-超类-子类"><a href="#类-超类-子类" class="headerlink" title="类 超类 子类"></a>类 超类 子类</h1><blockquote>
 <p>对于第四章的 Employee类，经理的办公，工资形式不同，可以创建个新类 Manager，但可以重用Employee中的部分代码，将所有域保留下来。</p>
 </blockquote>
 <h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><p>由继承 E类来定义Manager 类的格式，关键字 extends 表<strong>继承，</strong>构造的新类派生于一个已存在的类。</p>
-<h3 id="定义子类"><a href="#定义子类" class="headerlink" title="定义子类"></a>定义子类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span>
-<span class="hljs-class"></span>&#123;
-	方法
-&#125;</code></pre>
+<h3 id="定义子类"><a href="#定义子类" class="headerlink" title="定义子类"></a>定义子类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span><br><span class="hljs-class"></span>&#123;<br>	方法<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>其中：<br>已存在的类称为<strong>超类 ( superclass)、 基类（base class) 或父类（parent class)</strong>; 新类称为<strong>子类（subclass)</strong>、 <strong>派生类 (derivedclass) 或孩子类（child class)。 父子类并没有优劣性。</strong><br>**</p>
-<pre><code class="hljs java">/构造一个新方法 setBonus，只给经理加奖金
-<span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> bonus;
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBonus</span><span class="hljs-params">(<span class="hljs-keyword">double</span> bonus)</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">this</span>.bonus = bonus
-    &#125;
-
-boss.setBonus(<span class="hljs-number">500</span>);
-
-效果：只能给Manager加奖金，给Employee加会报错。</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">/构造一个新方法 setBonus，只给经理加奖金<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> bonus;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBonus</span><span class="hljs-params">(<span class="hljs-keyword">double</span> bonus)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">this</span>.bonus = bonus<br>    &#125;<br><br>boss.setBonus(<span class="hljs-number">500</span>);<br><br>效果：只能给Manager加奖金，给Employee加会报错。<br></code></pre></td></tr></table></figure>
 <p>tip：Manager类就包括了 Employee的所有实例域和新实例域bonus。<br><strong>（但是调用超类的私有域，要依照超类的方法或者基于此新建子类方法）——见覆盖方法</strong></p>
 <p>一般思路，将通用功能放到超类，特殊用途放到子类。</p>
 <h3 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h3><p>修改/覆盖(override) 超类原有的方法</p>
-<pre><code class="hljs java">思路一：直接调用E类实例域 <span class="hljs-comment">//错误</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">return</span> salary + bonus; <span class="hljs-comment">// won&#x27;t work </span>
-&#125; 
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">思路一：直接调用E类实例域 <span class="hljs-comment">//错误</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> salary + bonus; <span class="hljs-comment">// won&#x27;t work </span><br>&#125; <br><br><br></code></pre></td></tr></table></figure>
 <p>原因：<strong>对于超类的私有域，只有超类的方法可以访问，</strong>子类的<strong>方法</strong>无法访问<br>但子类可以通过借助共有接口(超类方法) 来间接访问</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">double</span> baseSalary = getSalaryO；<span class="hljs-comment">// still won&#x27;t work</span>
-    <span class="hljs-keyword">return</span> baseSalary + bonus;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">double</span> baseSalary = getSalaryO；<span class="hljs-comment">// still won&#x27;t work</span><br>    <span class="hljs-keyword">return</span> baseSalary + bonus;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>原因：程序认为你调用的是 M类的getSalary 而不是 超类的，就会无限调用自己。</p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">double</span> baseSalary = <span class="hljs-keyword">super</span>.getSalary();<span class="hljs-comment">//work</span>
-    <span class="hljs-keyword">return</span> baseSalary + bonus; 
-&#125; 
-添加超类方法的标识 关键字 <span class="hljs-keyword">super</span></code></pre>
-<h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name, <span class="hljs-keyword">double</span> salary, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span>
-<span class="hljs-function"></span>&#123; 
-    <span class="hljs-keyword">super</span>(name, salary, year, month, day); 
-    bonus = <span class="hljs-number">0</span>;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getSalary</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">double</span> baseSalary = <span class="hljs-keyword">super</span>.getSalary();<span class="hljs-comment">//work</span><br>    <span class="hljs-keyword">return</span> baseSalary + bonus; <br>&#125; <br>添加超类方法的标识 关键字 <span class="hljs-keyword">super</span><br></code></pre></td></tr></table></figure>
+<h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Manager</span><span class="hljs-params">(String name, <span class="hljs-keyword">double</span> salary, <span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day)</span> </span><br><span class="hljs-function"></span>&#123; <br>    <span class="hljs-keyword">super</span>(name, salary, year, month, day); <br>    bonus = <span class="hljs-number">0</span>;<br>&#125; <br></code></pre></td></tr></table></figure>
 <p>super关键词：*<em>调用超类 含有name—day 参数的构造器 *</em>的简写形式<br>                    如果没有显式调用，会默认用超类的。</p>
 <p>类似this关键字～</p>
 <h3 id="继承层次"><a href="#继承层次" class="headerlink" title="继承层次"></a>继承层次</h3><p>继承并不仅限于一个层次。 例如， 可以由 Manager 类派生 Executive 类。由一个公共超类派生出来的所有类的集合被称为<strong>继承层次（inheritance hierarchy)</strong>, 如图 5-1 所示。在继承 层次中， 从某个特定的类到其祖先的路径被称为该类的继承链 (inheritance chain)0<br><img src="https://gitee.com/cher112/image/raw/master/img/1585035342026-f1aa6bbd-6743-44e0-8e1d-fba7d9ab0f6e.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h3 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h3><p>有时候，可能希望阻止人们利用某个类定义子类。不允许扩展的类被称为 final 类。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String getNameQ</code></pre>
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>
-<span class="hljs-class"></span>&#123;
-	<span class="hljs-keyword">private</span> String name;
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(St ring name)</span></span>
-<span class="hljs-function">	</span>&#123;
-	<span class="hljs-keyword">this</span>.name = name;
-	&#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String getNameQ<br></code></pre></td></tr></table></figure>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span><br><span class="hljs-class"></span>&#123;<br>	<span class="hljs-keyword">private</span> String name;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(St ring name)</span></span><br><span class="hljs-function">	</span>&#123;<br>	<span class="hljs-keyword">this</span>.name = name;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>表述为一个抽象的大类<br><img src="https://gitee.com/cher112/image/raw/master/img/1585056601086-c45f45f2-252e-4356-a78e-ff9eb22eb006.png" srcset="/img/loading.gif" alt="image.png"><br>Employee和student在逻辑上都是通过抽象类拓展出来的。</p>
 <p>还是不太理解抽象方法(好像在接口中会阐述)</p>
 <h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p>object是所有java类的始祖，每个类都是由他扩展出来的</p>
-<pre><code class="hljs java">Object obj =  <span class="hljs-keyword">new</span> Employee(xxx);
-#object只是作为各种值的 通用持有者。 要进行操作还需要类型转换
-<span class="hljs-comment">//这个是向上转型（自动类型转换）:小——&gt;大</span>
-Employee = (Employee) obj
-<span class="hljs-comment">//向下转型，以便进行更改器等具体操作</span></code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Object obj =  <span class="hljs-keyword">new</span> Employee(xxx);<br>#object只是作为各种值的 通用持有者。 要进行操作还需要类型转换<br><span class="hljs-comment">//这个是向上转型（自动类型转换）:小——&gt;大</span><br>Employee = (Employee) obj<br><span class="hljs-comment">//向下转型，以便进行更改器等具体操作</span><br></code></pre></td></tr></table></figure>
 <h2 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h2><p>Object 类中的 equals 方法用于检测一个对象是否等于另外一个对象。在 Object 类中，这<br>个方法将判断两个对象是否具有相同的引用。引用相同，它们是相同</p>
-<pre><code class="hljs java"><span class="hljs-keyword">return</span> Objects.equals(name, other.name)
-    
-    
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span>
-<span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">boolean</span> <span class="hljs-title">equals</span>(<span class="hljs-title">Object</span> <span class="hljs-title">otherObject</span>)</span>
-<span class="hljs-class"></span>&#123;
-<span class="hljs-keyword">if</span> (!<span class="hljs-function"><span class="hljs-keyword">super</span> <span class="hljs-title">equals</span><span class="hljs-params">(otherObject)</span>) return <span class="hljs-keyword">false</span></span>;
-<span class="hljs-comment">// super.equals checked that this and otherObject belong to the same class</span>
-Manager other = (Manager) otherObject;
-<span class="hljs-keyword">return</span> bonus == other.bonus;
-&#125;
-&#125;
-<span class="hljs-comment">//如果超类都不相同，就不需要比较子类，反之则需要再比较子类的实例域(manager比员工多了个bonus实例域)</span></code></pre>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>
-<span class="hljs-class"></span>&#123;
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Employee other)</span></span>
-<span class="hljs-function"></span>&#123;
-<span class="hljs-keyword">return</span> other != <span class="hljs-keyword">null</span>
-&amp;&amp; getClassO == other.getClass0
-&amp;&amp; Objects.equals(name, other. name)
-&amp;&amp; salary == other.salary
-&amp;&amp; Objects.equals(hireDay ,other.hireDay) ;
-&#125;&#125;
-
-该方法错误
-原因：想覆盖一个新的equals方法(基于objects的)，但是并没有覆盖(格式不对)。
-应该改为
-<span class="hljs-function">Override <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object other)</span>；</span></code></pre>
-<pre><code class="hljs java">规范式写覆盖equals！！！
-<span class="hljs-meta">@Override</span>
-   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object otherObject)</span></span>
-<span class="hljs-function">   </span>&#123;
-      <span class="hljs-comment">// 如果引用的地址一样，肯定相等</span>
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == otherObject) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-
-      <span class="hljs-comment">//没地址肯定不相等</span>
-      <span class="hljs-keyword">if</span> (otherObject == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-
-      <span class="hljs-comment">// 类名不一样，肯定错（既然已经区分不同类了，每个类一定有其不同的特质）</span>
-      <span class="hljs-keyword">if</span> (getClass() != otherObject.getClass()) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-
-      <span class="hljs-comment">// now we know otherObject is a non-null Employee</span>
-      <span class="hljs-keyword">var</span> other = (Employee) otherObject;
-
-      <span class="hljs-comment">// test whether the fields have identical values</span>
-      <span class="hljs-keyword">return</span> Objects.equals(name, other.name) 
-         &amp;&amp; 基本变量 == other.基本变量 &amp;&amp; Objects.equals(对象, 对象).....;
-   &#125;
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">return</span> Objects.equals(name, other.name)<br>    <br>    <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Employee</span></span><br><span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">boolean</span> <span class="hljs-title">equals</span>(<span class="hljs-title">Object</span> <span class="hljs-title">otherObject</span>)</span><br><span class="hljs-class"></span>&#123;<br><span class="hljs-keyword">if</span> (!<span class="hljs-function"><span class="hljs-keyword">super</span> <span class="hljs-title">equals</span><span class="hljs-params">(otherObject)</span>) return <span class="hljs-keyword">false</span></span>;<br><span class="hljs-comment">// super.equals checked that this and otherObject belong to the same class</span><br>Manager other = (Manager) otherObject;<br><span class="hljs-keyword">return</span> bonus == other.bonus;<br>&#125;<br>&#125;<br><span class="hljs-comment">//如果超类都不相同，就不需要比较子类，反之则需要再比较子类的实例域(manager比员工多了个bonus实例域)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span><br><span class="hljs-class"></span>&#123;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Employee other)</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-keyword">return</span> other != <span class="hljs-keyword">null</span><br>&amp;&amp; getClassO == other.getClass0<br>&amp;&amp; Objects.equals(name, other. name)<br>&amp;&amp; salary == other.salary<br>&amp;&amp; Objects.equals(hireDay ,other.hireDay) ;<br>&#125;&#125;<br><br>该方法错误<br>原因：想覆盖一个新的equals方法(基于objects的)，但是并没有覆盖(格式不对)。<br>应该改为<br><span class="hljs-function">Override <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object other)</span>；</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java">规范式写覆盖equals！！！<br><span class="hljs-meta">@Override</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object otherObject)</span></span><br><span class="hljs-function">   </span>&#123;<br>      <span class="hljs-comment">// 如果引用的地址一样，肯定相等</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == otherObject) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br><br>      <span class="hljs-comment">//没地址肯定不相等</span><br>      <span class="hljs-keyword">if</span> (otherObject == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>      <span class="hljs-comment">// 类名不一样，肯定错（既然已经区分不同类了，每个类一定有其不同的特质）</span><br>      <span class="hljs-keyword">if</span> (getClass() != otherObject.getClass()) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>      <span class="hljs-comment">// now we know otherObject is a non-null Employee</span><br>      <span class="hljs-keyword">var</span> other = (Employee) otherObject;<br><br>      <span class="hljs-comment">// test whether the fields have identical values</span><br>      <span class="hljs-keyword">return</span> Objects.equals(name, other.name) <br>         &amp;&amp; 基本变量 == other.基本变量 &amp;&amp; Objects.equals(对象, 对象).....;<br>   &#125;<br><br><br></code></pre></td></tr></table></figure>
 <ul>
 <li>== 对于引用类型，比较的是两个对象 引用地址的值；对于基本类型，比较的是值</li>
 <li>equals(Object x) 比较的是引用的地址值</li>
@@ -406,10 +327,14 @@ Manager other = (Manager) otherObject;
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -438,12 +363,13 @@ Manager other = (Manager) otherObject;
               <!-- Comments -->
               <article class="comments" id="comments">
                 
+                  
+                
                 
   <div id="vcomments"></div>
   <script type="text/javascript">
-    function loadValine() {
-      // Valine.min.js
-      addScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
         new Valine({
           el: "#vcomments",
           master: '5a0838f4824bddba01cb0c13c83bc63f',
@@ -580,20 +506,11 @@ Manager other = (Manager) otherObject;
     }
         });
       });
-    }
-    waitElementVisible('vcomments', loadValine);
+    });
   </script>
-  <style>
-    .v[data-class=v] .veditor {
-        background-image: url(https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/c_girl.gif);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
-    </style>
-    
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
 
 
               </article>
@@ -606,7 +523,7 @@ Manager other = (Manager) otherObject;
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -618,16 +535,15 @@ Manager other = (Manager) otherObject;
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -648,9 +564,10 @@ Manager other = (Manager) otherObject;
     </div>
   </div>
 </div>
-  
+    
 
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
@@ -689,10 +606,24 @@ Manager other = (Manager) otherObject;
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -709,283 +640,51 @@ Manager other = (Manager) otherObject;
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
 
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
-      }
-    }
 
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
 
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/a49b2de.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz'
-    var app_key = 'Qj9gggkYd7RhSSxinWCvCCMk'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "JAVA笔记 第五章 继承&nbsp;",
-      ],
-      cursorChar: "🐟",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
   </script>
 
 
@@ -1021,6 +720,11 @@ Manager other = (Manager) otherObject;
   
 
 
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

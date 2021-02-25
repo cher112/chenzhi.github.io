@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
+  <link rel="icon" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,26 +16,32 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  
+    <meta name="description" content="">
+  
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
+  
   <title>陈之的鱼塘</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -52,6 +58,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"cher112.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐟","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":true,"baidu":null,"google":"UA-166912137-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz","app_key":"Qj9gggkYd7RhSSxinWCvCCMk","server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.3.0"></head>
@@ -141,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                留言板
               </a>
             </li>
           
@@ -163,13 +173,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -201,9 +211,9 @@
   
     
       <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -222,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none"></h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h1 id="Java-week3-4-总结"><a href="#Java-week3-4-总结" class="headerlink" title="Java week3-4 总结"></a>Java week3-4 总结</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/image-20200603111200391.png" srcset="/img/loading.gif" alt="image-20200603111200391"></p>
 <h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>一个需求表明,接口中有的方法必须被掉用类的覆盖了才可以用implement</p>
 <p>不需要有方法，但可以有（默认方法）</p>
@@ -253,22 +263,7 @@
 <p>虚拟机栈：表示<strong>Java方法执行的内存模型</strong>，每调用一个方法就会为每个方法生成一个栈帧（Stack Frame），用来存储<strong>局部变量</strong>表、<strong>操作数</strong>栈、动态链接、方法出口，线程等信息。</p>
 <p>程序计数器：程序计数器用来记录当前正在执行的指令</p>
 <p>用一个十分简单的代码段模拟一下Java堆栈的运行过程：</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppTest</span> </span>&#123;
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;张三&quot;</span>);
-    person.sayHello();
-    &#125;
-    &#125;
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
-    String name;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span> </span>&#123; 
-    <span class="hljs-keyword">this</span>.name = name;
-    &#125; 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>
-<span class="hljs-function">    </span>&#123;
-    System.out.println(<span class="hljs-string">&quot;hello &quot;</span> + name);
-    &#125;
-    &#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppTest</span> </span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;张三&quot;</span>);<br>    person.sayHello();<br>    &#125;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    String name;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span> </span>&#123; <br>    <span class="hljs-keyword">this</span>.name = name;<br>    &#125; <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span><br><span class="hljs-function">    </span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;hello &quot;</span> + name);<br>    &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 <p>新建一个main线程的一个栈</p>
 <p>jvm在方法区寻找是否存在Person类的信息</p>
 <p>如果没找到类加载器加载Person类信息到方法区，然后在堆中创建Person对象，并持有方法区的引用</p>
@@ -284,38 +279,16 @@
 <li>局部变量在局部范围使用时创建，跳出局部范围销毁。</li>
 </ul>
 <p>JVM中判断是否回收一个对象使用的是可达性分析算法，GC ROOT不可到达的节点都将会被标记上，<strong>一个对象如果被标记了两次就会被回收掉</strong>。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Test TEST= <span class="hljs-keyword">null</span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;
-        TEST = <span class="hljs-keyword">new</span> Test();
-        TEST = <span class="hljs-keyword">null</span>;
-        System.gc();
-        <span class="hljs-keyword">try</span> &#123;
-            Thread.sleep(<span class="hljs-number">500</span>);
-        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;
-            e.printStackTrace();
-        &#125;
-        System.out.println(TEST);
-    &#125;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
-        System.out.println(<span class="hljs-string">&quot;要死了要死了要死了!&quot;</span>);
-    &#125; 
-&#125;
-
-output:
-<span class="hljs-string">&quot;要死了要死了要死了!&quot;</span>
-NULL</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Test TEST= <span class="hljs-keyword">null</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>&#123;<br>        TEST = <span class="hljs-keyword">new</span> Test();<br>        TEST = <span class="hljs-keyword">null</span>;<br>        System.gc();<br>        <span class="hljs-keyword">try</span> &#123;<br>            Thread.sleep(<span class="hljs-number">500</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        System.out.println(TEST);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;要死了要死了要死了!&quot;</span>);<br>    &#125; <br>&#125;<br><br>output:<br><span class="hljs-string">&quot;要死了要死了要死了!&quot;</span><br>NULL<br></code></pre></td></tr></table></figure>
 
 
 <h1 id="工具类-Math-string"><a href="#工具类-Math-string" class="headerlink" title="工具类(Math,string)"></a>工具类(Math,string)</h1><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>字符串是常量；它们的值在创建之后不能更改。字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。例如：</p>
 <blockquote>
-<pre><code class="hljs ebnf"><span class="hljs-attribute">String str</span> = <span class="hljs-string">&quot;abc&quot;</span>;</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">String str</span> = <span class="hljs-string">&quot;abc&quot;</span>;<br> <br></code></pre></td></tr></table></figure>
 <p>等效于：</p>
 </blockquote>
 <blockquote>
-<pre><code class="hljs processing"><span class="hljs-built_in">char</span> data[] = &#123;<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>&#125;;
-<span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(data);</code></pre>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-built_in">char</span> data[] = &#123;<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>&#125;;<br><span class="hljs-keyword">String</span> <span class="hljs-built_in">str</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(data);<br></code></pre></td></tr></table></figure>
 <p>常用方法：</p>
 </blockquote>
 <p>string.length();</p>
@@ -343,12 +316,7 @@ NULL</code></pre>
 <p>​      } </p>
 <p>  }</p>
 <p>以上实例编译运行结果如下：</p>
-<pre><code class="hljs jboss-cli">90 度的正弦值：1.0
-0度的余弦值：1.0
-60度的正切值：1.7320508075688767
-1的反正切值： 0.7853981633974483
-π<span class="hljs-string">/2</span>的角度值：90.0
-3.141592653589793</code></pre>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">90 度的正弦值：1.0<br>0度的余弦值：1.0<br>60度的正切值：1.7320508075688767<br>1的反正切值： 0.7853981633974483<br>π<span class="hljs-string">/2</span>的角度值：90.0<br>3.141592653589793<br></code></pre></td></tr></table></figure>
 
 
 <h2 id="Number类"><a href="#Number类" class="headerlink" title="Number类"></a>Number类</h2><p>然而，在实际开发过程中，我们经常会遇到需要使用对象，而不是内置数据类型的情形。为了解决这个问题，Java 语言为每一个内置数据类型提供了对应的包装类。</p>
@@ -378,23 +346,11 @@ NULL</code></pre>
 <li>将对象抛出</li>
 </ul>
 <p>eg：</p>
-<pre><code class="hljs java">EOFException e = <span class="hljs-function">nw <span class="hljs-title">EOFException</span><span class="hljs-params">()</span></span>;
-<span class="hljs-keyword">throw</span> e;
-或者
-<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EOPException(匿名)
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">EOFException e = <span class="hljs-function">nw <span class="hljs-title">EOFException</span><span class="hljs-params">()</span></span>;<br><span class="hljs-keyword">throw</span> e;<br>或者<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> EOPException(匿名)<br><br></code></pre></td></tr></table></figure>
 <h3 id="创建异常类"><a href="#创建异常类" class="headerlink" title="创建异常类"></a>创建异常类</h3><p>一般要继承</p>
 <p>例如， 定义一个派生于 IOException 的类。<br>习惯上， 定义的类应该包含两个构造器， 一个是默认的构造器；另一个是带有详细描述信息<br>的构造器（<strong>超类 Throwable 的 toString 方法将会打印出这些详细信息， 这在调试中非常有用)。</strong>  </p>
 <p>eg：</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileFormatException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IOException</span></span>
-<span class="hljs-class"></span>&#123;
-<span class="hljs-keyword">public</span> FileFormatExceptionO &#123;&#125;
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileFormatException</span><span class="hljs-params">(String gripe)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">super</span>(gripe); <span class="hljs-comment">//原本的含参gripe为：</span>
-    <span class="hljs-string">&quot;Content-length: &quot;</span> + len + <span class="hljs-string">&quot;, Received: &quot;</span> + n;
-&#125;
-&#125;</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileFormatException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IOException</span></span><br><span class="hljs-class"></span>&#123;<br><span class="hljs-keyword">public</span> FileFormatExceptionO &#123;&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileFormatException</span><span class="hljs-params">(String gripe)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">super</span>(gripe); <span class="hljs-comment">//原本的含参gripe为：</span><br>    <span class="hljs-string">&quot;Content-length: &quot;</span> + len + <span class="hljs-string">&quot;, Received: &quot;</span> + n;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>补充，一些throwable的方法</p>
 <p>e.getMessage();</p>
 <p>e.getClass().getName();</p>
@@ -406,23 +362,7 @@ NULL</code></pre>
 <li><p>如果没有e错误，则跳过catch</p>
 </li>
 </ul>
-<h1 id="文件输入"><a href="#文件输入" class="headerlink" title="文件输入"></a>文件输入</h1><pre><code class="hljs java">LocalDateTime dNow = LocalDateTime.now();
-DateTimeFormatter ft = DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd-hh-mm-ss&quot;</span>);
-UrlString = UrlString.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>,<span class="hljs-string">&quot;-&quot;</span>);
-File f = <span class="hljs-keyword">new</span> File(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);
-f.createNewFile();
-FileOutputStream file1 = <span class="hljs-keyword">new</span> FileOutputStream(f);
-PrintStream print2 = <span class="hljs-keyword">new</span> PrintStream(file1);
-System.setOut(print2);
-System.out.println(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);
-System.out.println();
-System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span>);
-<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)&#123;
-  System.out.print(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*i+<span class="hljs-string">&quot;-&quot;</span>+(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*(i+<span class="hljs-number">1</span>))+<span class="hljs-string">&quot;:&quot;</span>+list_hist.get(i));
-  System.out.println();
-  &#125; 
-
-  scanner.close();</code></pre>
+<h1 id="文件输入"><a href="#文件输入" class="headerlink" title="文件输入"></a>文件输入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java">LocalDateTime dNow = LocalDateTime.now();<br>DateTimeFormatter ft = DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd-hh-mm-ss&quot;</span>);<br>UrlString = UrlString.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>,<span class="hljs-string">&quot;-&quot;</span>);<br>File f = <span class="hljs-keyword">new</span> File(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);<br>f.createNewFile();<br>FileOutputStream file1 = <span class="hljs-keyword">new</span> FileOutputStream(f);<br>PrintStream print2 = <span class="hljs-keyword">new</span> PrintStream(file1);<br>System.setOut(print2);<br>System.out.println(UrlString+<span class="hljs-string">&quot;-&quot;</span>+ft.format(dNow)+<span class="hljs-string">&quot;.txt&quot;</span>);<br>System.out.println();<br>System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span>);<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)&#123;<br>  System.out.print(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*i+<span class="hljs-string">&quot;-&quot;</span>+(list.get(list.size()-<span class="hljs-number">1</span>)+<span class="hljs-number">3</span>*(i+<span class="hljs-number">1</span>))+<span class="hljs-string">&quot;:&quot;</span>+list_hist.get(i));<br>  System.out.println();<br>  &#125; <br><br>  scanner.close();<br></code></pre></td></tr></table></figure>
 
 
 
@@ -456,10 +396,14 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -488,12 +432,13 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
               <!-- Comments -->
               <article class="comments" id="comments">
                 
+                  
+                
                 
   <div id="vcomments"></div>
   <script type="text/javascript">
-    function loadValine() {
-      // Valine.min.js
-      addScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
         new Valine({
           el: "#vcomments",
           master: '5a0838f4824bddba01cb0c13c83bc63f',
@@ -630,20 +575,11 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
     }
         });
       });
-    }
-    waitElementVisible('vcomments', loadValine);
+    });
   </script>
-  <style>
-    .v[data-class=v] .veditor {
-        background-image: url(https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/c_girl.gif);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
-    </style>
-    
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
 
 
               </article>
@@ -656,7 +592,7 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -668,16 +604,15 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -698,9 +633,10 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
     </div>
   </div>
 </div>
-  
+    
 
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
@@ -739,10 +675,24 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -759,283 +709,51 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
 
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
-      }
-    }
 
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
 
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/8a630470.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz'
-    var app_key = 'Qj9gggkYd7RhSSxinWCvCCMk'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "&nbsp;",
-      ],
-      cursorChar: "🐟",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
   </script>
 
 
@@ -1071,6 +789,11 @@ System.out.println(<span class="hljs-string">&quot;RTT(ms) histogram&quot;</span
   
 
 
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 

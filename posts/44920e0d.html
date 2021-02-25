@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
+  <link rel="icon" href="https://gitee.com/cher112/image/raw/master/img/favicon.png# 网站标签页的 icon">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,26 +16,32 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  
+    <meta name="description" content="">
+  
   <meta name="author" content="Zhihao Chen">
   <meta name="keywords" content="">
+  
   <title>操作系统 多进程图像 实验五-基于内核栈切换的进程切换 - 陈之的鱼塘</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
     
   
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -52,6 +58,10 @@
 <!-- 自定义样式保持在最底部 -->
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"cher112.top","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"🐟","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":true,"baidu":null,"google":"UA-166912137-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz","app_key":"Qj9gggkYd7RhSSxinWCvCCMk","server_url":null}}};
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.3.0"></head>
@@ -141,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                留言板
               </a>
             </li>
           
@@ -163,13 +173,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/意大利风情 (1).jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统 多进程图像 实验五-基于内核栈切换的进程切换">
               
             </span>
 
@@ -201,9 +211,9 @@
   
     
       <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -222,17 +232,17 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">操作系统 多进程图像 实验五-基于内核栈切换的进程切换</h1>
             
-            <div class="markdown-body" id="post-body">
+            <div class="markdown-body">
               <h1 id="实验五-基于内核栈切换的进程切换"><a href="#实验五-基于内核栈切换的进程切换" class="headerlink" title="实验五 基于内核栈切换的进程切换"></a>实验五 基于内核栈切换的进程切换</h1><blockquote>
 <p>本文资源来自 哈工大李治军老师的 操作系统原理与实践 课程<br>实验地址：<a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/115">https://www.lanqiao.cn/courses/115</a><br>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d4411v7u7">https://www.bilibili.com/video/BV1d4411v7u7</a><br>部分图文来自 《操作系统真像还原》 郑刚，带我走进操作系统</p>
 </blockquote>
@@ -253,14 +263,7 @@
 <p>通过选择子找到对应的LDT描述符，再通过段基址：偏移+映射找到对应私有资源地址。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1611761188491-86108645-c194-4254-ae9c-329179eaf349.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h1 id="实验逻辑"><a href="#实验逻辑" class="headerlink" title="实验逻辑"></a>实验逻辑</h1><p>本实验最终要求不完全依靠TSS，用PCB和LDT实现堆栈形式的基于内核栈切换的进程切换。<br>其中内核级进程使用的是fork（）陷入，因此简易了创建新进程的步骤。</p>
 <p>进程切换最关键的函数在 switch_to，通过TCB的内核栈指针，ret到内核程序，用CS:IP切到用户段。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612254147283-0a117db4-e892-40d5-a682-51ba7609e1a7.png" srcset="/img/loading.gif" alt="image.png"></p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="修改schedule调度函数"><a href="#修改schedule调度函数" class="headerlink" title="修改schedule调度函数"></a>修改schedule调度函数</h2><pre><code class="hljs c">kernal/sched.c schedule() 函数:
-
-<span class="hljs-keyword">if</span> ((*p)-&gt;state == TASK_RUNNING &amp;&amp; (*p)-&gt;counter &gt; c)
-    c = (*p)-&gt;counter, next = i, pnext = *p;
-
-
-switch_to(pnext, LDT(next));
-&#125;</code></pre>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="修改schedule调度函数"><a href="#修改schedule调度函数" class="headerlink" title="修改schedule调度函数"></a>修改schedule调度函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">kernal/sched.c schedule() 函数:<br><br><span class="hljs-keyword">if</span> ((*p)-&gt;state == TASK_RUNNING &amp;&amp; (*p)-&gt;counter &gt; c)<br>    c = (*p)-&gt;counter, next = i, pnext = *p;<br><br><br>switch_to(pnext, LDT(next));<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>pnext——下一进程的指针，与current对应。</li>
 <li>LDT(next)——下一进程的LDT地址</li>
@@ -268,91 +271,14 @@ switch_to(pnext, LDT(next));
 </ul>
 <p>next在没学选择子前，可以理解为GDT数组标号。</p>
 <h2 id="补充-c语言函数调用栈"><a href="#补充-c语言函数调用栈" class="headerlink" title="补充 c语言函数调用栈"></a>补充 c语言函数调用栈</h2><p>在schedule()中，switch是被调函数，所以ebp位置如图(EBP of callee function)<br>所以在schedule的函数调用栈中，<br>switch_to运行时，2个参数分别位于8（ebp）和12（ebp）。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612251461308-3b5faea6-9882-43be-bbc4-26c2f3fd1fb1.jpeg" srcset="/img/loading.gif" alt=""></p>
-<h2 id="实现不主要依靠TSS的switch-to"><a href="#实现不主要依靠TSS的switch-to" class="headerlink" title="实现不主要依靠TSS的switch_to()"></a>实现不主要依靠TSS的switch_to()</h2><pre><code class="hljs c">已修改版本，在代码块里逐行讲。老师写的太漂亮了～
-switch_to:
-    pushl %ebp
-    movl %esp,%ebp
- !这里栈帧初始化，然后把子进程PCB指针地址pnext传给ebx，和全局变量current对比
-    pushl %ecx
-    pushl %ebx
-    pushl %eax
-    movl <span class="hljs-number">8</span>(%ebp),%ebx
-    cmpl %ebx,current
-    je <span class="hljs-number">1f</span>
-! 切换PCB
-    movl %ebx,%eax
-	xchgl %eax,current	! 交换current和eax,实现PCB指针切换
-    
-    
-! TSS中的内核栈指针的重写
-! 只是充当“保留”功能，因为原linux用的tss切换(数据结构繁琐，相对耗时)，这里作保留的把<span class="hljs-number">0</span>号tss
-! 的esp0(位于<span class="hljs-number">4</span>偏移),对应内核栈指针重写为下一进程PCB顶部的nei
-    movl tss,%ecx
-    addl $<span class="hljs-number">4096</span>,%ebx
-    movl %ebx,ESP0(%ecx)
-! 切换内核栈
-    KERNEL_STACK = <span class="hljs-number">12</span>
-	movl %esp,KERNEL_STACK(%eax)
-! 再取一下 ebx，因为前面修改过 ebx 的值
-	movl <span class="hljs-number">8</span>(%ebp),%ebx
-	movl KERNEL_STACK(%ebx),%esp
-! 切换LDT，本质是切换用户态映射。
-    movl <span class="hljs-number">12</span>(%ebp),%ecx
-    mov %cx,%fs
-    movl $<span class="hljs-number">0x17</span>,%ecx
-    mov %cx,%fs
-! 和后面的 clts 配合来处理协处理器，由于和主题关系不大，此处不做论述
-    cmpl %eax,last_task_used_math
-    jne <span class="hljs-number">1f</span>
-    clts
-
-<span class="hljs-number">1</span>:    popl %eax
-    popl %ebx
-    popl %ecx
-    popl %ebp
-ret</code></pre>
-<pre><code class="hljs c"><span class="hljs-comment">// 在 include/linux/sched.h 中</span>
-<span class="hljs-comment">//原本PCB中是没有内核栈指针的属性的，但可以人为添加，看一下新PCB数据结构</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> &#123;</span>
-    <span class="hljs-keyword">long</span> state;
-    <span class="hljs-keyword">long</span> counter;
-    <span class="hljs-keyword">long</span> priority;
-    <span class="hljs-keyword">long</span> kernelstack;
-<span class="hljs-comment">//......</span></code></pre>
+<h2 id="实现不主要依靠TSS的switch-to"><a href="#实现不主要依靠TSS的switch-to" class="headerlink" title="实现不主要依靠TSS的switch_to()"></a>实现不主要依靠TSS的switch_to()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c">已修改版本，在代码块里逐行讲。老师写的太漂亮了～<br>switch_to:<br>    pushl %ebp<br>    movl %esp,%ebp<br> !这里栈帧初始化，然后把子进程PCB指针地址pnext传给ebx，和全局变量current对比<br>    pushl %ecx<br>    pushl %ebx<br>    pushl %eax<br>    movl <span class="hljs-number">8</span>(%ebp),%ebx<br>    cmpl %ebx,current<br>    je <span class="hljs-number">1f</span><br>! 切换PCB<br>    movl %ebx,%eax<br>	xchgl %eax,current	! 交换current和eax,实现PCB指针切换<br>    <br>    <br>! TSS中的内核栈指针的重写<br>! 只是充当“保留”功能，因为原linux用的tss切换(数据结构繁琐，相对耗时)，这里作保留的把<span class="hljs-number">0</span>号tss<br>! 的esp0(位于<span class="hljs-number">4</span>偏移),对应内核栈指针重写为下一进程PCB顶部的nei<br>    movl tss,%ecx<br>    addl $<span class="hljs-number">4096</span>,%ebx<br>    movl %ebx,ESP0(%ecx)<br>! 切换内核栈<br>    KERNEL_STACK = <span class="hljs-number">12</span><br>	movl %esp,KERNEL_STACK(%eax)<br>! 再取一下 ebx，因为前面修改过 ebx 的值<br>	movl <span class="hljs-number">8</span>(%ebp),%ebx<br>	movl KERNEL_STACK(%ebx),%esp<br>! 切换LDT，本质是切换用户态映射。<br>    movl <span class="hljs-number">12</span>(%ebp),%ecx<br>    mov %cx,%fs<br>    movl $<span class="hljs-number">0x17</span>,%ecx<br>    mov %cx,%fs<br>! 和后面的 clts 配合来处理协处理器，由于和主题关系不大，此处不做论述<br>    cmpl %eax,last_task_used_math<br>    jne <span class="hljs-number">1f</span><br>    clts<br><br><span class="hljs-number">1</span>:    popl %eax<br>    popl %ebx<br>    popl %ecx<br>    popl %ebp<br>ret<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 在 include/linux/sched.h 中</span><br><span class="hljs-comment">//原本PCB中是没有内核栈指针的属性的，但可以人为添加，看一下新PCB数据结构</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> &#123;</span><br>    <span class="hljs-keyword">long</span> state;<br>    <span class="hljs-keyword">long</span> counter;<br>    <span class="hljs-keyword">long</span> priority;<br>    <span class="hljs-keyword">long</span> kernelstack;<br><span class="hljs-comment">//......</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="修改fork-c"><a href="#修改fork-c" class="headerlink" title="修改fork.c"></a>修改fork.c</h2><p>fork直译是叉子，可以形象理解为最上面的尖头是父进程，下面的是子进程，是通过<strong>拷贝父进程+修改生成的</strong><br>这是fork.c修改的部分代码，是看懂switch必须会的部分。</p>
-<pre><code class="hljs c">! sched -&gt; sys_fork -&gt;call copy_process
-copy_process()&#123;
-    <span class="hljs-keyword">long</span> * krnstack; 
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> *<span class="hljs-title">p</span></span>
-<span class="hljs-class">    <span class="hljs-title">p</span>=</span> (struct task_struct *)get_free_page();<span class="hljs-comment">//获取一个空闲页用作存放自定义内核栈+PCB</span>
-    
-    krnstack=(<span class="hljs-keyword">long</span>)(PAGE_SIZE+(<span class="hljs-keyword">long</span>)p);<span class="hljs-comment">//把krnstack内容放在页末（对应后面问题）</span>
-    
-    !PCB初始化
-    p-&gt;state = TASK_UNINTERRUPTIBLE; 
-    p-&gt;pid = last_pid; 
-    p-&gt;father = current-&gt;pid; 
-    p-&gt;counter = p-&gt;priority
-    
-    
-    *(--krnstack) = ss &amp; <span class="hljs-number">0xffff</span>;
-    *(--krnstack) = esp;
-    *(--krnstack) = eflags;
-    *(--krnstack) = cs &amp; <span class="hljs-number">0xffff</span>;
-    *(--krnstack) = eip;
-    *(--krnstack) = ebp;
-    *(--krnstack) = ecx;
-    *(--krnstack) = ebx;
-    <span class="hljs-comment">// 这里的 0 最有意思，细致观察会发现弹栈这里对应的是%eax，原因放在“问题”做解释</span>
-    *(--krnstack) = <span class="hljs-number">0</span>;
-
-    p-&gt;kernelstack = krnstack;</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c">! sched -&gt; sys_fork -&gt;call copy_process<br>copy_process()&#123;<br>    <span class="hljs-keyword">long</span> * krnstack; <br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> *<span class="hljs-title">p</span></span><br><span class="hljs-class">    <span class="hljs-title">p</span>=</span> (struct task_struct *)get_free_page();<span class="hljs-comment">//获取一个空闲页用作存放自定义内核栈+PCB</span><br>    <br>    krnstack=(<span class="hljs-keyword">long</span>)(PAGE_SIZE+(<span class="hljs-keyword">long</span>)p);<span class="hljs-comment">//把krnstack内容放在页末（对应后面问题）</span><br>    <br>    !PCB初始化<br>    p-&gt;state = TASK_UNINTERRUPTIBLE; <br>    p-&gt;pid = last_pid; <br>    p-&gt;father = current-&gt;pid; <br>    p-&gt;counter = p-&gt;priority<br>    <br>    <br>    *(--krnstack) = ss &amp; <span class="hljs-number">0xffff</span>;<br>    *(--krnstack) = esp;<br>    *(--krnstack) = eflags;<br>    *(--krnstack) = cs &amp; <span class="hljs-number">0xffff</span>;<br>    *(--krnstack) = eip;<br>    *(--krnstack) = ebp;<br>    *(--krnstack) = ecx;<br>    *(--krnstack) = ebx;<br>    <span class="hljs-comment">// 这里的 0 最有意思，细致观察会发现弹栈这里对应的是%eax，原因放在“问题”做解释</span><br>    *(--krnstack) = <span class="hljs-number">0</span>;<br><br>    p-&gt;kernelstack = krnstack;<br></code></pre></td></tr></table></figure>
 
 <h1 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h1><p>针对下面的代码片段：</p>
-<pre><code class="hljs mel">movl tss,%ecx
-addl $4096,%ebx
-movl %ebx,ESP0(%ecx)</code></pre>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mel">movl tss,%ecx<br>addl $4096,%ebx<br>movl %ebx,ESP0(%ecx)<br></code></pre></td></tr></table></figure>
 <p>回答问题：</p>
 <ul>
 <li>（1）为什么要加4096；</li>
@@ -378,10 +304,14 @@ movl %ebx,ESP0(%ecx)</code></pre>
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！
+                  
+                </p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -410,12 +340,13 @@ movl %ebx,ESP0(%ecx)</code></pre>
               <!-- Comments -->
               <article class="comments" id="comments">
                 
+                  
+                
                 
   <div id="vcomments"></div>
   <script type="text/javascript">
-    function loadValine() {
-      // Valine.min.js
-      addScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', function () {
         new Valine({
           el: "#vcomments",
           master: '5a0838f4824bddba01cb0c13c83bc63f',
@@ -552,20 +483,11 @@ movl %ebx,ESP0(%ecx)</code></pre>
     }
         });
       });
-    }
-    waitElementVisible('vcomments', loadValine);
+    });
   </script>
-  <style>
-    .v[data-class=v] .veditor {
-        background-image: url(https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/c_girl.gif);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
-    </style>
-    
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
 
 
               </article>
@@ -578,7 +500,7 @@ movl %ebx,ESP0(%ecx)</code></pre>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
       </div>
@@ -590,16 +512,15 @@ movl %ebx,ESP0(%ecx)</code></pre>
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -620,9 +541,10 @@ movl %ebx,ESP0(%ecx)</code></pre>
     </div>
   </div>
 </div>
-  
+    
 
-  
+    
+  </main>
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
@@ -661,10 +583,24 @@ movl %ebx,ESP0(%ecx)</code></pre>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
@@ -681,283 +617,51 @@ movl %ebx,ESP0(%ecx)</code></pre>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
 
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
-      }
-    }
 
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
 
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
-
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/posts/44920e0d.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'a8kpr4nVvMhN2duDaznljFcW-gzGzoHsz'
-    var app_key = 'Qj9gggkYd7RhSSxinWCvCCMk'
-    var server_url = ''
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
 
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "操作系统 多进程图像 实验五-基于内核栈切换的进程切换&nbsp;",
-      ],
-      cursorChar: "🐟",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
       
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
+      typing(title)
+      
+    })(window, document);
   </script>
 
 
 
   <script  src="/js/local-search.js" ></script>
   <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
   </script>
 
 
@@ -993,6 +697,11 @@ movl %ebx,ESP0(%ecx)</code></pre>
   
 
 
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
 
 
