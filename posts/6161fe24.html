@@ -201,7 +201,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.3k 字
+      7k 字
     </span>
   
 
@@ -275,6 +275,33 @@
 <h2 id="组相联高速缓存"><a href="#组相联高速缓存" class="headerlink" title="组相联高速缓存"></a>组相联高速缓存</h2><p>刚刚说的直接映射高速缓存造成冲突不命中的原因在于每个组只有一行。<code>组相联高速缓存</code>放松了这条限制，所以每个组都保存有多于一个的高速缓存行。判断是否命中的三个步骤如下：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363784408-1f71f70d-433f-4ba8-a93c-f0f4112b338f.png" srcset="/img/loading.gif" alt=""><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363784058-068cd5db-2d61-411b-9a0b-93d2ba480972.png" srcset="/img/loading.gif" alt=""><br>在缓存不命中时，高速缓存必须从内存中取出包含这个字的块，用这个块来替换哪个行呢？有<code>最不常使用</code>规则、<code>最近最少使用</code>规则等等，越是远离CPU，一次不命中的开销就会更大，用更好的替换策略使得不命中最少也变得更珍惜。</p>
 <h2 id="全相联高速缓存"><a href="#全相联高速缓存" class="headerlink" title="全相联高速缓存"></a>全相联高速缓存</h2><p><code>全相联高速缓存</code>是由一个包含所有高速缓存行的组组成的。它的组选择、行匹配和字选择如下：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363784213-b450f998-ab80-4718-9dae-4e064e7681b1.png" srcset="/img/loading.gif" alt=""><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1612363784062-544e8371-1aa8-4346-9ba8-6febfd14b3ef.png" srcset="/img/loading.gif" alt=""><br>这样的高速缓存电路必须并行地搜索许多相匹配的标记，构造一个又大又快的相联高速缓存很困难，而且很昂贵，因此全相联高速缓存只适合做小的高速缓存。</p>
 <h2 id="有关写的问题"><a href="#有关写的问题" class="headerlink" title="有关写的问题"></a>有关写的问题</h2><p>高速缓存关于读的操作非常简单。但是写就要复杂一点，假设我们写一个已经缓存了的字w，在高速缓存更新了它的w的副本之后，怎么更新w在接下来底层的副本呢？一种最简单的方法是<code>直写</code>，就是立即将w的高速缓存块写回到紧接着的低一层中。这样简单，但是每次写都要引起总线流量。另一种是<code>写回</code>，这种方法尽可能的推迟更新，只有当替换算法要驱逐这个更新过的块时，才把他写回到低一层中。<br>在处理写不命中时，一种方法是<code>写分配</code>，加载相应的低一层中的块到高速缓存中，再更新这个高速缓存块，这个方法缺点是每次不命中都会导致一个块从低一层传送到高速缓存。另一个方法是<code>非写分配</code>，避开高速缓存，直接把这个字写到低一层中。</p>
+<h1 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h1><p>多级页表部分已经在OS有详细讲，这里仅作补充</p>
+<h2 id="地址翻译"><a href="#地址翻译" class="headerlink" title="地址翻译"></a>地址翻译</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225145351580.png" srcset="/img/loading.gif" alt="image-20210225145351580"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225144643341.png" srcset="/img/loading.gif" alt="image-20210225144643341"></p>
+<p>图9-13展示了，处理器如何把虚拟地址转化为 位于主存or cache 的物理地址。MMU通过VA的VPN（PTE地址，页表索引）得到位于内存的PTE，通过PTE和VPO偏移生成PA，再把PA的数据返给处理器。</p>
+<h2 id="Linux-内存映射"><a href="#Linux-内存映射" class="headerlink" title="Linux 内存映射"></a>Linux 内存映射</h2><p>Linux通过讲虚拟存储器的区域与磁盘上的对象 关联起来，以<strong>初始化</strong>该虚拟内存取域的内容，这个过程称为 <strong>存储器映射</strong></p>
+<p>虚拟存储器可以映射到以下2种对象</p>
+<p>1）Unix文件系统的普通文件，当cpu需要使用该普通文件（调对应虚拟地址时），该文件对应页再参与和物理存储器的页面交换。</p>
+<p>2）匿名文件，类似</p>
+<p>一旦虚拟页面被初始化，内核就会专门维护一个交换空间进行交换。</p>
+<h3 id="共享对象"><a href="#共享对象" class="headerlink" title="共享对象"></a>共享对象</h3><p>类似std的printf函数，如果每个进程都在物理存储器中保持该函数实现的拷贝，是很浪费的。对于这种情况，假如linux内核识别到了复数进程有某个相同的 对象（每个对象有唯一文件名 或者说是文件信息 inode），可以迅速判定存在映射并使其他进程页表指向相同物理页面。</p>
+<p>共享对象：一个进程将一个共享对象映射到它VAS的区域，那么进程对这个区域的写操作，对于 同样映射 的其他进程，应是可见的，且会反应在磁盘的原始对象。</p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225150615504.png" srcset="/img/loading.gif" alt="image-20210225150615504"></p>
+<blockquote>
+<p>注意，共享对象位于磁盘上的某处，不属于进程1或2.</p>
+</blockquote>
+<h3 id="私有对象"><a href="#私有对象" class="headerlink" title="私有对象"></a>私有对象</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225151330172.png" srcset="/img/loading.gif" alt="image-20210225151330172"></p>
+<h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225151358648.png" srcset="/img/loading.gif" alt="image-20210225151358648"></p>
+<p>上图为任意进程的用户态部分。</p>
+<p>c会认为当需要额外虚拟内存时，用动态内存分配器更方便（因为有时候只有程序运行才能知道某数据结构的大小，且可能随循环变化，所以需要动态表示。）</p>
+<p>动态M分配器维护的时进程的 堆 heap VM区域，以brk为指针。</p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225151655627.png" srcset="/img/loading.gif" alt="image-20210225151655627"></p>
+<p>malloc 返回一个指针，且在堆上分配 size 字节的未初始化内存（称为内存块）<br>若分配成功，则返回为任何拥有基础对齐的对象类型对齐的指针。使用场景下我们需要规定该指针类型。（int*）</p>
+<p>若 size 为零，则 malloc 的行为是实现定义的。例如可返回空指针。亦可返回非空指针</p>
+<p>通过free回收</p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225152038955.png" srcset="/img/loading.gif" alt="image-20210225152038955"></p>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/image-20210225152152169.png" srcset="/img/loading.gif" alt="image-20210225152152169"></p>
+<p>这里黑色是因为，要求对应为2字，所以malloc要以2为倍数对齐</p>
 
             </div>
             <hr>
