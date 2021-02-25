@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-05-15 19:26" pubdate>
-        May 15, 2020 pm
+      <time datetime="2021-02-25 12:20" pubdate>
+        February 25, 2021 pm
       </time>
     </span>
   
@@ -256,31 +256,31 @@
 <p>为什么要随机生成权重初始值呢？因为只有这样，才能发挥多层神经网络的学习效果。</p>
 <p>各层的激活值的分布都要求有适当的广度（分布均匀），因为在各层之间传递多样性的数据，神经网络就可以进行高效地学习。反过来，如果传递的都是有所偏向的数据（分布不均匀），就会出现梯度消失或者 “表现力受限” 的问题，导致学习可能无法顺利进行。</p>
 <p>接下来看看各种初始值以及对应的激活函数的激活值的不同分布,</p>
-<h3 id="权重初始值为标准差是-1-的高斯分布，激活函数为-sigmoid"><a href="#权重初始值为标准差是-1-的高斯分布，激活函数为-sigmoid" class="headerlink" title="权重初始值为标准差是 1 的高斯分布，激活函数为 sigmoid"></a>权重初始值为标准差是 1 的高斯分布，激活函数为 sigmoid</h3><p><img src="https://pic4.zhimg.com/v2-6cd0683a60adef92f2359bce30ddd3a3_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=391&status=done&style=none&width=391" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-6cd0683a60adef92f2359bce30ddd3a3_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<h3 id="权重初始值为标准差是-1-的高斯分布，激活函数为-sigmoid"><a href="#权重初始值为标准差是-1-的高斯分布，激活函数为-sigmoid" class="headerlink" title="权重初始值为标准差是 1 的高斯分布，激活函数为 sigmoid"></a>权重初始值为标准差是 1 的高斯分布，激活函数为 sigmoid</h3><p><img src="https://pic4.zhimg.com/v2-6cd0683a60adef92f2359bce30ddd3a3_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=391&status=done&style=none&width=391" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-6cd0683a60adef92f2359bce30ddd3a3_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>如上图，各层激活值呈偏向 0 和 1 的分布，会出现梯度消失的问题</p>
-<h3 id="权重初始值为标准差是-0-01-的高斯分布，激活函数为-sigmoid"><a href="#权重初始值为标准差是-0-01-的高斯分布，激活函数为-sigmoid" class="headerlink" title="权重初始值为标准差是 0.01 的高斯分布，激活函数为 sigmoid"></a>权重初始值为标准差是 0.01 的高斯分布，激活函数为 sigmoid</h3><p><img src="https://pic3.zhimg.com/v2-09152787f339844815730e503cc8f132_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-09152787f339844815730e503cc8f132_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<h3 id="权重初始值为标准差是-0-01-的高斯分布，激活函数为-sigmoid"><a href="#权重初始值为标准差是-0-01-的高斯分布，激活函数为-sigmoid" class="headerlink" title="权重初始值为标准差是 0.01 的高斯分布，激活函数为 sigmoid"></a>权重初始值为标准差是 0.01 的高斯分布，激活函数为 sigmoid</h3><p><img src="https://pic3.zhimg.com/v2-09152787f339844815730e503cc8f132_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-09152787f339844815730e503cc8f132_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>这次的激活值集中在 0.5 附近，会出现表现力受限的问题。</p>
 <h3 id="权重初始值为-Xavier-初始值，激活函数为-sigmoid"><a href="#权重初始值为-Xavier-初始值，激活函数为-sigmoid" class="headerlink" title="权重初始值为 Xavier 初始值，激活函数为 sigmoid"></a>权重初始值为 Xavier 初始值，激活函数为 sigmoid</h3><p><code>Xavier初始值</code>即是标准差为<code>sqrt(1/n)</code>的高斯分布：</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">w = <span class="hljs-built_in">np</span>.<span class="hljs-built_in">random</span>.randn(node_num, node_num) * <span class="hljs-built_in">np</span>.<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1.0</span> / node_num)<br></code></pre></td></tr></table></figure>
 
 <p>效果如下：</p>
-<p><img src="https://pic2.zhimg.com/v2-4f12f6d53a174df9996690b3b144bc01_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=384&status=done&style=none&width=384" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-4f12f6d53a174df9996690b3b144bc01_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic2.zhimg.com/v2-4f12f6d53a174df9996690b3b144bc01_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=384&status=done&style=none&width=384" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-4f12f6d53a174df9996690b3b144bc01_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>可以看出，各层激活值的分布更有广度，所以 sigmoid 函数的表现力不受限制，有望进行高效地学习。</p>
 <h3 id="权重初始值为-He-初始值，激活函数为-sigmoid"><a href="#权重初始值为-He-初始值，激活函数为-sigmoid" class="headerlink" title="权重初始值为 He 初始值，激活函数为 sigmoid"></a>权重初始值为 He 初始值，激活函数为 sigmoid</h3><p><code>He初始值</code>即是标准差为<code>sqrt(2/n)</code>的高斯分布:</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">w = <span class="hljs-built_in">np</span>.<span class="hljs-built_in">random</span>.randn(node_num, node_num) * <span class="hljs-built_in">np</span>.<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2.0</span> / node_num)<br></code></pre></td></tr></table></figure>
 
 <p>效果如下：</p>
-<p><img src="https://pic1.zhimg.com/v2-c72e35396e346da90592d872c994ebb8_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=384&status=done&style=none&width=384" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-c72e35396e346da90592d872c994ebb8_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic1.zhimg.com/v2-c72e35396e346da90592d872c994ebb8_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=384&status=done&style=none&width=384" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-c72e35396e346da90592d872c994ebb8_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>可以看出，当激活函数为<code>sigmoid</code>时，<code>He初始值</code>的效果仍然不错。</p>
 <p>激活函数使用 ReLU 时，不同权重初始值的激活值分布的变化</p>
 <hr>
 <p><strong>权重初始值为标准差是 0.01 的高斯分布时：</strong></p>
-<p><img src="https://pic2.zhimg.com/v2-9766756185696170792413fb5bee33bd_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-9766756185696170792413fb5bee33bd_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic2.zhimg.com/v2-9766756185696170792413fb5bee33bd_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-9766756185696170792413fb5bee33bd_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>权重初始值为 Xavier 初始值时：</strong></p>
-<p><img src="https://pic2.zhimg.com/v2-890060c8dd157505e7cddcafd976040d_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-890060c8dd157505e7cddcafd976040d_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic2.zhimg.com/v2-890060c8dd157505e7cddcafd976040d_b.jpg#align=left&display=inline&height=264&originHeight=264&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-890060c8dd157505e7cddcafd976040d_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>**</p>
 <p>权重初始值为 He 初始值时：**</p>
-<p><img src="https://pic3.zhimg.com/v2-7970ab3fdde3c88e874069004e5250de_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-7970ab3fdde3c88e874069004e5250de_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic3.zhimg.com/v2-7970ab3fdde3c88e874069004e5250de_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-7970ab3fdde3c88e874069004e5250de_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>总结，当激活函数使用 ReLU, 权重初始值使用<code>He初始值</code>；当激活函数使用 sigmoid 时，权重初始值使用<code>Xavier初始值</code>。</strong></p>
 <h3 id="基于-MNIST-数据集的权重初始值的比较："><a href="#基于-MNIST-数据集的权重初始值的比较：" class="headerlink" title="基于 MNIST 数据集的权重初始值的比较："></a>基于 MNIST 数据集的权重初始值的比较：</h3><p>这里以<code>标准差为0.01的高斯分布</code> 、<code>Xavier初始值</code>、<code>He初始值</code>三种初始值进行实验。</p>
 <p>并且由上一篇文章的知识可知，权重偏置等参数的更新有四种方式：</p>
@@ -291,10 +291,10 @@
 <li>Adam</li>
 </ul>
 <p><strong>用 SGD 更新参数的条件下，基于 MNIST 数据集的三种权重初始值的比较如下图：</strong></p>
-<p><img src="https://pic3.zhimg.com/v2-be397fbe79e39ce3c3b38a785da85206_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-be397fbe79e39ce3c3b38a785da85206_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic3.zhimg.com/v2-be397fbe79e39ce3c3b38a785da85206_b.jpg#alt=" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-be397fbe79e39ce3c3b38a785da85206_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>如上图，<code>std=0.01</code>时，完全无法进行学习，当权重初始值为<code>He初始值</code>时，学习效果最好，进度最快。</p>
 <p><strong>用 Adam 更新参数的条件下，基于 MNIST 数据集的三种权重初始值的比较如下图：</strong></p>
-<p><img src="https://pic1.zhimg.com/v2-d3d1f084fd4884745e31ef2eafff8ee8_b.jpg#align=left&display=inline&height=266&originHeight=266&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://gitee.com/cher112/image/raw/master/img/v2-d3d1f084fd4884745e31ef2eafff8ee8_720w.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://pic1.zhimg.com/v2-d3d1f084fd4884745e31ef2eafff8ee8_b.jpg#align=left&display=inline&height=266&originHeight=266&originWidth=389&status=done&style=none&width=389" srcset="/img/loading.gif" alt="">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/v2-d3d1f084fd4884745e31ef2eafff8ee8_720w.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>如上图，三种权重初始值都能得到较好的学习效果，其中仍然是权重初始值为<code>He初始值</code>的学习效果最佳。<strong>说明一个好的更新参数的方法带来的优势可以抵消不良的权重初始值带来的劣势。</strong></p>
 <blockquote>
 <p>用一句话总结今天的文章：如果不知道使用什么权重初始值，那就使用<code>He初始值</code>；<code>Adam方法</code>带来的影响大于初始值带来的影响。</p>
@@ -333,9 +333,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/f18b1104.html">
+                      <a href="/posts/cb74317f.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据库设计和E-R模型</span>
+                        <span class="hidden-mobile">神经网络-张量引擎</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -343,8 +343,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/6103f647.html">
-                        <span class="hidden-mobile">优化（ optimization）和泛化 （generalization）——减少过拟合和欠拟合</span>
+                      <a href="/posts/f18b1104.html">
+                        <span class="hidden-mobile">数据库设计和E-R模型</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

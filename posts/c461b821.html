@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-05-15 19:26" pubdate>
-        May 15, 2020 pm
+      <time datetime="2021-02-25 12:20" pubdate>
+        February 25, 2021 pm
       </time>
     </span>
   
@@ -244,9 +244,9 @@
             
             <div class="markdown-body">
               <h1 id="神经网络——基于-relu-激活Dense-层堆叠"><a href="#神经网络——基于-relu-激活Dense-层堆叠" class="headerlink" title="神经网络——基于 relu 激活Dense 层堆叠"></a>神经网络——基于 relu 激活Dense 层堆叠</h1><pre><code>参数 num_words=10000 的意思是仅保留训练数据中前 10 000 个最常出现的单词。低频单</code></pre><p>词将被舍弃。这样得到的向量数据不会太大，便于处理。</p>
-<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><h2 id="解码："><a href="#解码：" class="headerlink" title="解码："></a>解码：</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585139525161-faf25c63-3e19-4eb4-89a4-19d2203ff3bb.png" srcset="/img/loading.gif" alt="image.png"><br>/？是什么意思….</p>
+<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><h2 id="解码："><a href="#解码：" class="headerlink" title="解码："></a>解码：</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585139525161-faf25c63-3e19-4eb4-89a4-19d2203ff3bb.png" srcset="/img/loading.gif" alt="image.png"><br>/？是什么意思….</p>
 <h2 id="将列表转换为张量"><a href="#将列表转换为张量" class="headerlink" title="将列表转换为张量"></a>将列表转换为张量</h2><p>转化为2进制矩阵，(<strong>one-hot 编码)</strong><br>举个例子，序列 [3, 5] 将会<br>被转换为 10 000 维向量，只有索引为 3 和 5 的元素是 1，其余元素都是 0。然后网络第<br>一层可以用 Dense 层，它能够处理浮点数向量数据。</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139618830-26919f62-6822-4e7d-95f2-877b543a9efc.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585139618830-26919f62-6822-4e7d-95f2-877b543a9efc.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h1 id="构建网络"><a href="#构建网络" class="headerlink" title="构建网络"></a>构建网络</h1><p>输入数据是向量，而标签是标量（ 1 和 0），这是你会遇到的最简单的情况。有一类网络在这种问题上表现很好，就是<strong>带有 relu 激活的全连接层（ Dense）的简单堆叠，比如Dense(16, activation=’relu’)。</strong></p>
 <p>其中：6 个隐藏单元对应的权重矩阵 W 的形状为 (input_dimension, 16)<br>w.x相当于投影到 16维的向量(表示空间)  再加上b 应用RELU；</p>
 <p>对于这种 Dense 层的堆叠，你需要确定以下两个关键架构：</p>
@@ -255,19 +255,19 @@
 <li>每层有多少个隐藏单元。</li>
 </ul>
 <p>现在暂时规定 unit = 16， layer3 为输出标量(D = 1)</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139826721-7d6e7f83-d50d-4a3a-a2ad-e5d03fc8830d.png" srcset="/img/loading.gif" alt="image.png"><br>其中，第三层因为输出 概率，可以把RELU换为sigmoid激活</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139872928-2611e385-e7a3-4bab-b82e-defb446e2170.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585139826721-7d6e7f83-d50d-4a3a-a2ad-e5d03fc8830d.png" srcset="/img/loading.gif" alt="image.png"><br>其中，第三层因为输出 概率，可以把RELU换为sigmoid激活</p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585139872928-2611e385-e7a3-4bab-b82e-defb446e2170.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="损失函数和优化器选择"><a href="#损失函数和优化器选择" class="headerlink" title="损失函数和优化器选择"></a>损失函数和优化器选择</h2><p>由于你面对的是一个二分类问题，网络输出是一个概率值（网络最后一层使用 sigmoid 激活函数，仅包含一个单元），那么最好使用 <strong>binary_crossentropy（二元交叉熵）损失</strong>。这并不是唯一可行的选择，比如你还可以使用 mean_squared_error（均方误差）。但对于<strong>输出概率值的模型， 交叉熵（ crossentropy）往往是最好<br>的选择。</strong>交叉熵是来自于信息论领域的概念，用于衡量概率分布之间的距离，在这个例子中就<br>是真实分布与预测值之间的距离。<br>下面的步骤是用 rmsprop 优化器和 binary_crossentropy 损失函数来配置模型。注意，<br>我们还在训练过程中监控精度。<br>Q：监控精度？ metrics参数学习</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585139995385-61696da1-00c6-4fbc-8bf8-7b1d362fbd6e.png" srcset="/img/loading.gif" alt="image.png"></p>
-<h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><p><img src="https://gitee.com/cher112/image/raw/master/img/1585140017671-3ad3cee0-cc4c-48eb-a816-91f5f3df2eeb.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1585140058098-eea8a4cb-023b-4fd8-864f-4e801faa8217.png" srcset="/img/loading.gif" alt="image.png"></p>
-<h2 id="损失和精度检验"><a href="#损失和精度检验" class="headerlink" title="损失和精度检验"></a>损失和精度检验</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585140095015-dd2f09c0-edf5-4efc-bd2c-9e486f501843.png" srcset="/img/loading.gif" alt="image.png"></p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585140116706-d05e3654-3a47-44d7-9830-b0e1d5160245.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://gitee.com/cher112/image/raw/master/img/1585140128486-708da453-3c8b-4c31-bcd2-8deb4c856a7c.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585139995385-61696da1-00c6-4fbc-8bf8-7b1d362fbd6e.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140017671-3ad3cee0-cc4c-48eb-a816-91f5f3df2eeb.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140058098-eea8a4cb-023b-4fd8-864f-4e801faa8217.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="损失和精度检验"><a href="#损失和精度检验" class="headerlink" title="损失和精度检验"></a>损失和精度检验</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140095015-dd2f09c0-edf5-4efc-bd2c-9e486f501843.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140116706-d05e3654-3a47-44d7-9830-b0e1d5160245.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140128486-708da453-3c8b-4c31-bcd2-8deb4c856a7c.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p><strong>明显发现，出现过拟合现象</strong><br>**<br>可以提前设置停止训练(减少迭代)，也有其他方法(小记和后续会讲)<br>代码中将训练轮数改为 4，效果更好。</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585140225040-79e1b9fc-7401-41ed-8d85-48bfdc99a882.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585140225040-79e1b9fc-7401-41ed-8d85-48bfdc99a882.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h1 id="交叉熵理论"><a href="#交叉熵理论" class="headerlink" title="交叉熵理论"></a>交叉熵理论</h1><p>交叉熵与熵相对，如同协方差与方差。</p>
-<p>熵考察的是单个的信息（分布）的期望，”信息熵” (information entropy)<br>是<strong>度量样本集合纯度</strong>最常用的一种指标. 假定当前样本集合 D 中第 k 类样本所占的比例为 Pk (k = 1,2,. . . , IYI)，则 D 的信息熵定义为 ：<br><img src="https://gitee.com/cher112/image/raw/master/img/1585206725136-70b9bb42-3513-46dd-abf8-0f1c48a15ddd.png" srcset="/img/loading.gif" alt="image.png"><br>交叉熵考察的是两个的信息（分布）的期望(两个分布之间的”距离”)：<br><img src="https://gitee.com/cher112/image/raw/master/img/1585206744973-aac6ec69-ff36-4a03-882f-f4e550efa4e0.png" srcset="/img/loading.gif" alt="image.png"></p>
-<h2 id="交叉熵代价函数"><a href="#交叉熵代价函数" class="headerlink" title="交叉熵代价函数"></a>交叉熵代价函数</h2><p><img src="https://gitee.com/cher112/image/raw/master/img/1585207010581-ffeb4530-6bcc-4c75-978e-cda3ad73eacd.png" srcset="/img/loading.gif" alt="image.png"><br>为神经网络引入交叉熵代价函数，是为了弥补 sigmoid 型函数的导数形式易发生<strong>饱和（saturate，梯度更新的较慢）的缺陷(x越大曲线越平缓)。</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/70804197">原因</a></p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585208647485-db7f62c3-6998-478d-80ba-c856ad34362b.jpeg" srcset="/img/loading.gif" alt=""></p>
+<p>熵考察的是单个的信息（分布）的期望，”信息熵” (information entropy)<br>是<strong>度量样本集合纯度</strong>最常用的一种指标. 假定当前样本集合 D 中第 k 类样本所占的比例为 Pk (k = 1,2,. . . , IYI)，则 D 的信息熵定义为 ：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585206725136-70b9bb42-3513-46dd-abf8-0f1c48a15ddd.png" srcset="/img/loading.gif" alt="image.png"><br>交叉熵考察的是两个的信息（分布）的期望(两个分布之间的”距离”)：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585206744973-aac6ec69-ff36-4a03-882f-f4e550efa4e0.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="交叉熵代价函数"><a href="#交叉熵代价函数" class="headerlink" title="交叉熵代价函数"></a>交叉熵代价函数</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585207010581-ffeb4530-6bcc-4c75-978e-cda3ad73eacd.png" srcset="/img/loading.gif" alt="image.png"><br>为神经网络引入交叉熵代价函数，是为了弥补 sigmoid 型函数的导数形式易发生<strong>饱和（saturate，梯度更新的较慢）的缺陷(x越大曲线越平缓)。</strong><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/70804197">原因</a></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585208647485-db7f62c3-6998-478d-80ba-c856ad34362b.jpeg" srcset="/img/loading.gif" alt=""></p>
 <p>softmax在下一节会讲到</p>
 
             </div>
@@ -296,9 +296,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/cb74317f.html">
+                      <a href="/posts/5b15c8d0.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">神经网络-张量引擎</span>
+                        <span class="hidden-mobile">计网 Chapter2 物理层</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -306,8 +306,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/a49b2de.html">
-                        <span class="hidden-mobile">JAVA笔记 第五章 继承</span>
+                      <a href="/posts/439d623b.html">
+                        <span class="hidden-mobile">计网 Chapter1 网络体系结构</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

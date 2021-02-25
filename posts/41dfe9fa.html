@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-13 22:38" pubdate>
-        October 13, 2020 pm
+      <time datetime="2021-02-25 12:19" pubdate>
+        February 25, 2021 pm
       </time>
     </span>
   
@@ -303,7 +303,7 @@
 <ul>
 <li>🌟sscanf，sprintf</li>
 </ul>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602085082468-1dc70864-bf3f-4a26-980f-e583f3aa67c7.png#align=left&display=inline&height=47&margin=%5Bobject%20Object%5D&name=image.png&originHeight=58&originWidth=481&size=28610&status=done&style=none&width=387" srcset="/img/loading.gif" alt="image.png"><br>sscanf的s理解为str<br>则sscanf（str，“%d”,&amp;n）——把str的内容读给n<br>ssprintf（str，“&amp;d”，n）——把n的值打印到str</p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602085082468-1dc70864-bf3f-4a26-980f-e583f3aa67c7.png" srcset="/img/loading.gif" alt="image.png"><br>sscanf的s理解为str<br>则sscanf（str，“%d”,&amp;n）——把str的内容读给n<br>ssprintf（str，“&amp;d”，n）——把n的值打印到str</p>
 <blockquote>
 <p>当然%d,%lf,&amp;s也是可以的。</p>
 </blockquote>
@@ -319,8 +319,8 @@
 <blockquote>
 <p>c语言是按值传递，”传址”只不过是c里指定的“传输地址的unsigned int”</p>
 </blockquote>
-<h2 id="🎃引用"><a href="#🎃引用" class="headerlink" title="🎃引用"></a>🎃引用</h2><p>相当于给main里变量起了<strong>“别名”，</strong>而不是函数中作为局部变量的副本，不会销毁。因此不用担心局部变量销毁问题。<br>对引用修改就相当于给被绑定的对象修改<br>eg:<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602169879530-0a7f74a6-1ec0-4a07-9410-9d5e69b29545.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=153&originWidth=287&size=5041&status=done&style=none&width=180" srcset="/img/loading.gif" alt="image.png"><br><strong>引用不是对象</strong></p>
-<h3 id="对const引用"><a href="#对const引用" class="headerlink" title="对const引用"></a>对const引用</h3><p>把引用绑定到const上，<strong>对常量的引用不能用作修改被绑定的对象。</strong><br><strong>eg:</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602508433168-7f8bfccf-3e40-49b0-862b-c3fb2ed12dc6.png#align=left&display=inline&height=104&margin=%5Bobject%20Object%5D&name=image.png&originHeight=207&originWidth=314&size=7710&status=done&style=none&width=157" srcset="/img/loading.gif" alt="image.png"></strong></p>
+<h2 id="🎃引用"><a href="#🎃引用" class="headerlink" title="🎃引用"></a>🎃引用</h2><p>相当于给main里变量起了<strong>“别名”，</strong>而不是函数中作为局部变量的副本，不会销毁。因此不用担心局部变量销毁问题。<br>对引用修改就相当于给被绑定的对象修改<br>eg:<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602169879530-0a7f74a6-1ec0-4a07-9410-9d5e69b29545.png" srcset="/img/loading.gif" alt="image.png"><br><strong>引用不是对象</strong></p>
+<h3 id="对const引用"><a href="#对const引用" class="headerlink" title="对const引用"></a>对const引用</h3><p>把引用绑定到const上，<strong>对常量的引用不能用作修改被绑定的对象。</strong><br><strong>eg:</strong><br><strong><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602508433168-7f8bfccf-3e40-49b0-862b-c3fb2ed12dc6.png" srcset="/img/loading.gif" alt="image.png"></strong></p>
 <blockquote>
 <p>2\n 3\n 3</p>
 </blockquote>
@@ -336,40 +336,40 @@
 <pre><code>变量的定义（definition）用于**为变量分配存储空间**，还可以**为变量指定初始值。**在程序中，变量有且仅有**一个**定义。
 声明（declaration）用于向**程序表明变量的类型和名字**。定义也是声明：当定义变量的时候我们声明了它的类型和名字。可以通过使用extern声明变量名而不定义它。不定义变量的声明包括对象名、对象类型和对象类型前的关键字extern。
 extern声明不是定义，也**不分配存储空间**。事实上它只是说明变量定义在程序的其他地方。程序中变量可以声明多次，但只能定义一次。
-任何在多文件中使用的变量都需要有与定义分离的声明。在这种情况下，一个文件含有变量的定义，使用该变量的其他文件则包含该变量的声明（而不是定义）。</code></pre><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602256800353-2875b913-b2ae-45bc-a76d-b2ac013464ba.png#align=left&display=inline&height=125&margin=%5Bobject%20Object%5D&name=image.png&originHeight=209&originWidth=772&size=25847&status=done&style=none&width=461" srcset="/img/loading.gif" alt="image.png"></p>
-<h2 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h2><h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602508991347-6cb693b6-3cd3-4648-892e-21c3e7a84934.png#align=left&display=inline&height=214&margin=%5Bobject%20Object%5D&name=image.png&originHeight=427&originWidth=1215&size=304665&status=done&style=none&width=607.5" srcset="/img/loading.gif" alt="image.png"></p>
-<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602509026486-058e726d-c0c4-4d1f-9e9f-6895d6944e05.png#align=left&display=inline&height=107&margin=%5Bobject%20Object%5D&name=image.png&originHeight=214&originWidth=1149&size=166191&status=done&style=none&width=574.5" srcset="/img/loading.gif" alt="image.png"></p>
+任何在多文件中使用的变量都需要有与定义分离的声明。在这种情况下，一个文件含有变量的定义，使用该变量的其他文件则包含该变量的声明（而不是定义）。</code></pre><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602256800353-2875b913-b2ae-45bc-a76d-b2ac013464ba.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h2><h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602508991347-6cb693b6-3cd3-4648-892e-21c3e7a84934.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602509026486-058e726d-c0c4-4d1f-9e9f-6895d6944e05.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h3 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h3><h1 id="👷‍♂️STL"><a href="#👷‍♂️STL" class="headerlink" title="👷‍♂️STL"></a>👷‍♂️STL</h1><blockquote>
-<p>概念补充：容器<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602597969543-df5b033f-8ce9-42ab-829e-0fb1617d3cd8.png#align=left&display=inline&height=95&margin=%5Bobject%20Object%5D&name=image.png&originHeight=190&originWidth=1144&size=137300&status=done&style=none&width=572" srcset="/img/loading.gif" alt="image.png"></p>
+<p>概念补充：容器<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602597969543-df5b033f-8ce9-42ab-829e-0fb1617d3cd8.png" srcset="/img/loading.gif" alt="image.png"></p>
 </blockquote>
-<h2 id="string容器"><a href="#string容器" class="headerlink" title="string容器"></a>string容器</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309013173-69554ebc-1a0e-4f9e-814c-552e9f4cf0dc.png#align=left&display=inline&height=51&margin=%5Bobject%20Object%5D&name=image.png&originHeight=68&originWidth=376&size=20005&status=done&style=none&width=283" srcset="/img/loading.gif" alt="image.png"></p>
+<h2 id="string容器"><a href="#string容器" class="headerlink" title="string容器"></a>string容器</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602309013173-69554ebc-1a0e-4f9e-814c-552e9f4cf0dc.png" srcset="/img/loading.gif" alt="image.png"></p>
 <p>std::cin中， ::是<strong>作用域操作符</strong> —— 从左侧类&amp;命名空间的作用域中寻找“cin”的域</p>
 <blockquote>
 <p>类和命名空间访问作用域都是用：：</p>
 </blockquote>
 <p>Q：命名空间和类区别？<br>A：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126481010">命名空间详解</a></p>
 <p>标准库的string类型不是 字符串字面值</p>
-<p>假如遍历字符串，可以<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308353362-7e446da8-f252-4650-adad-b2552c5b980d.png#align=left&display=inline&height=76&margin=%5Bobject%20Object%5D&name=image.png&originHeight=94&originWidth=474&size=26263&status=done&style=none&width=382" srcset="/img/loading.gif" alt="image.png"></p>
-<p><strong>可以使用下标[n]表示，其中</strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308622196-a0ada97f-3b6b-436d-b0f1-04d499be6a28.png#align=left&display=inline&height=20&margin=%5Bobject%20Object%5D&name=image.png&originHeight=39&originWidth=515&size=19370&status=done&style=none&width=257.5" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308568427-c0499637-9f31-4326-805f-5ea701d9928d.png#align=left&display=inline&height=117&margin=%5Bobject%20Object%5D&name=image.png&originHeight=200&originWidth=511&size=66737&status=done&style=none&width=299" srcset="/img/loading.gif" alt="image.png">)<img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308579203-0666a570-3ea6-4312-b7cd-49511628f42b.png#align=left&display=inline&height=63&margin=%5Bobject%20Object%5D&name=image.png&originHeight=126&originWidth=540&size=30657&status=done&style=none&width=270" srcset="/img/loading.gif" alt="image.png"><br>Q：.size() 和 size_type类型的关系<br>A：<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309108599-2168bb85-ab49-4009-8858-155dd4fe6e74.png#align=left&display=inline&height=260&margin=%5Bobject%20Object%5D&name=image.png&originHeight=520&originWidth=725&size=45744&status=done&style=none&width=362.5" srcset="/img/loading.gif" alt="image.png"><br>方法：<br>记住append（）</p>
+<p>假如遍历字符串，可以<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602308353362-7e446da8-f252-4650-adad-b2552c5b980d.png" srcset="/img/loading.gif" alt="image.png"></p>
+<p><strong>可以使用下标[n]表示，其中</strong><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602308622196-a0ada97f-3b6b-436d-b0f1-04d499be6a28.png" srcset="/img/loading.gif" alt="image.png"><br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602308568427-c0499637-9f31-4326-805f-5ea701d9928d.png#align=left&display=inline&height=117&margin=%5Bobject%20Object%5D&name=image.png&originHeight=200&originWidth=511&size=66737&status=done&style=none&width=299" srcset="/img/loading.gif" alt="image.png">)<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602308579203-0666a570-3ea6-4312-b7cd-49511628f42b.png" srcset="/img/loading.gif" alt="image.png"><br>Q：.size() 和 size_type类型的关系<br>A：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602309108599-2168bb85-ab49-4009-8858-155dd4fe6e74.png" srcset="/img/loading.gif" alt="image.png"><br>方法：<br>记住append（）</p>
 <h2 id="vector容器"><a href="#vector容器" class="headerlink" title="vector容器"></a>vector容器</h2><blockquote>
 <p>vector不是类&amp;函数，是<strong>类模板，</strong>根据模板创建类的过程称为实例化</p>
 </blockquote>
-<p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309393028-8b45d43f-de8d-4d2e-9253-a77bffe9207d.png#align=left&display=inline&height=85&margin=%5Bobject%20Object%5D&name=image.png&originHeight=136&originWidth=517&size=56248&status=done&style=none&width=324" srcset="/img/loading.gif" alt="image.png"><br>Q：C++的初始&amp;实例化和 java的区别？ java写的是不是也是类模板而不是类？<br>A：自我理解：类模板对各种域的类型还未规定，所以只是搭建了一个模板而不是真实的类<br>而class已经定了各种域和方法，无法显式改变类别。<br><strong>具体内容待补充</strong><br><strong><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602309922814-8a041786-b35a-4b92-8407-77b04bb165d3.png#align=left&display=inline&height=101&margin=%5Bobject%20Object%5D&name=image.png&originHeight=135&originWidth=494&size=76235&status=done&style=none&width=371" srcset="/img/loading.gif" alt="image.png"></strong></p>
-<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602424356609-60185bdf-ee38-43f6-95e6-ed6ea7b8609a.png#align=left&display=inline&height=182&margin=%5Bobject%20Object%5D&name=image.png&originHeight=363&originWidth=1230&size=274786&status=done&style=none&width=615" srcset="/img/loading.gif" alt="image.png"></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602309393028-8b45d43f-de8d-4d2e-9253-a77bffe9207d.png" srcset="/img/loading.gif" alt="image.png"><br>Q：C++的初始&amp;实例化和 java的区别？ java写的是不是也是类模板而不是类？<br>A：自我理解：类模板对各种域的类型还未规定，所以只是搭建了一个模板而不是真实的类<br>而class已经定了各种域和方法，无法显式改变类别。<br><strong>具体内容待补充</strong><br><strong><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602309922814-8a041786-b35a-4b92-8407-77b04bb165d3.png" srcset="/img/loading.gif" alt="image.png"></strong></p>
+<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602424356609-60185bdf-ee38-43f6-95e6-ed6ea7b8609a.png" srcset="/img/loading.gif" alt="image.png"></p>
 <blockquote>
 <p>比较喜欢用倒数第二个方法</p>
 </blockquote>
-<p>额外方法<br>用迭代器一个个push<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602579975875-db1eacc1-d248-4d26-86db-b789611e665f.png#align=left&display=inline&height=80&margin=%5Bobject%20Object%5D&name=image.png&originHeight=159&originWidth=812&size=58916&status=done&style=none&width=406" srcset="/img/loading.gif" alt="image.png"></p>
+<p>额外方法<br>用迭代器一个个push<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602579975875-db1eacc1-d248-4d26-86db-b789611e665f.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>for(auto i: vector) {cout&lt;&lt;i&lt;&lt;” “;}</p>
 <blockquote>
 <p>遍历打印vector元素，其中 i是vector的 下标索引（int类型）</p>
 </blockquote>
 <h2 id="二维vector"><a href="#二维vector" class="headerlink" title="二维vector"></a>二维vector</h2><p>vector<int> v(&amp;v1[0],&amp;v1[6]); //一维一维的写</p>
-<h2 id="😘迭代器"><a href="#😘迭代器" class="headerlink" title="😘迭代器"></a>😘迭代器</h2><p><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602310305323-9cb9c536-fbfa-457a-9663-1cc0cfc0f4a6.png#align=left&display=inline&height=76&margin=%5Bobject%20Object%5D&name=image.png&originHeight=96&originWidth=536&size=50367&status=done&style=none&width=424" srcset="/img/loading.gif" alt="image.png"><br><strong>！迭代器初始化</strong><br>/<em>对于标准库类型</em>/<br>auto it = s(某个标准库类型).begin();<br>auto it( s.begin());<br>/<em>对于数组</em>/<br>auto it( array[0]);<br>auto it（std::begin( array )）  （补充，尾元素用 std::end(array_name)）</p>
+<h2 id="😘迭代器"><a href="#😘迭代器" class="headerlink" title="😘迭代器"></a>😘迭代器</h2><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602310305323-9cb9c536-fbfa-457a-9663-1cc0cfc0f4a6.png" srcset="/img/loading.gif" alt="image.png"><br><strong>！迭代器初始化</strong><br>/<em>对于标准库类型</em>/<br>auto it = s(某个标准库类型).begin();<br>auto it( s.begin());<br>/<em>对于数组</em>/<br>auto it( array[0]);<br>auto it（std::begin( array )）  （补充，尾元素用 std::end(array_name)）</p>
 <p>⭐Q：运算符it.begin() 为什么不是函数（方法）？ 或者说  begin() 和 .begin（）有什么区别，为什么后面是关键字<br>A：api说，begin和end 是  string vector的<strong>成员，</strong>同时使STL函数，感觉是写错了。。。</p>
 <p><strong>注意！！！</strong><br><strong>C++11 auto</strong><br>auto可以在声明变量的时候根据变量初始值的类型自动为此变量选择匹配的类型，类似的关键字还有decltype。举个例子：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">auto</span> au_a = a;<span class="hljs-comment">//自动类型推断，au_a为int类型</span><br><span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-keyword">typeid</span>(au_a).name() &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">//typeid返回变量类型</span><br></code></pre></td></tr></table></figure>
-<p>迭代器中，用auto只是为了方便，正确的应该是<br><img src="https://fluid-1259766423.cos.ap-nanjing.myqcloud.com/yuque/0/2020/png/756532/1602421169745-6598a0e9-7778-4bef-bde0-6a07586f182e.png#align=left&display=inline&height=27&margin=%5Bobject%20Object%5D&name=image.png&originHeight=27&originWidth=316&size=1911&status=done&style=none&width=312" srcset="/img/loading.gif" alt="image.png"></p>
+<p>迭代器中，用auto只是为了方便，正确的应该是<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1602421169745-6598a0e9-7778-4bef-bde0-6a07586f182e.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="👌数组-amp-指针"><a href="#👌数组-amp-指针" class="headerlink" title="👌数组&amp;指针"></a>👌数组&amp;指针</h2><blockquote>
 <p>使用数组的时候，编译器一般会把他转化为指针</p>
 </blockquote>
@@ -431,9 +431,9 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/44920e0d.html">
+                      <a href="/posts/6103f647.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">操作系统 多进程图像 实验五-基于内核栈切换的进程切换</span>
+                        <span class="hidden-mobile">优化（ optimization）和泛化 （generalization）——减少过拟合和欠拟合</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -441,8 +441,8 @@ extern声明不是定义，也**不分配存储空间**。事实上它只是说�
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/a3943bb.html">
-                        <span class="hidden-mobile">计组 Chapter2 数据的表示与运算</span>
+                      <a href="/posts/2bea85e1.html">
+                        <span class="hidden-mobile">鱼塘2.0 功能介绍</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

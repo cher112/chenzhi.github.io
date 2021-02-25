@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-08-04 20:33" pubdate>
-        August 4, 2020 pm
+      <time datetime="2021-02-25 12:19" pubdate>
+        February 25, 2021 pm
       </time>
     </span>
   
@@ -247,7 +247,7 @@
 <p>部分源码和思路来源于 《Dive-into-DL-PyTorch》，很好的一本进阶书籍，推荐学习！</p>
 </blockquote>
 <p>本文适合对pytorch.nn，python-generator有一定基础的人观看，若对DL感兴趣想入门的朋友，推荐去看李宏毅2020的网课。</p>
-<h1 id="LSTM介绍"><a href="#LSTM介绍" class="headerlink" title="LSTM介绍"></a>LSTM介绍</h1><p>LSTM 中引入了3个门，即输入门（input gate）、遗忘门（forget gate）和输出门（output gate），以及与隐藏状态形状相同的记忆细胞（某些文献把记忆细胞当成一种特殊的隐藏状态），从而记录额外的信息。<br>下图是一层lstm的图示，很好的展示了lstm的“记忆”过程：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/1.png" srcset="/img/loading.gif" alt=""></p>
+<h1 id="LSTM介绍"><a href="#LSTM介绍" class="headerlink" title="LSTM介绍"></a>LSTM介绍</h1><p>LSTM 中引入了3个门，即输入门（input gate）、遗忘门（forget gate）和输出门（output gate），以及与隐藏状态形状相同的记忆细胞（某些文献把记忆细胞当成一种特殊的隐藏状态），从而记录额外的信息。<br>下图是一层lstm的图示，很好的展示了lstm的“记忆”过程：<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1.png" srcset="/img/loading.gif" alt=""></p>
 <p>本次模型目标为：</p>
 <ul>
 <li>记忆周杰伦的歌词习惯</li>
@@ -265,7 +265,7 @@
 </blockquote>
 <p>令相邻的两个随机小批量在原始序列上的位置相毗邻。这时候，我们就可以用一个小批量最终时间步的隐藏状态来初始化下一个小批量的隐藏状态，从而使下一个小批量的输出也取决于当前小批量的输入，并如此循环下去。这对实现循环神经网络造成了两方面影响：一方面， 在训练模型时，我们只需在每一个迭代周期开始时初始化隐藏状态；另一方面，当多个相邻小批量通过传递隐藏状态串联起来时，模型参数的梯度计算将依赖所有串联起来的小批量序列。同一迭代周期中，随着迭代次数的增加，梯度的计算开销会越来越大。 为了使模型参数的梯度计算只依赖一次迭代读取的小批量序列，我们可以在每次读取小批量前将隐藏状态从计算图中分离出来。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 生成迭代对象</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">data_iter_consecutive</span>(<span class="hljs-params">corpus_indices, batch_size, num_steps, device=<span class="hljs-literal">None</span></span>):</span><br>    <span class="hljs-keyword">if</span> device <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        device = torch.device(<span class="hljs-string">&#x27;cuda&#x27;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;cpu&#x27;</span>) <span class="hljs-comment"># 深度学习计算量较大，推荐用cuda</span><br>    corpus_indices = torch.tensor(corpus_indices, dtype=torch.float32, device=device)<br>    data_len = <span class="hljs-built_in">len</span>(corpus_indices)<br>    batch_len = data_len // batch_size<br>    indices = corpus_indices[<span class="hljs-number">0</span>: batch_size*batch_len].view(batch_size, batch_len)<br>    epoch_size = (batch_len - <span class="hljs-number">1</span>) // num_steps<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epoch_size):<br>        i = i * num_steps<br>        X = indices[:, i: i + num_steps]<br>        Y = indices[:, i + <span class="hljs-number">1</span>: i + num_steps + <span class="hljs-number">1</span>]<br>        <span class="hljs-keyword">yield</span> X, Y<br>    <br></code></pre></td></tr></table></figure>
-<p>这里可视化一下相邻取样的逻辑<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/PicGo/2.png" srcset="/img/loading.gif" alt=""></p>
+<p>这里可视化一下相邻取样的逻辑<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/2.png" srcset="/img/loading.gif" alt=""></p>
 <h1 id="搭建模型"><a href="#搭建模型" class="headerlink" title="搭建模型"></a>搭建模型</h1><p>这里我们搭建一个 input_size = 1027, num_hidden = 256, output_size =1027， 一层lstm+一层全连接层的模型</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python">lstm_layer = nn.LSTM(input_size=vocab_size, hidden_size=num_hiddens)<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RNNModel</span>(<span class="hljs-params">nn.Module</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, rnn_layer, vocab_size</span>):</span><br>        <span class="hljs-built_in">super</span>(RNNModel, self).__init__()<br>        self.rnn = rnn_layer<br>        self.hidden_size = rnn_layer.hidden_size * (<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> rnn_layer.bidirectional <span class="hljs-keyword">else</span> <span class="hljs-number">1</span>) <br>        self.vocab_size = vocab_size<br>        self.dense = nn.Linear(self.hidden_size, vocab_size)<br>        self.state = <span class="hljs-literal">None</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">self, inputs, state</span>):</span> <span class="hljs-comment"># inputs: (batch, seq_len)</span><br>        <span class="hljs-comment"># 获取one-hot向量表示</span><br>        X = to_onehot(inputs, self.vocab_size) <span class="hljs-comment"># X是个list</span><br>        Y, self.state = self.rnn(torch.stack(X), state)<br>        <span class="hljs-comment"># 全连接层会首先将Y的形状变成(num_steps * batch_size, num_hiddens)，它的输出</span><br>        <span class="hljs-comment"># 形状为(num_steps * batch_size, vocab_size)</span><br>        output = self.dense(Y.view(-<span class="hljs-number">1</span>, Y.shape[-<span class="hljs-number">1</span>]))<br>        <span class="hljs-keyword">return</span> output, self.state<br>    <br>model = RNNModel(lstm_layer)<br></code></pre></td></tr></table></figure>
 <p>损失函数为交叉熵，小批量梯度下降的优化器为Adam，学习率见上，忽略。</p>
@@ -305,9 +305,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/439d623b.html">
+                      <a href="/posts/ddd41a10.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计网 Chapter1 网络体系结构</span>
+                        <span class="hidden-mobile">softmax以及交叉熵loss 笔记</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     

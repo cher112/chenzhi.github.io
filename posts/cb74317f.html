@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-05-15 19:26" pubdate>
-        May 15, 2020 pm
+      <time datetime="2021-02-25 12:20" pubdate>
+        February 25, 2021 pm
       </time>
     </span>
   
@@ -257,9 +257,9 @@
 </blockquote>
 <h3 id="0D张量"><a href="#0D张量" class="headerlink" title="0D张量"></a>0D张量</h3><p>又称标量，在 Numpy中，一个 float32 或 float64 的数字就是一个标量张量（或标量数组）。<br>eg：<br>array(12); ndim = 0;</p>
 <h3 id="1D张量"><a href="#1D张量" class="headerlink" title="1D张量"></a>1D张量</h3><p>数字组成的数组叫作向量（ vector）或一维张量（ 1D 张量）。一维张量只有一个轴。下面是<br>一个 Numpy 向量<br>eg:<br>x = array([12, 3, 6, 14, 7]); x.ndim = 1<br><strong>是5D向量(5个元素)  1D张量</strong><br>**</p>
-<h3 id="3-D张量"><a href="#3-D张量" class="headerlink" title="3+D张量"></a>3+D张量</h3><p>将多个矩阵组合成一个新的数组，可以得到一个 3D 张量，你可以将其直观地理解为数字<br>组成的立方体。下面是一个 Numpy 的 3D 张量。<br>eg:<img src="https://gitee.com/cher112/image/raw/master/img/1585137256173-2ae121f0-e513-4070-b7b5-bbb5d62d5bf0.png" srcset="/img/loading.gif" alt="image.png"><br>4D类似。</p>
+<h3 id="3-D张量"><a href="#3-D张量" class="headerlink" title="3+D张量"></a>3+D张量</h3><p>将多个矩阵组合成一个新的数组，可以得到一个 3D 张量，你可以将其直观地理解为数字<br>组成的立方体。下面是一个 Numpy 的 3D 张量。<br>eg:<img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585137256173-2ae121f0-e513-4070-b7b5-bbb5d62d5bf0.png" srcset="/img/loading.gif" alt="image.png"><br>4D类似。</p>
 <p>图解张量：</p>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585137499192-308c0ea3-2732-4787-8662-c68d910c8671.jpeg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585137499192-308c0ea3-2732-4787-8662-c68d910c8671.jpeg" srcset="/img/loading.gif" alt=""></p>
 <h2 id="张量运算"><a href="#张量运算" class="headerlink" title="张量运算"></a>张量运算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">keras.layers.Dense(<span class="hljs-number">512</span>, activation=<span class="hljs-string">&#x27;relu&#x27;</span>)<br>output = relu(dot(W, <span class="hljs-built_in">input</span>) + b)<br></code></pre></td></tr></table></figure>
 <p>可以理解为 一个函数 输入input，操作后返回另一个2D张量<br>我们将上式拆开来看。这里有三个张量运算：输入张量和张量 W 之间的<strong>点积运算（ dot）</strong>、<br>得到的 2D 张量与向量 b 之间的<strong>加法运算（ +）</strong>、最后的 <strong>relu 运算</strong>。 relu(x) 是 max(x, 0)。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46255482">RELU详解</a></p>
 <h3 id="逐元素运算"><a href="#逐元素运算" class="headerlink" title="逐元素运算"></a>逐元素运算</h3><p>该运算独立地应用于张量中的每个元素<br>方法：</p>
@@ -269,11 +269,11 @@
 <p>eg: maximum运算</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>x = np.random.random((<span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">32</span>, <span class="hljs-number">10</span>))<br>y = np.random.random((<span class="hljs-number">32</span>, <span class="hljs-number">10</span>))<br>z = np.maximum(x, y) //输出形状为(<span class="hljs-number">64</span>,<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">10</span>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="张量点积"><a href="#张量点积" class="headerlink" title="张量点积"></a>张量点积</h3><p><strong>点积运算，也叫张量积（ tensor product，不要与逐元素的乘积弄混）</strong>，是最常见也最有用的<br>张量运算。与逐元素的运算不同，它将输入张量的元素合并在一起。<br><img src="https://gitee.com/cher112/image/raw/master/img/1585138183116-a208c9ad-7798-4d6b-ae4d-65cd3776a975.png" srcset="/img/loading.gif" alt="image.png"><br>对于两个矩阵 x 和 y，当且仅当 x.shape[1] == y.shape[0] 时，你才可以对它们做点积（dot(x, y)）。<br>得到的结果是一个形状为 (x.shape[0], y.shape[1])   的矩阵，其元素为 x的行与 y 的列之间的点积。<br>图解<br><img src="https://gitee.com/cher112/image/raw/master/img/1585138236648-a13ee44b-5ca8-4134-808a-01b6ebcc89b5.png" srcset="/img/loading.gif" alt="image.png"><br>维度：(a,b) . (b,c) → (a,c)<br>高维拓展<br>(a, b, c, d) . (d,) -&gt; (a, b, c)<br>(a, b, c, d) . (d, e) -&gt; (a, b, c, e)</p>
+<h3 id="张量点积"><a href="#张量点积" class="headerlink" title="张量点积"></a>张量点积</h3><p><strong>点积运算，也叫张量积（ tensor product，不要与逐元素的乘积弄混）</strong>，是最常见也最有用的<br>张量运算。与逐元素的运算不同，它将输入张量的元素合并在一起。<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585138183116-a208c9ad-7798-4d6b-ae4d-65cd3776a975.png" srcset="/img/loading.gif" alt="image.png"><br>对于两个矩阵 x 和 y，当且仅当 x.shape[1] == y.shape[0] 时，你才可以对它们做点积（dot(x, y)）。<br>得到的结果是一个形状为 (x.shape[0], y.shape[1])   的矩阵，其元素为 x的行与 y 的列之间的点积。<br>图解<br><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585138236648-a13ee44b-5ca8-4134-808a-01b6ebcc89b5.png" srcset="/img/loading.gif" alt="image.png"><br>维度：(a,b) . (b,c) → (a,c)<br>高维拓展<br>(a, b, c, d) . (d,) -&gt; (a, b, c)<br>(a, b, c, d) . (d, e) -&gt; (a, b, c, e)</p>
 <blockquote>
 <p>不太清楚操作的意义</p>
 </blockquote>
-<h3 id="张量变形"><a href="#张量变形" class="headerlink" title="张量变形"></a>张量变形</h3><p><img src="https://gitee.com/cher112/image/raw/master/img/1585138445909-9c1d7847-14b8-4f42-aaa2-cd054ca05f48.png" srcset="/img/loading.gif" alt="image.png"></p>
+<h3 id="张量变形"><a href="#张量变形" class="headerlink" title="张量变形"></a>张量变形</h3><p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585138445909-9c1d7847-14b8-4f42-aaa2-cd054ca05f48.png" srcset="/img/loading.gif" alt="image.png"></p>
 <h2 id="引擎——基于梯度的优化"><a href="#引擎——基于梯度的优化" class="headerlink" title="引擎——基于梯度的优化"></a>引擎——基于梯度的优化</h2><h3 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h3><p>**</p>
 <h4 id="小批量随机梯度下降——SGD"><a href="#小批量随机梯度下降——SGD" class="headerlink" title="小批量随机梯度下降——SGD"></a>小批量随机梯度下降——SGD</h4><p>基于当前在随机数据批量上的损失，一点一点地对参数进行调节。由于处理的是一个可微函数，你可以计算出它的梯度，从而有效地实现第四步。沿着梯度的反方向更新权重，损失每次都会变小一点。</p>
 <ul>
@@ -283,7 +283,7 @@
 <li>计算损失相对于网络参数的梯度<strong>［一次反向传播（ backward pass）］</strong></li>
 <li>将参数沿着梯度的反方向移动一点，比如 <strong>W -= step * gradient</strong>，从而使这批数据<br>上的损失减小一点。</li>
 </ul>
-<p><img src="https://gitee.com/cher112/image/raw/master/img/1585138711519-531b1154-b0b5-4f76-bfff-6c8a3418bc50.png" srcset="/img/loading.gif" alt="image.png"><br>小批量在：一次<strong>抽取一批数据</strong>，变种可以为 <strong>每次抽取一个样本</strong>；<strong>每次用全部数据</strong></p>
+<p><img src="https://www-1259766423.cos.ap-beijing-fsi.myqcloud.com/Picgo/1585138711519-531b1154-b0b5-4f76-bfff-6c8a3418bc50.png" srcset="/img/loading.gif" alt="image.png"><br>小批量在：一次<strong>抽取一批数据</strong>，变种可以为 <strong>每次抽取一个样本</strong>；<strong>每次用全部数据</strong></p>
 <p>注意点：为 step 因子选取合适的值是很重要的。如果取值太小，则沿着<br>曲线的下降需要很多次迭代，而且可能会陷入<strong>局部极小点</strong>。如果取值太大，则更新权重值之后<br>可能会出现在曲线上完全随机的位置。</p>
 <p>基于注意点的变种：</p>
 <h4 id="基于-优化器的梯度下降"><a href="#基于-优化器的梯度下降" class="headerlink" title="基于 优化器的梯度下降"></a>基于 优化器的梯度下降</h4><p>引入概念: 动量<br>关注** 收敛速度<strong>和</strong>局部极小点**<br>更新参数 w 不仅要考虑当前的梯度值，还要考虑上一次的参数更新</p>
@@ -325,9 +325,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/6103f647.html">
+                      <a href="/posts/439d623b.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">优化（ optimization）和泛化 （generalization）——减少过拟合和欠拟合</span>
+                        <span class="hidden-mobile">计网 Chapter1 网络体系结构</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -335,8 +335,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/c461b821.html">
-                        <span class="hidden-mobile">神经网络——基于 relu 激活Dense 层堆叠</span>
+                      <a href="/posts/5c96ef9b.html">
+                        <span class="hidden-mobile">深度学习入门 -- 权重初始值的优化</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
